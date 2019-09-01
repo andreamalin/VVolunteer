@@ -1,12 +1,10 @@
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.Scanner;
-import java.util.ArrayList;
 
 public class LeerMedicamento {
 	private String txt = ""; //Cada linea de texto se metera a esta variable
-	private String[] lista;
-	ArrayList<String> medicamentos = new ArrayList<String>();
+	private String[] lista; //Lista creada a partir del txt
 
 	public void meterMedicamento() { //Codigo adaptado de https://www.quora.com/How-do-I-read-a-file-line-by-line-in-Java
 		try {
@@ -20,11 +18,10 @@ public class LeerMedicamento {
 		}
 	}
 
-	public String listaInformativa(){
+	public void listaInformativa(){
 		meterMedicamento();
 		lista = txt.split(", "); //Se crea una lista con el nombre, informacion y dosis de los medicamentos
 
-		return "";
     }
 
 	public String[] getLista(){ //Se manda la lista de medicamentos a Medicamento.java
