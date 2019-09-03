@@ -5,7 +5,7 @@ public class Ayudar{
 	private String centro;
 // se creo la una matriz que contiene los centros de salud disponibles
 	private String[] centroSalud = {"Centro de salud 'MarCuar' ubicado en 4avenida zona 3" , "entro de salud 'LoSano' ubicado en 12avenida zona 1","Centro de salud 'UnAbrazo' ubicado en 4ta Calle zona 9"};
-// retorna el numero de la cede central
+// retorna el numero de llamada de la cede central
 	public int getNumero(){
 		return llamar;
 	}
