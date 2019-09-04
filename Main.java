@@ -11,6 +11,8 @@ public class Main{
 	public static void main (String args []){
 		Scanner inputI = new Scanner(System.in);
 		Controlador control = new Controlador();
+		Reportar reportar = new Reportar();
+		CentroSalud CentroS = new Centrosalud();
 			//Reportar reportar = new Reportar();
 
 		int depa;
@@ -32,11 +34,11 @@ public class Main{
 
 				while (ver != true)
 				{	
-					System.out.println("Ingrese su Usuario");				//Falta mandar a comparar los datos ingresados
-					user = sc.nextLine();									//Falta volver la variable "correcto" en true al verificar la autenticidad de los datos
-					System.out.println("Ingrese su Usuario");
-					password = sc.nextLine();			
-					if (correcto == false) System.out.println("Error intente de nuevo");			
+					System.out.println("Ingrese su Usuario");				//Recibe Usuario
+					user = sc.nextLine();							
+					System.out.println("Ingrese su contraseña");			//Recibe Contraseña
+					password = sc.nextLine();
+					if (CentroS.accountManager(user,password) == false) System.out.println("Error ha ingresado mal los datos, intente nuevamente");		//Verifica el usuario y contraseña 	
 
 				}
 
@@ -53,22 +55,22 @@ public class Main{
 				dir = sc.nextLine();	
 				System.out.println("Ingrese sus sintomas");	
 				sint = sc.nextLine();
-				reportar.SetInfo(nombre,correo,tel,dir,sint);
+				reportar.SetInfo(nombre,correo,tel,dir,sint);		//Manda datos a base de datos.
 				x =0;
 				while(x==0){
 				
-					if (reportar.enCamino() == false)
+					if (reportar.enCamino() == false)		
 					System.out.println("Espere...");
 					
 					if (reportar.enCamino() == true){
 					System.out.println("La ayuda va en camino");
 					x=1;
-				}
+						}
 					
 				}	
-				Falta recibir dato de clase reportar y terminar
 				
-				nombre correo telefono dirrecion sintomas
+				
+		
 
 			}
 			else if (control.getOpcion() ==3){
