@@ -25,6 +25,7 @@ class driverVMedic{
 
 		}else if (opcion == 3){
 			System.out.println("Bienvenido");
+			System.out.println("Hola");
 
 		}else{
 			System.out.println("Esa opcion no existe");
