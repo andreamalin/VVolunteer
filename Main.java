@@ -9,52 +9,42 @@ public class Main{
 	
 	//Metodo principal
 	public static void main (String args []){
-		Scanner sc = new Scanner(System.in);
-		//Atributos
-		int opcion; //Convierte a enter la opción elegida
-		String opc; //Recibe el dato tipo String de la opcion elegirá
+		Scanner inputI = new Scanner(System.in);
+		Controlador control = new Controlador();
+			//Reportar reportar = new Reportar();
+
 		int depa;
 		String depar;
-		//Reportar reportar = new Reportar();
+	
 
+		do{
+			System.out.print("Bienvenido a V-MEDIC+\nLa salud es un derecho de todos los seres humanos. Estamos para servirte\n----------------------\nA continuacion, se le presentan las siguientes opciones\n");
+			System.out.println("1. Centro de salud\n2. Reportar\n3. Ayudar\n4. Salir\nPor favor ingrese el numero de la opcion que desea: ");
+			control.setOpcion(inputI.nextInt()); 
 
-
-		opcion = 0;
-		while (opcion != 4){
-			System.out.println("Bienvenido a V-MEDIC+");
-			System.out.println("La salud es un derecho de todos los seres humanos. Estamos para servirte");
-			System.out.println("----------------------" + "\n");
-			System.out.println("A continuacion, se le presentan las siguientes opciones");
-			System.out.println("1. Centro de salud");
-			System.out.println("2. Reportar");
-			System.out.println("3. Ayudar");
-			System.out.println("4. Salir");
-			System.out.println("Por favor ingrese el numero de la opcion que desea" + "\n");
-			opc = sc.nextLine(); //Toma lo ingresado como String
-			opcion = Integer.parseInt(opc); //Convertir a entero el String
-			System.out.println("\n");
-
-			if (opcion ==1){
+			// Opcion para entrar a la cuenta y utilizar las funciones del programa
+			if (control.getOpcion() == 1){
 				boolean ver = false;
 				boolean correcto = false;
 				String user;
 				String password;
 				int x = 0;
 
-				while (ver !=true)
+				while (ver != true)
 				{	
 					System.out.println("Ingrese su Usuario");				//Falta mandar a comparar los datos ingresados
 					user = sc.nextLine();									//Falta volver la variable "correcto" en true al verificar la autenticidad de los datos
 					System.out.println("Ingrese su Usuario");
 					password = sc.nextLine();			
-					if (correcto = false) System.out.println("Error intente de nuevo");			
+					if (correcto == false) System.out.println("Error intente de nuevo");			
 
 				}
-			}	
-			else if (opcion ==2){
+
+
+			} else if (control.getOpcion() == 2){
 				String nombre,correo,tel,dir,sint;
 				System.out.println("Ingrese su Nombre");				
-				nombre = sc.nextLine();	
+				nombre =control.getOpcion() sc.nextLine();	
 				System.out.println("Ingrese su Correo Electronico");
 				correo = sc.nextLine();	
 				System.out.println("Ingrese su Telefono");
@@ -81,7 +71,7 @@ public class Main{
 				nombre correo telefono dirrecion sintomas
 
 			}
-			else if (opcion ==3){
+			else if (control.getOpcion() ==3){
 				System.out.println("A continacion debe de seleccionar el departamento en el que se encuentra (en numeros)");
 				System.out.println("1.Ciudad de Guatemala" + "\n" +"2.Quetzaltenango, Xela"+"\n"+"3.Sacatequepez, Antigua Guatemala"+"\n"+"4. Alta Verapaz, Coban"+"\n"+"5. Otro"+"\n"+"6. Salir");
 				depar = sc.nextLine(); //Toma lo ingresado como String
@@ -116,9 +106,9 @@ public class Main{
 			}
 				
 			
-			else if (opcion >=5){
-				System.out.println("Esta opcion no esta disponible");
+			else{
+				System.out.println("Opcion invalida, ingrese una valida");
 			}
-		}
+		} while(control.getOpcion() != 4);
 	}	
 }

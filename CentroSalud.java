@@ -1,7 +1,7 @@
 
 public class CentroSalud{
 		CuentasSalud[] cuentas = new CuentasSalud[3];
-		//Medicamento informacion = new Medicamento();
+		Medicamento informacion = new Medicamento();
 		Regiones grafico = new Regiones();
 
 		// Constructor de las cuentas ingresadas del centro de salud
