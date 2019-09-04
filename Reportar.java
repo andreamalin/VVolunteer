@@ -1,15 +1,8 @@
 import java.util.Random;
 public class Reportar{
-	private String nombre_usuario;
-	private String correo;
-	private String telefono;
-	private String direccion;	
-	private String sintomas;
+	private String nombre_usuario, correo, telefono, direccion, sintomas;
+	private boolean bandera;
 	private String[] info;
-	private String informacion;
-	private String respuesta = new String();
-	private int r1;
-	private boolean bandera = false;
 // se crearon variables 
 	public void setInfo(String nom, String cor, int tel, String dire, String sint){
 	// se convierte el numero de telefono a texto para agregarlo al array
@@ -30,14 +23,14 @@ public class Reportar{
 	// se retorna la informacion
 	public String getInfo(){
 		// se concatenan los datos ingresados por el usuario y con sus especificaciones en una variable de tipo texto para mostrarla
-		informacion = "Nombre de usuario: " + nombre_usuario + " Correo: " + correo + " Direccion: "+ direccion + " Sintomas: " + sintomas+ " Telefono: " + telefono;
+		String informacion = "Nombre de usuario: " + nombre_usuario + " Correo: " + correo + " Direccion: "+ direccion + " Sintomas: " + sintomas+ " Telefono: " + telefono;
 		return informacion;
 	}
 	// se crea un numero aleatorio para verificar si se puede ayudar 
 	// a la persona inmediatamente 
 	public boolean enCamino(){
 		Random r = new Random();
-		r1 = r.nextInt(100);
+		int r1 = r.nextInt(100);
 		if (r1 == 67){
 			bandera = true;
 		}
