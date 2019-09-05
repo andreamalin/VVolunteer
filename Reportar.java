@@ -4,12 +4,12 @@ public class Reportar{
 	private boolean bandera;
 	private String[] info;
 // se crearon variables 
-	public void setInfo(String nom, String cor, int tel, String dire, String sint){
+	public void setInfo(String nom, String cor, String tel, String dire, String sint){
 	// se convierte el numero de telefono a texto para agregarlo al array
 	// de tipo String
 		this.nombre_usuario = nom;
 		this.correo = cor;
-		this.telefono = Integer.toString(tel);
+		this.telefono = tel;
 		this.direccion = dire;
 		this.sintomas = sint;
 	// se guardan los datos en un array de una dimension

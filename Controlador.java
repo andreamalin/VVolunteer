@@ -16,6 +16,9 @@ public class Controlador{
 		return informacion;
 	}
 	public String mandarAyuda(){
+		//Se guardan los datos
+		reporte.setInfo(nombre,correo,tel,dir,sint);
+
 		String ayuda = "";
 		boolean reporto= true;
 		while(reporto){

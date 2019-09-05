@@ -86,18 +86,16 @@ public class Main{
 				//Se piden los datos del usuario
 				System.out.println("\n_________________________________________________\n");
 				System.out.println("Ingrese su Nombre");				
-				control.setNombre(input.nextLine());
+				control.setNombre(scan.nextLine());
 				System.out.println("Ingrese su Correo Electronico");
-				control.setCorreo(input.nextLine());	
+				control.setCorreo(scan.nextLine());	
 				System.out.println("Ingrese su Telefono");
-				control.setTel(input.nextLine());
+				control.setTel(scan.nextLine());
 				System.out.println("Ingrese su direccion");
-				control.setDireccion(input.nextLine());
+				control.setDireccion(scan.nextLine());
 				System.out.println("Ingrese sus sintomas");	
-				control.setSintomas(input.nextLine());
+				control.setSintomas(scan.nextLine());
 				System.out.println("\n_________________________________________________\n");
-				//Se guardan los datos del usuario
-				control.reporte.setInfo(nombre,correo,tel,dir,sint);
 				//Se manda la ayuda
 				System.out.println(control.mandarAyuda());
 
