@@ -12,7 +12,7 @@ public class CentroSalud{
 		}
 
 		// Verificando que el nombre de usuario este bien y tenga la misma contraseña
-		public Boolean acountManager(String possibleUsername, String possiblePassword){
+		public Boolean accountManager(String possibleUsername, String possiblePassword){
 			for(int i = 0; i <= 2; i++){
 				if(cuentas[i].getUsername() == possibleUsername){
 					if(cuentas[i].getPassword() == possiblePassword){
