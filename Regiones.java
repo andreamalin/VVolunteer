@@ -40,4 +40,8 @@ public class Regiones{
 		return recomendacion;
 	}
 	
+	//Getters
+	public Inventario[] getInventario(){
+		return this.medicinas;
+	}
 }

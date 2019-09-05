@@ -44,11 +44,23 @@ public class Main{
 
 								// Ver el inventario del centro de salud
 								case 1:
-
+									System.out.println("Se cuenta en el inventario con la siguiente medicina: ")
+									for(int i = 0; i < 3; i++){
+										System.out.print("- " + (control.centro.grafico.getInventario())[i].getNombreMedicamento() + " de la cual se tiene "  + (control.centro.grafico.getInventario())[i].getCantidadEnInventario() + " del medicamento");
+									}
+									
 								break;
 
 								// Obtener recomendaciones para la siguiente jornada
 								case 2:
+
+									for(int i = 0; i < 3; i++){
+										System.out.print("Ingrese la cantidad de medicina necesitada en esta jornada de " + (control.centro.grafico.getInventario())[i].getNombreMedicamento() + ": ");
+										control.agregarANecesitados(input.nextInt(),i);
+									}
+
+									// Mostrando las recomendacioes
+									System.out.print(control.centro.grafico.elaborarDatos(control.getCantidadNecesitada()));
 
 								break;
 
@@ -94,7 +106,7 @@ public class Main{
 				}
 			} else if (control.getOpcion() ==3){
 				System.out.println("A continacion debe de seleccionar el departamento en el que se encuentra (en numeros)");
-				System.out.println("1.Ciudad de Guatemala\n" +"2.Quetzaltenango, Xela\n"+"3.Sacatequepez, Antigua Guatemala\n"+"4. Alta Verapaz, Coban\n"+"5. Otro");
+				System.out.println("1.Ciudad de Guatemala\n" +"2.Quetzaltenango, Xela\n"+"3.Sacatequepez, Antigua Guatemala\n"+"4. Alta Verapaz, Coban\n5. Otro");
 				
 				control.setDepartamento(input.nextInt());
 			} else{

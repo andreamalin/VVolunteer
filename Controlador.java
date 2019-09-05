@@ -1,7 +1,7 @@
 public class Controlador{
-	private Integer opcion;
-	private int departamento;
+	private Integer opcion, departamento;
 	private String username, password;
+	Integer[] necesitados = new Integer[3];
 
 	CentroSalud centro = new CentroSalud();
 	Reportar reporte = new Reportar();
@@ -17,6 +17,10 @@ public class Controlador{
 		}
 	}
 
+	// Agregar un elemento a la lista de necesitados
+	public void agregarANecesitados(Integer cantidad, Integer lugar){
+		this.necesitados[i] = cantidad; 
+	}
 
 	// Setters de todos los atributos
 	public void setOpcion(Integer opcion){
@@ -28,6 +32,7 @@ public class Controlador{
 	public void setPassword(String password){
 		this.password = password; 
 	}
+
 	//Getters y setters de todos los atributos
 	public Integer getOpcion(){
 		return this.opcion;
@@ -37,5 +42,9 @@ public class Controlador{
 	}
 	public String getPassword(){
 		return this.password;
+	}
+
+	public Integer[] getCantidadNecesitada(){
+		return this.necesitados;
 	}
 }
