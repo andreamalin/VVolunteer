@@ -21,22 +21,22 @@ public class Main{
 		Controlador control = new Controlador();
 
 		do{
-			System.out.println(" _________________________________________________ ");
+			System.out.println("\n\n _________________________________________________ ");
 			System.out.println("                Bienvenido a VMedic+               \n");
 			System.out.println(" La salud es un derecho de todos los seres humanos ");
 			System.out.println("               Estamos para servirte               ");
 			System.out.println("\n\t\t 1. Centro de Salud \n\t\t 2. Reportar \n\t\t 3. Ayudar \n");
-			System.out.println(" _________________________________________________ ");
+			System.out.print(" _________________________________________________ \nIngrese su opcion: ");
 			control.setOpcion(input.nextInt()); 
 
 			// Opcion para entrar a la cuenta y utilizar las funciones del programa
 			if (control.getOpcion() == 1){
 
-					System.out.print("\n\nIngrese su Usuario");				
+					System.out.print("\n\nIngrese su nombre de Usuario: ");				
 					control.setUsername(scan.nextLine());							
-					System.out.print("Ingrese su Usuario");
+					System.out.print("Ingrese su Contrasena: ");
 					control.setPassword(scan.nextLine());			
-					if(!control.centro.accountManager(control.getUsername(), control.getPassword())){
+					if(control.centro.accountManager(control.getUsername(), control.getPassword()) == false){
 						System.out.print("\nSus datos son invalidos, vuelva a intentar\n");
 					} else{
 
