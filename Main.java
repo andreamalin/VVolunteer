@@ -22,7 +22,7 @@ public class Main{
 			System.out.println("                Bienvenido a VMedic+               \n");
 			System.out.println(" La salud es un derecho de todos los seres humanos ");
 			System.out.println("               Estamos para servirte               ");
-			System.out.println("\n\t\t 1. Centro de Salud \n\t\t 2. Reportar \n\t\t 3. Ayudar \n");
+			System.out.println("\n\t\t 1. Centro de Salud \n\t\t 2. Reportar \n\t\t 3. Ayudar\n\t\t 4. Salir\n");
 			System.out.print(" _________________________________________________ \nIngrese su opcion: ");
 			control.setOpcion(input.nextInt()); 
 
@@ -32,23 +32,26 @@ public class Main{
 					System.out.print("\n\nIngrese su nombre de Usuario: ");				
 					control.setUsername(scan.nextLine());							
 					System.out.print("Ingrese su Contrasena: ");
-					control.setPassword(scan.nextLine());			
+					control.setPassword(scan.nextLine());		
+
+					/*	
 					if(control.centro.accountManager(control.getUsername(), control.getPassword()) == false){
 						System.out.print("\nSus datos son invalidos, vuelva a intentar\n");
 					} else{
 
 						//------------------ Ingresando sesion ---------------------------
-						System.out.println("\n\tBienvenido " + control.getUsername());
+						System.out.println("\n\tBienvenido " + control.getUsername()); */
 						do{
-							System.out.print("\n1. Ver inventario\n2. Recomendaciones para la siguiente jornada\n3. Ver medicinas\n4. Cerrar Sesion\nIngrese la opcion que desea realizar: ");
+							System.out.print("\n\nEstas son las opciones que puede realizar:\n1. Ver inventario\n2. Recomendaciones para la siguiente jornada\n3. Ver medicinas\n4. Cerrar Sesion\nIngrese la opcion que desea realizar: ");
+							control.setOpcion(input.nextInt());
 
-							switch(input.nextInt()){
+							switch(control.getOpcion()){
 
 								// Ver el inventario del centro de salud
 								case 1:
-									System.out.println("Se cuenta en el inventario con la siguiente medicina: ");
+									System.out.println("\nSe cuenta en el inventario con la siguiente medicina: ");
 									for(int i = 0; i < 3; i++){
-										System.out.print("- " + (control.centro.grafico.getInventario())[i].getNombreMedicamento() + " de la cual se tiene "  + (control.centro.grafico.getInventario())[i].getCantidadEnInventario() + " del medicamento");
+										System.out.print("- " + (control.centro.grafico.getInventario())[i].getNombreMedicamento() + " de la cual se tiene "  + (control.centro.grafico.getInventario())[i].getCantidadEnInventario() + " en el inventario\n");
 									}
 									
 								break;
@@ -68,10 +71,11 @@ public class Main{
 
 								// Buscar medicina
 								case 3:
-									System.out.println("Ingrese el nombre de la medicina a buscar: ");
+									System.out.print("Ingrese el nombre de la medicina a buscar: ");
 									control.setMedicamento(scan.next());
 
-									System.out.println(control.centro.informacion.buscarMedicamento(control.getMedicamento()));
+									control.centro.informacion.buscarMedicamento(control.getMedicamento());
+									System.out.println(control.centro.informacion.mostrarInformacion());
 								
 								break;
 							}
@@ -80,7 +84,7 @@ public class Main{
 
 						// Regresando a la opcion del ususuario para que no se termine el programa
 						control.setOpcion(1);
-					}
+					//}
 
 			} else if (control.getOpcion() == 2){
 				//Se piden los datos del usuario
