@@ -1,8 +1,13 @@
-//Diego Crespo
-//Diego Alvarez
-//Andrea Amaya
-//Brandon Hernandez
-//Laura Tamath
+/**********************************************************
+DriverVVolunteer.java		
+Autores: Andrea Amaya, Diego Alvarez, Diego Crespo,
+Brandon Hernandes, Laura Tamath
+
+Fecha de creación: 31/09/2019
+Última fecha de modificación: 04/09/2019
+
+Clase realizada para interactuar con el Voluntario.
+**********************************************************/
 
 import java.util.Scanner;
 public class Main{
@@ -112,6 +117,7 @@ public class Main{
 				System.out.println("1.Ciudad de Guatemala\n" +"2.Quetzaltenango, Xela\n"+"3.Sacatequepez, Antigua Guatemala\n"+"4. Alta Verapaz, Coban\n5. Otro");
 				
 				control.setDepartamento(input.nextInt());
+				System.out.println("\n_________________________________________________\n\n"+control.mostrarInfoCentro()+"_________________________________________________");
 			} else{
 				System.out.println("Opcion invalida, ingrese una valida");
 			}

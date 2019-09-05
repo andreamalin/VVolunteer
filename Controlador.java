@@ -8,13 +8,11 @@ public class Controlador{
 	Ayudar ayuda = new Ayudar();
 
 	//Realizar opcion
-	public String realizarOpcion(){
-		if (opcion == 3) {
-			ayuda.generarInformacion(departamento);
-			String informacion = ayuda.mostrarInformacion();	
+	public String mostrarInfoCentro(){
+		ayuda.generarInformacion(departamento);
+		String informacion = ayuda.mostrarInformacion();	
 
-			return informacion;
-		}
+		return informacion;
 	}
 
 	// Agregar un elemento a la lista de necesitados
@@ -34,6 +32,9 @@ public class Controlador{
 	}
 	public void setMedicamento(String medicamento){
 		this.medicamento = medicamento;
+	}
+	public void setDepartamento(Integer dept){
+		this.departamento = dept;
 	}
 
 	//Getters y setters de todos los atributos
