@@ -1,10 +1,16 @@
 /**********************************************************
-DriverVVolunteer.java		
-Autores: Andrea Amaya, Diego Alvarez, Diego Crespo,
-Brandon Hernandes, Laura Tamath
+Main.java		
+Autores: 
+-> Andrea Amaya 19357
+-> Diego Alvarez 19498
+-> Diego Crespo 19541
+-> Brandon Hernandes 19376
+-> Laura Tamath 19365
 Fecha de creación: 31/09/2019
-Última fecha de modificación: 04/09/2019
-Clase realizada para interactuar con el Voluntario.
+Última fecha de modificación: 05/09/2019
+
+La clase main se encarga de mostrar todos los datos que el usuario solicita,
+los manda al controlador.
 **********************************************************/
 
 import java.util.Scanner;
@@ -17,6 +23,7 @@ public class Main{
 		Scanner scan = new Scanner(System.in);
 		Controlador control = new Controlador();
 
+		// Iniciando el programa
 		do{
 			System.out.println("\n\n _________________________________________________ ");
 			System.out.println("                Bienvenido a VMedic+               \n");
@@ -34,13 +41,13 @@ public class Main{
 					System.out.print("Ingrese su Contrasena: ");
 					control.setPassword(scan.nextLine());		
 
-					/*	
-					if(control.centro.accountManager(control.getUsername(), control.getPassword()) == false){
+						
+					if(control.getCentroSalud().accountManager(control.getUsername(), control.getPassword()) == false){
 						System.out.print("\nSus datos son invalidos, vuelva a intentar\n");
 					} else{
 
 						//------------------ Ingresando sesion ---------------------------
-						System.out.println("\n\tBienvenido " + control.getUsername()); */
+						System.out.println("\n\tBienvenid@ " + control.getUsername()); 
 						do{
 							System.out.print("\n\nEstas son las opciones que puede realizar:\n1. Ver inventario\n2. Recomendaciones para la siguiente jornada\n3. Ver medicinas\n4. Cerrar Sesion\nIngrese la opcion que desea realizar: ");
 							control.setOpcion(input.nextInt());
@@ -51,21 +58,21 @@ public class Main{
 								case 1:
 									System.out.println("\nSe cuenta en el inventario con la siguiente medicina: ");
 									for(int i = 0; i < 3; i++){
-										System.out.print("- " + (control.centro.grafico.getInventario())[i].getNombreMedicamento() + " de la cual se tiene "  + (control.centro.grafico.getInventario())[i].getCantidadEnInventario() + " en el inventario\n");
+										System.out.print("- " + (control.getCentroSalud().getGrafico().getInventario())[i].getNombreMedicamento() + " de la cual se tiene "  + (control.getCentroSalud().getGrafico().getInventario())[i].getCantidadEnInventario() + " en el inventario\n");
 									}
-									
+									System.out.print("Actualizando inventario..... el inventario se ha actualizado");
 								break;
 
 								// Obtener recomendaciones para la siguiente jornada
 								case 2:
 
 									for(int i = 0; i < 3; i++){
-										System.out.print("Ingrese la cantidad de medicina necesitada en esta jornada de " + (control.centro.grafico.getInventario())[i].getNombreMedicamento() + ": ");
+										System.out.print("Ingrese la cantidad de medicina necesitada en esta jornada de " + (control.getCentroSalud().getGrafico().getInventario())[i].getNombreMedicamento() + ": ");
 										control.agregarANecesitados(input.nextInt(),i);
 									}
 
 									// Mostrando las recomendacioes
-									System.out.print(control.centro.grafico.elaborarDatos(control.getCantidadNecesitada()));
+									System.out.print(control.getCentroSalud().getGrafico().elaborarDatos(control.getCantidadNecesitada()));
 
 								break;
 
@@ -74,8 +81,8 @@ public class Main{
 									System.out.print("Ingrese el nombre de la medicina a buscar: ");
 									control.setMedicamento(scan.next());
 
-									System.out.println(control.centro.informacion.buscarMedicamento(control.getMedicamento()));
-									
+									control.getCentroSalud().getMedicamento().buscarMedicamento(control.getMedicamento());
+									System.out.println(control.getCentroSalud().getMedicamento().mostrarInformacion());
 								
 								break;
 							}
@@ -84,31 +91,38 @@ public class Main{
 
 						// Regresando a la opcion del ususuario para que no se termine el programa
 						control.setOpcion(1);
-					//}
+					}
 
+			// Reportar a un voluntariado que necesita ayuda
 			} else if (control.getOpcion() == 2){
 				//Se piden los datos del usuario
 				System.out.println("\n_________________________________________________\n");
-				System.out.println("Ingrese su Nombre");				
+				System.out.print("Ingrese su Nombre: ");				
 				control.setNombre(scan.nextLine());
-				System.out.println("Ingrese su Correo Electronico");
+				System.out.print("Ingrese su Correo Electronico: ");
 				control.setCorreo(scan.nextLine());	
-				System.out.println("Ingrese su Telefono");
+				System.out.print("Ingrese su Telefono: ");
 				control.setTel(scan.nextLine());
-				System.out.println("Ingrese su direccion");
+				System.out.print("Ingrese su direccion: ");
 				control.setDireccion(scan.nextLine());
-				System.out.println("Ingrese sus sintomas");	
+				System.out.print("Ingrese sus sintomas: ");	
 				control.setSintomas(scan.nextLine());
 				System.out.println("\n_________________________________________________\n");
 				//Se manda la ayuda
 				System.out.println(control.mandarAyuda());
 
-			} else if (control.getOpcion() ==3){
+			// Ayudar es para que pueda ir a ayudar a un centro de salud
+			} else if (control.getOpcion() == 3){
 				System.out.println("A continacion debe de seleccionar el departamento en el que se encuentra (en numeros)");
-				System.out.println("1.Ciudad de Guatemala\n" +"2.Quetzaltenango, Xela\n"+"3.Sacatequepez, Antigua Guatemala\n"+"4. Alta Verapaz, Coban\n5. Otro");
+				System.out.println("1.Ciudad de Guatemala\n" +"2.Quetzaltenango, Xela\n"+"3.Sacatequepez, Antigua Guatemala\n"+"4. Alta Verapaz, Coban\n5. Otro\nIngrese en donde se encuentra: ");
 				
 				control.setDepartamento(input.nextInt());
 				System.out.println("\n_________________________________________________\n\n"+control.mostrarInfoCentro()+"_________________________________________________");
+			
+			// Salir del programa y defensiva por si no es ninguna opcion
+			} else if (control.getOpcion() == 4){
+				System.out.println("Gracias por utilizar VMedic+");
+
 			} else{
 				System.out.println("Opcion invalida, ingrese una valida");
 			}

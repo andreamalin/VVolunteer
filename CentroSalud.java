@@ -7,19 +7,27 @@ public class CentroSalud{
 		// Constructor de las cuentas ingresadas del centro de salud
 		public CentroSalud(){
 			cuentas[0] = new CuentasSalud("Diego", "LaPiCeRo123");
-			cuentas[1] = new CuentasSalud("Andrea", "voyAlLORAR");
-			cuentas[2] = new CuentasSalud("Laura", "PythonTeExtraño");
+			cuentas[1] = new CuentasSalud("Andrea", "VOYALLORAR");
+			cuentas[2] = new CuentasSalud("Laura", "PythonTeExtrano");
 		}
 
 		// Verificando que el nombre de usuario este bien y tenga la misma contraseña
 		public Boolean accountManager(String possibleUsername, String possiblePassword){
 			for(int i = 0; i <= 2; i++){
-				if(cuentas[i].getUsername() == possibleUsername){
-					if(cuentas[i].getPassword() == possiblePassword){
+				if((cuentas[i].getUsername()).equals(possibleUsername)){
+					if((cuentas[i].getPassword()).equals(possiblePassword)){
 						return true;
 					}
 				}
 			}
 			return false;
+		}
+
+		public Regiones getGrafico(){
+			return this.grafico;
+		}
+
+		public Medicamento getMedicamento(){
+			return this.informacion;
 		}
 }
