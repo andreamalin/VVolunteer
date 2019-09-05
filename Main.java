@@ -2,16 +2,13 @@
 DriverVVolunteer.java		
 Autores: Andrea Amaya, Diego Alvarez, Diego Crespo,
 Brandon Hernandes, Laura Tamath
-
 Fecha de creación: 31/09/2019
 Última fecha de modificación: 04/09/2019
-
 Clase realizada para interactuar con el Voluntario.
 **********************************************************/
 
 import java.util.Scanner;
 public class Main{
-	
 	//Metodo principal
 	public static void main (String[] args){
 
@@ -85,33 +82,25 @@ public class Main{
 						control.setOpcion(1);
 					}
 
-			/*} else if (control.getOpcion() == 2){
-				String nombre,correo,tel,dir,sint;
+			} else if (control.getOpcion() == 2){
+				//Se piden los datos del usuario
+				System.out.println("\n_________________________________________________\n");
 				System.out.println("Ingrese su Nombre");				
-				nombre = input.nextLine();	
+				control.setNombre(input.nextLine());
 				System.out.println("Ingrese su Correo Electronico");
-				correo = input.nextLine();	
+				control.setCorreo(input.nextLine());	
 				System.out.println("Ingrese su Telefono");
-				tel = input.nextLine();	
+				control.setTel(input.nextLine());
 				System.out.println("Ingrese su direccion");
-				dir = input.nextLine();	
+				control.setDireccion(input.nextLine());
 				System.out.println("Ingrese sus sintomas");	
-				sint = input.nextLine();
+				control.setSintomas(input.nextLine());
+				System.out.println("\n_________________________________________________\n");
+				//Se guardan los datos del usuario
+				control.reporte.setInfo(nombre,correo,tel,dir,sint);
+				//Se manda la ayuda
+				System.out.println(control.mandarAyuda());
 
-				//ESTO HAY QUE VER COMO ARREGARLO PORQUE HAY ACCESO A AYUDA
-				reportar.SetInfo(nombre,correo,tel,dir,sint);
-				
-				//ESTO HAY QUE VER COMO ARREGARLO PORQUE HAY ACCESO A AYUDA
-				boolean reporte= true;
-				while(reporte){
-					if (reportar.enCamino()){
-						System.out.println("La ayuda va en camino");
-						reporte = false;
-					} else {
-						System.out.println("Espere...");
-					}
-				}
-			*/		
 			} else if (control.getOpcion() ==3){
 				System.out.println("A continacion debe de seleccionar el departamento en el que se encuentra (en numeros)");
 				System.out.println("1.Ciudad de Guatemala\n" +"2.Quetzaltenango, Xela\n"+"3.Sacatequepez, Antigua Guatemala\n"+"4. Alta Verapaz, Coban\n5. Otro");

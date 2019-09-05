@@ -1,6 +1,7 @@
 public class Controlador{
 	private Integer opcion, departamento;
-	private String username, password, medicamento;
+	private String medicamento, nombre, correo, tel, dir, sint;
+	public String username, password;
 	Integer[] necesitados = new Integer[3];
 
 	CentroSalud centro = new CentroSalud();
@@ -14,7 +15,19 @@ public class Controlador{
 
 		return informacion;
 	}
-
+	public String mandarAyuda(){
+		String ayuda = "";
+		boolean reporto= true;
+		while(reporto){
+			if (reporte.enCamino()){
+				ayuda += "La ayuda va en camino";
+				reporto = false;
+			} else {
+				ayuda += "Espere...";
+			}
+		}
+		return ayuda;
+	}
 	// Agregar un elemento a la lista de necesitados
 	public void agregarANecesitados(Integer cantidad, Integer lugar){
 		this.necesitados[lugar] = cantidad; 
@@ -36,7 +49,22 @@ public class Controlador{
 	public void setDepartamento(Integer dept){
 		this.departamento = dept;
 	}
-
+	//Setters opcion 2
+	public void setNombre(String nombre){
+		this.nombre = nombre;
+	}
+	public void setCorreo(String correo){
+		this.correo = correo;
+	}
+	public void setTel(String telefono){
+		this.tel = telefono;
+	}
+	public void setDireccion(String direccion){
+		this.dir = direccion;
+	}
+	public void setSintomas(String sintomas){
+		this.sint = sintomas;
+	}
 	//Getters y setters de todos los atributos
 	public Integer getOpcion(){
 		return this.opcion;
@@ -53,5 +81,4 @@ public class Controlador{
 	public String getMedicamento(){
 		return this.medicamento;
 	}
-
 }
