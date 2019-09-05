@@ -19,7 +19,7 @@ public class Controlador{
 
 	// Agregar un elemento a la lista de necesitados
 	public void agregarANecesitados(Integer cantidad, Integer lugar){
-		this.necesitados[i] = cantidad; 
+		this.necesitados[lugar] = cantidad; 
 	}
 
 	// Setters de todos los atributos

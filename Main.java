@@ -8,7 +8,7 @@ import java.util.Scanner;
 public class Main{
 	
 	//Metodo principal
-	public static void main (String args []){
+	public static void main (String[] args){
 
 		// Instancia de objetos; input es para números y scan es para strings
 		Scanner input = new Scanner(System.in);
@@ -31,14 +31,14 @@ public class Main{
 					control.setUsername(scan.nextLine());							
 					System.out.print("Ingrese su Usuario");
 					control.setPassword(scan.nextLine());			
-					if(!control.control.centro.accountManager(control.getUsername(), control.getPassword())){
+					if(!control.centro.accountManager(control.getUsername(), control.getPassword())){
 						System.out.print("\nSus datos son invalidos, vuelva a intentar\n");
 					} else{
 
 						//------------------ Ingresando sesion ---------------------------
-						Systtem.out.println("\n\tBienvenido " + control.getUsername());
+						System.out.println("\n\tBienvenido " + control.getUsername());
 						do{
-							Systtem.out.print("\n1. Ver inventario\n2. Recomendaciones para la siguiente jornada\n3. Ver medicinas\n4. Cerrar Sesion\nIngrese la opcion que desea realizar: ");
+							System.out.print("\n1. Ver inventario\n2. Recomendaciones para la siguiente jornada\n3. Ver medicinas\n4. Cerrar Sesion\nIngrese la opcion que desea realizar: ");
 
 							switch(input.nextInt()){
 
@@ -70,8 +70,6 @@ public class Main{
 									control.setMedicamento(scan.next());
 
 									System.out.println(control.centro.informacion.buscarMedicamento(control.getMedicamento()));
-
-
 								
 								break;
 							}
@@ -82,7 +80,7 @@ public class Main{
 						control.setOpcion(1);
 					}
 
-			} else if (control.getOpcion() == 2){
+			/*} else if (control.getOpcion() == 2){
 				String nombre,correo,tel,dir,sint;
 				System.out.println("Ingrese su Nombre");				
 				nombre = input.nextLine();	
@@ -108,7 +106,7 @@ public class Main{
 						System.out.println("Espere...");
 					}
 				}
-					
+			*/		
 			} else if (control.getOpcion() ==3){
 				System.out.println("A continacion debe de seleccionar el departamento en el que se encuentra (en numeros)");
 				System.out.println("1.Ciudad de Guatemala\n" +"2.Quetzaltenango, Xela\n"+"3.Sacatequepez, Antigua Guatemala\n"+"4. Alta Verapaz, Coban\n5. Otro");
@@ -117,6 +115,6 @@ public class Main{
 			} else{
 				System.out.println("Opcion invalida, ingrese una valida");
 			}
-		}
+		} while(control.getOpcion() != 4);
 	}	
 }
