@@ -31,6 +31,9 @@ public class Controlador{
 		}
 		return ayuda;
 	}
+	public String mostrarInfo(){
+		return centro.informacion.buscarMedicamento(control.getMedicamento())
+	}
 	// Agregar un elemento a la lista de necesitados
 	public void agregarANecesitados(Integer cantidad, Integer lugar){
 		this.necesitados[lugar] = cantidad; 
@@ -83,5 +86,9 @@ public class Controlador{
 	}
 	public String getMedicamento(){
 		return this.medicamento;
+	}
+
+	public CentroSalud getCentro(){
+		return centro.get;
 	}
 }

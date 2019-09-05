@@ -74,8 +74,8 @@ public class Main{
 									System.out.print("Ingrese el nombre de la medicina a buscar: ");
 									control.setMedicamento(scan.next());
 
-									control.centro.informacion.buscarMedicamento(control.getMedicamento());
-									System.out.println(control.centro.informacion.mostrarInformacion());
+									System.out.println(control.centro.informacion.buscarMedicamento(control.getMedicamento()));
+									
 								
 								break;
 							}
