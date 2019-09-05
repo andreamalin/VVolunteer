@@ -44,7 +44,7 @@ public class Main{
 
 								// Ver el inventario del centro de salud
 								case 1:
-									System.out.println("Se cuenta en el inventario con la siguiente medicina: ")
+									System.out.println("Se cuenta en el inventario con la siguiente medicina: ");
 									for(int i = 0; i < 3; i++){
 										System.out.print("- " + (control.centro.grafico.getInventario())[i].getNombreMedicamento() + " de la cual se tiene "  + (control.centro.grafico.getInventario())[i].getCantidadEnInventario() + " del medicamento");
 									}
@@ -66,6 +66,12 @@ public class Main{
 
 								// Buscar medicina
 								case 3:
+									System.out.println("Ingrese el nombre de la medicina a buscar: ");
+									control.setMedicamento(scan.next());
+
+									System.out.println(control.centro.informacion.buscarMedicamento(control.getMedicamento()));
+
+
 								
 								break;
 							}
@@ -103,7 +109,6 @@ public class Main{
 					}
 				}
 					
-				}
 			} else if (control.getOpcion() ==3){
 				System.out.println("A continacion debe de seleccionar el departamento en el que se encuentra (en numeros)");
 				System.out.println("1.Ciudad de Guatemala\n" +"2.Quetzaltenango, Xela\n"+"3.Sacatequepez, Antigua Guatemala\n"+"4. Alta Verapaz, Coban\n5. Otro");
@@ -112,5 +117,6 @@ public class Main{
 			} else{
 				System.out.println("Opcion invalida, ingrese una valida");
 			}
+		}
 	}	
 }

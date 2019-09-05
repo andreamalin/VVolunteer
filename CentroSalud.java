@@ -22,7 +22,4 @@ public class CentroSalud{
 			}
 			return false;
 		}
-
-
-
 }

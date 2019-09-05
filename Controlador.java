@@ -1,6 +1,6 @@
 public class Controlador{
 	private Integer opcion, departamento;
-	private String username, password;
+	private String username, password, medicamento;
 	Integer[] necesitados = new Integer[3];
 
 	CentroSalud centro = new CentroSalud();
@@ -32,6 +32,9 @@ public class Controlador{
 	public void setPassword(String password){
 		this.password = password; 
 	}
+	public void setMedicamento(String medicamento){
+		this.medicamento = medicamento;
+	}
 
 	//Getters y setters de todos los atributos
 	public Integer getOpcion(){
@@ -43,8 +46,11 @@ public class Controlador{
 	public String getPassword(){
 		return this.password;
 	}
-
 	public Integer[] getCantidadNecesitada(){
 		return this.necesitados;
 	}
+	public String getMedicamento(){
+		return this.medicamento;
+	}
+
 }
