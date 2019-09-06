@@ -1,4 +1,20 @@
+/**********************************************************
+CentroSalud.java	
+Integrantes grupo:
+-> Andrea Amaya 19357
+-> Diego Alvarez 19498
+-> Diego Crespo 19541
+-> Brandon Hernandez 19376
+-> Laura Tamath 19365	
 
+Autor de la clase:	 
+-> Brandon Hernandez 19376
+Fecha de creación: 31/09/2019
+Última fecha de modificación: 05/09/2019
+
+La clase centroSalud se encarga de llevar un registro de las cuentas.
+Está ayudada por la clase CuentasSalud.java
+**********************************************************/
 public class CentroSalud{
 		CuentasSalud[] cuentas = new CuentasSalud[3];
 		Medicamento informacion = new Medicamento();

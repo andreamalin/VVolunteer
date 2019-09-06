@@ -1,3 +1,23 @@
+/**********************************************************
+Medicamento.java	
+Integrantes grupo:
+-> Andrea Amaya 19357
+-> Diego Alvarez 19498
+-> Diego Crespo 19541
+-> Brandon Hernandez 19376
+-> Laura Tamath 19365	
+
+Autor de la clase:
+-> Andrea Amaya 19357
+
+Fecha de creación: 31/09/2019
+Última fecha de modificación: 05/09/2019
+
+La clase Medicamento se encarga de mostrar al usuario la información
+sobre un medicamento presente en el inventario o mostrar que
+no está disponible.
+**********************************************************/
+
 public class Medicamento{
 	//Propiedades del medicamento a recetar
 	private String nombre;
@@ -21,6 +41,7 @@ public class Medicamento{
 				return true; //Si se encuentra	
 			}
 		}
+		this.nombre = "No existe";
 		return false; //Si no se encuentra
 	}
 
@@ -55,10 +76,10 @@ public class Medicamento{
 	}
 
 	public String mostrarInformacion(){ //Se muestra la informacion de forma ordenada
-		buscarSimilares(); //Se busca el medicamento similar
-
-		String a = "Medicamento no encontrado"; //Si no se encuentra el medicamento
+		String a = "\n\n+------------Medicamento no encontrado------------+\n"; //Si no se encuentra el medicamento
 		if (buscarMedicamento(nombre)) {		//Si se encuentra el medicamento
+			buscarSimilares(); //Se busca el medicamento similar
+
 			a = "\n\n+-----------NOMBRE DEL MEDICAMENTO-----------+\n"; 
 			a += "                  "+nombre;
 			a += "\n\n+------------SINTOMAS QUE ALIVIA------------+\n";

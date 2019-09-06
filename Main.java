@@ -1,10 +1,14 @@
 /**********************************************************
-Main.java		
-Autores: 
+Main.java	
+Integrantes grupo:
 -> Andrea Amaya 19357
 -> Diego Alvarez 19498
 -> Diego Crespo 19541
--> Brandon Hernandes 19376
+-> Brandon Hernandez 19376
+-> Laura Tamath 19365	
+
+Autores de la clase:
+-> Diego Crespo 19541
 -> Laura Tamath 19365
 Fecha de creación: 31/09/2019
 Última fecha de modificación: 05/09/2019

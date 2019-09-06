@@ -1,3 +1,21 @@
+/**********************************************************
+Regiones.java	
+Integrantes grupo:
+-> Andrea Amaya 19357
+-> Diego Alvarez 19498
+-> Diego Crespo 19541
+-> Brandon Hernandez 19376
+-> Laura Tamath 19365	
+
+Autor de la clase:	 
+-> Brandon Hernandez 19376	
+Fecha de creación: 31/09/2019
+Última fecha de modificación: 05/09/2019
+
+La clase Regiones se encarga de revisar el inventario del medicamento
+y generar un promedio de la medicina necesitada para la proxima jornada.
+**********************************************************/
+
 public class Regiones{
 	Inventario[] medicinas = new Inventario[3];
 
