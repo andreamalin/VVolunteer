@@ -16,15 +16,20 @@ La clase centroSalud se encarga de llevar un registro de las cuentas.
 Está ayudada por la clase CuentasSalud.java
 **********************************************************/
 public class CentroSalud{
-		CuentasSalud[] cuentas = new CuentasSalud[3];
-		Medicamento informacion = new Medicamento();
-		Regiones grafico = new Regiones();
+		private CuentasSalud[] cuentas = new CuentasSalud[3];
+		private Medicamento informacion = new Medicamento();
+		private Regiones[] grafico = new Regiones[4];
 
-		// Constructor de las cuentas ingresadas del centro de salud
+		// Constructor de las cuentas ingresadas del centro de salud y los diferentes centros de salud
 		public CentroSalud(){
-			cuentas[0] = new CuentasSalud("Diego", "LaPiCeRo123");
-			cuentas[1] = new CuentasSalud("Andrea", "VOYALLORAR");
-			cuentas[2] = new CuentasSalud("Laura", "PythonTeExtrano");
+			cuentas[0] = new CuentasSalud("Diego", "LaPiCeRo123", 1);
+			cuentas[1] = new CuentasSalud("Andrea", "VOYALLORAR", 1);
+			cuentas[2] = new CuentasSalud("Laura", "PythonTeExtrano", 2);
+
+			grafico[0] = new Regiones("Santa Fe", 1);
+			grafico[1] = new Regiones("La Rosa de Guadalupe", 1);
+			grafico[2] = new Regiones("La Esperanza de Tus Ojos", 2);
+			grafico[3] = new Regiones("Resguardando Tu Salud", 1);
 		}
 
 		// Verificando que el nombre de usuario este bien y tenga la misma contraseña

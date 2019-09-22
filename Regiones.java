@@ -15,14 +15,26 @@ Fecha de creación: 31/09/2019
 La clase Regiones se encarga de revisar el inventario del medicamento
 y generar un promedio de la medicina necesitada para la proxima jornada.
 **********************************************************/
+import java.util.Random;
 
 public class Regiones{
-	Inventario[] medicinas = new Inventario[3];
+	private String centroSaludNombre;
+	private Integer numberOfIdentification;
+	private Inventario[] medicinas = new Inventario[3];
+	private Random random = new Random();
 
-	public Regiones(){
-		medicinas[0] = new Inventario("Vitaflenaco", 100); 
-		medicinas[1] = new Inventario("Paracetamol", 120); 
-		medicinas[2] = new Inventario("Loratadina", 130); 
+	public Regiones(String centroSaludNombre, Integer numberOfIdentification){
+		Integer numberInInventory;
+		this.centroSaludNombre = centroSaludNombre;
+		this.numberOfIdentification = numberOfIdentification;
+
+		// Generando un número aleaotreo para ver que cantidad de que medicina hay de ese tipo
+		numberInInventory = random.nextInt(200) + 1;
+		medicinas[0] = new Inventario("Vitaflenaco", numberInInventory); 
+		numberInInventory = random.nextInt(200) + 1;
+		medicinas[1] = new Inventario("Paracetamol", numberInInventory); 
+		numberInInventory = random.nextInt(200) + 1;
+		medicinas[2] = new Inventario("Loratadina", numberInInventory); 
 	}
 
 	// Haciendo las recomendaciones de cuanto necesita cada uno
@@ -61,5 +73,13 @@ public class Regiones{
 	//Getters
 	public Inventario[] getInventario(){
 		return this.medicinas;
+	}
+
+	public String getCentroSaludNombre(){
+		return this.centroSaludNombre;
+	}
+
+	public Integer getNumberOfIdentification(){
+		return this.numberOfIdentification;
 	}
 }

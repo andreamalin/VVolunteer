@@ -17,6 +17,7 @@ La clase CuentasSalud se encarga de ayudar la clase CentroSalud
 **********************************************************/
 public class CuentasSalud{
 	private String username, password; //Se lleva un registro de las cuentas
+	private Integer numberOfIdentification;
 
 	public CuentasSalud(String username, String password){ //Se guarda la nueva cuenta
 		this.username = username;
@@ -31,4 +32,7 @@ public class CuentasSalud{
 		return this.password;
 	}
 
+	public Integer getNumberOfIdentification(){
+		return this.numberOfIdentification;
+	}
 }

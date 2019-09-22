@@ -19,12 +19,11 @@ las cedes para que la población pueda donar medicamento.
 public class Controlador{
 	private Integer opcion, departamento;
 	private String medicamento, nombre, correo, tel, dir, sint;
-	public String username, password;
-	Integer[] necesitados = new Integer[3];
-
-	CentroSalud centro = new CentroSalud();
-	Reportar reporte = new Reportar();
-	Ayudar ayuda = new Ayudar();
+	private String username, password;
+	private Integer[] necesitados = new Integer[3];
+	private CentroSalud centro = new CentroSalud();
+	private Reportar reporte = new Reportar();
+	private Ayudar ayuda = new Ayudar();
 
 	//Realizar opcion
 	public String mostrarInfoCentro(){
@@ -33,6 +32,7 @@ public class Controlador{
 
 		return informacion;
 	}
+
 	public String mandarAyuda(){
 		//Se guardan los datos
 		reporte.setInfo(nombre,correo,tel,dir,sint);
@@ -49,6 +49,7 @@ public class Controlador{
 		}
 		return ayuda;
 	}
+	
 	// Agregar un elemento a la lista de necesitados
 	public void agregarANecesitados(Integer cantidad, Integer lugar){
 		this.necesitados[lugar] = cantidad; 
