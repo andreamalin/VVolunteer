@@ -16,6 +16,7 @@ La clase centroSalud se encarga de llevar un registro de las cuentas.
 Está ayudada por la clase CuentasSalud.java
 **********************************************************/
 public class CentroSalud{
+		private Integer loggedOnPosition;
 		private CuentasSalud[] cuentas = new CuentasSalud[3];
 		private Medicamento informacion = new Medicamento();
 		private Regiones[] grafico = new Regiones[4];
@@ -37,6 +38,7 @@ public class CentroSalud{
 			for(int i = 0; i <= 2; i++){
 				if((cuentas[i].getUsername()).equals(possibleUsername)){
 					if((cuentas[i].getPassword()).equals(possiblePassword)){
+						this.loggedOnPosition = i;
 						return true;
 					}
 				}
@@ -44,11 +46,20 @@ public class CentroSalud{
 			return false;
 		}
 
-		public Regiones getGrafico(){
+		// Getters de todos los atributos/objetos
+		public Regiones[] getGrafico(){
 			return this.grafico;
+		}
+
+		public CuentasSalud[] getCuentas(){
+			return this.cuentas;
 		}
 
 		public Medicamento getMedicamento(){
 			return this.informacion;
+		}
+
+		public Integer getLoggedOnPosition(){
+			return this.loggedOnPosition;
 		}
 }

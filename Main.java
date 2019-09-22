@@ -23,6 +23,7 @@ public class Main{
 	public static void main (String[] args){
 
 		// Instancia de objetos; input es para números y scan es para strings
+		Integer option_aux = 1;
 		Scanner input = new Scanner(System.in);
 		Scanner scan = new Scanner(System.in);
 		Controlador control = new Controlador();
@@ -54,29 +55,40 @@ public class Main{
 						System.out.println("\n\tBienvenid@ " + control.getUsername()); 
 						do{
 							System.out.print("\n\nEstas son las opciones que puede realizar:\n1. Ver inventario\n2. Recomendaciones para la siguiente jornada\n3. Ver medicinas\n4. Cerrar Sesion\nIngrese la opcion que desea realizar: ");
-							control.setOpcion(input.nextInt());
-
+							control.setOpcion(input.nextInt()); 
+				 	
 							switch(control.getOpcion()){
 
 								// Ver el inventario del centro de salud
 								case 1:
-									System.out.println("\nSe cuenta en el inventario con la siguiente medicina: ");
-									for(int i = 0; i < 3; i++){
-										System.out.print("- " + (control.getCentroSalud().getGrafico().getInventario())[i].getNombreMedicamento() + " de la cual se tiene "  + (control.getCentroSalud().getGrafico().getInventario())[i].getCantidadEnInventario() + " en el inventario\n");
+
+									// Verificar cual centro de salud quiere
+									System.out.print("\nEstos son los centros de salud con los que posee comunicacion: ");
+									option_aux = 1;
+									for(int i = 0; i < control.getCentroSalud().getGrafico().length; i++){
+										if((control.getCentroSalud().getCuentas()[control.getCentroSalud().getLoggedOnPosition()].getNumberOfIdentification()) == (control.getCentroSalud().getGrafico()[i].getNumberOfIdentification())){
+											System.out.print("\n" + option_aux + ". " + control.getCentroSalud().getGrafico()[i].getCentroSaludNombre());
+											option_aux++;
+										}
 									}
-									System.out.print("Actualizando inventario..... el inventario se ha actualizado");
+
+									// System.out.println("\nSe cuenta en el inventario con la siguiente medicina: ");
+									// for(int i = 0; i < 3; i++){
+									// 	System.out.print("- " + (control.getCentroSalud().getGrafico().getInventario())[i].getNombreMedicamento() + " de la cual se tiene "  + (control.getCentroSalud().getGrafico().getInventario())[i].getCantidadEnInventario() + " en el inventario\n");
+									// }
+									// System.out.print("Actualizando inventario..... el inventario se ha actualizado");
 								break;
 
 								// Obtener recomendaciones para la siguiente jornada
 								case 2:
 
-									for(int i = 0; i < 3; i++){
-										System.out.print("Ingrese la cantidad de medicina necesitada en esta jornada de " + (control.getCentroSalud().getGrafico().getInventario())[i].getNombreMedicamento() + ": ");
-										control.agregarANecesitados(input.nextInt(),i);
-									}
+									// for(int i = 0; i < 3; i++){
+									// 	System.out.print("Ingrese la cantidad de medicina necesitada en esta jornada de " + (control.getCentroSalud().getGrafico().getInventario())[i].getNombreMedicamento() + ": ");
+									// 	control.agregarANecesitados(input.nextInt(),i);
+									// }
 
-									// Mostrando las recomendacioes
-									System.out.print(control.getCentroSalud().getGrafico().elaborarDatos(control.getCantidadNecesitada()));
+									// // Mostrando las recomendacioes
+									// System.out.print(control.getCentroSalud().getGrafico().elaborarDatos(control.getCantidadNecesitada()));
 
 								break;
 

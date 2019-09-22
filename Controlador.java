@@ -18,8 +18,7 @@ las cedes para que la población pueda donar medicamento.
 **********************************************************/
 public class Controlador{
 	private Integer opcion, departamento;
-	private String medicamento, nombre, correo, tel, dir, sint;
-	private String username, password;
+	private String medicamento, nombre, correo, tel, dir, sint, username, password;
 	private Integer[] necesitados = new Integer[3];
 	private CentroSalud centro = new CentroSalud();
 	private Reportar reporte = new Reportar();

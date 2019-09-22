@@ -19,9 +19,10 @@ public class CuentasSalud{
 	private String username, password; //Se lleva un registro de las cuentas
 	private Integer numberOfIdentification;
 
-	public CuentasSalud(String username, String password){ //Se guarda la nueva cuenta
+	public CuentasSalud(String username, String password, Integer numberOfIdentification){ //Se guarda la nueva cuenta
 		this.username = username;
 		this.password = password;
+		this.numberOfIdentification = numberOfIdentification;
 	}
 
 	public String getUsername(){ //Se obtiene el nombre de la cuenta
