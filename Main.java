@@ -54,7 +54,7 @@ public class Main{
 						//------------------ Ingresando sesion ---------------------------
 						System.out.println("\n\tBienvenid@ " + control.getUsername()); 
 						do{
-							System.out.print("\n\nEstas son las opciones que puede realizar:\n1. Ver inventario\n2. Recomendaciones para la siguiente jornada\n3. Ver medicinas\n4. Cerrar Sesion\nIngrese la opcion que desea realizar: ");
+							System.out.print("\n\nEstas son las opciones que puede realizar:\n1. Ver inventario\n2. Recomendaciones para la siguiente jornada\n3. Ver medicinas\n4. Buscar medicina por sintomas\n5. Cerrar Sesion\nIngrese la opcion que desea realizar: ");
 							control.setOpcion(input.nextInt()); 
 				 	
 							switch(control.getOpcion()){
@@ -101,9 +101,23 @@ public class Main{
 									System.out.println(control.getCentroSalud().getMedicamento().mostrarInformacion());
 								
 								break;
+
+								//Buscar medicina por sintomas
+								case 4:
+									//Se pide un maximo de 3 sintomas
+									System.out.println("Ingrese el primer sintoma: ");
+									control.setSintoma1(scan.next());
+									System.out.println("Ingrese el segundo sintoma: ");
+									control.setSintoma2(scan.next());
+									System.out.println("Ingrese el tercer sintoma: ");
+									control.setSintoma3(scan.next());
+
+									control.getCentroSalud().getMedicamento().buscarSintomas(control.getSint1(), control.getSint2(), control.getSint3());
+									System.out.println(control.getCentroSalud().getMedicamento().mostrarRecomendados());
+
 							}
 
-						}while(control.getOpcion() != 4);
+						}while(control.getOpcion() != 5);
 
 						// Regresando a la opcion del ususuario para que no se termine el programa
 						control.setOpcion(1);

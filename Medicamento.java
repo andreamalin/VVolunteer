@@ -17,6 +17,7 @@ La clase Medicamento se encarga de mostrar al usuario la información
 sobre un medicamento presente en el inventario o mostrar que
 no está disponible.
 **********************************************************/
+import java.util.*; 
 
 public class Medicamento{
 	//Propiedades del medicamento a recetar
@@ -26,6 +27,8 @@ public class Medicamento{
 	private String similares;
 
 	LeerMedicamento medicina = new LeerMedicamento();
+	ArrayList<Integer> busquedaSintomas = new ArrayList<Integer>(); //Lista con posiciones de medicamentos
+
 	String [] listamedic = medicina.getLista(); //Se manda a llamar la lista de medicamento
 	String [] nombresmedicamentos; //Nombre de medicamentos encontrados
 
@@ -45,7 +48,71 @@ public class Medicamento{
 		return false; //Si no se encuentra
 	}
 
-	public void separarMed(){ //Se realiza una lsita que contenga unicamente los nombres del medicamento
+	public void buscarSintomas(String sintoma1, String sintoma2, String sintoma3){
+		int longitud = listamedic.length/5; //Se obtiene la cantidad de medicamentos
+		//Se revisan las primeras posiciones de sintomas
+		for (int i=1; i<listamedic.length; i+=5) { 
+			//Se revisa si es sintoma pertenece a la lista de los medicamentos
+			if (sintoma1.equalsIgnoreCase(listamedic[i]) || sintoma2.equalsIgnoreCase(listamedic[i]) || sintoma3.equalsIgnoreCase(listamedic[i])) {
+				Integer posicionPosible = i;
+				if (posicionPosible > 5) { //Si la posicion posible es mayor de 5
+					while (posicionPosible > longitud){ //Se resta 5 hasta que sea menor de la cantidad de medicamento
+						posicionPosible = posicionPosible - 5; //Se restan 5 posiciones para devolver la posicion del nombre
+					}
+				} else {
+					posicionPosible = 0; //Si la posicion posible es menor de 5, es el primer medicamento de la lista
+				}
+				busquedaSintomas.add(posicionPosible); //Se agrega a la lista el indice de la posicion posible
+			}
+		}
+		//Se revisan las primeras posiciones de sintomas
+		for (int j=2; j<listamedic.length; j+=5) { 
+			//Se revisa si es sintoma pertenece a la lista de los medicamentos
+			if (sintoma1.equalsIgnoreCase(listamedic[j]) || sintoma2.equalsIgnoreCase(listamedic[j]) || sintoma3.equalsIgnoreCase(listamedic[j])) {
+				Integer posicionPosible = j;
+				if (posicionPosible > 5) { //Si la posicion posible es mayor de 5
+					while (posicionPosible > longitud){ //Se resta 5 hasta que sea menor de la cantidad de medicamento
+						posicionPosible = posicionPosible - 5; //Se restan 5 posiciones para devolver la posicion del nombre
+					}
+				posicionPosible = posicionPosible - 1;
+				} else {
+					posicionPosible = 0; //Si la posicion posible es menor de 5, es el primer medicamento de la lista
+				}
+				busquedaSintomas.add(posicionPosible); //Se agrega a la lista el indice de la posicion posible
+			}
+		}
+		//Se revisan las terceras posiciones de sintomas
+		for (int k=3; k<listamedic.length; k+=5) { 
+			//Se revisa si es sintoma pertenece a la lista de los medicamentos
+			if (sintoma1.equalsIgnoreCase(listamedic[k]) || sintoma2.equalsIgnoreCase(listamedic[k]) || sintoma3.equalsIgnoreCase(listamedic[k])) {
+				Integer posicionPosible = k;
+				if (posicionPosible > 5) { //Si la posicion posible es mayor de 5
+					while (posicionPosible > longitud){ //Se resta 5 hasta que sea menor de la cantidad de medicamento
+						posicionPosible = posicionPosible - 5; //Se restan 5 posiciones para devolver la posicion del nombre
+					}
+					posicionPosible = posicionPosible - 1; 
+				} else {
+					posicionPosible = 0; //Si la posicion posible es menor de 5, es el primer medicamento de la lista
+				}
+				busquedaSintomas.add(posicionPosible); //Se agrega a la lista el indice de la posicion posible
+			}
+		}
+	}
+
+	public boolean eliminarRepetidos(){
+		if (busquedaSintomas.size() > 0) {
+			Collections.sort(busquedaSintomas); //Se ordena de menor a menor la lista de similares
+			Set<Integer> listalimpia = new HashSet<Integer>(busquedaSintomas); //Se limpia la lista de los repetidos
+			busquedaSintomas.clear(); //Se borra lo actual de la lista
+			busquedaSintomas.addAll(listalimpia); //Se agrega a la lista la lista limpia	
+
+			return true;	
+		} else {
+			return false; //No hay medicamento 
+		}
+	}
+
+	public void separarMed(){ //Se realiza una lista que contenga unicamente los nombres del medicamento
 		int longitud = listamedic.length/5;
 		int a = 0;
 		nombresmedicamentos = new String[longitud]; //Se realiza una lista con la longitud de cantidad de medicamentos
@@ -94,5 +161,18 @@ public class Medicamento{
 		return a; //Se muestra la alerta de medicamento no encontrado
 	}
 
+	public String mostrarRecomendados(){
+		String a = "\n\n+-----Medicamento para sintomas escritos no encontrado en la base-----+\n"; //Si no se encuentra el medicamento
+		if (eliminarRepetidos()) {
+			separarMed(); //Se separa el medicamento por nombres
+			a = "\n\n+-------------LISTADO MEDICAMENTOS RECOMENDADOS-------------+\n";
+			for (int i=0; i<busquedaSintomas.size(); i++) {
+				int indice = busquedaSintomas.get(i);
+				a += "                       "+nombresmedicamentos[indice] + "\n";	
+			}
+			a += "+-Se recomienda buscar la informacion del medicamento listado-+\n\n";
+		}
+		return a;
+	}
 
 }

@@ -18,7 +18,7 @@ las cedes para que la población pueda donar medicamento.
 **********************************************************/
 public class Controlador{
 	private Integer opcion, departamento;
-	private String medicamento, nombre, correo, tel, dir, sint, username, password;
+	private String medicamento, nombre, correo, tel, dir, sint, username, password, sint1, sint2, sint3;
 	private Integer[] necesitados = new Integer[3];
 	private CentroSalud centro = new CentroSalud();
 	private Reportar reporte = new Reportar();
@@ -86,7 +86,16 @@ public class Controlador{
 	public void setSintomas(String sintomas){
 		this.sint = sintomas;
 	}
-	//Getters y setters de todos los atributos
+	public void setSintoma1(String sintoma1){
+		this.sint1 = sintoma1;
+	}
+	public void setSintoma2(String sintoma2){
+		this.sint2 = sintoma2;
+	}
+	public void setSintoma3(String sintoma3){
+		this.sint3 = sintoma3;
+	}
+	//Getters de todos los atributos
 	public Integer getOpcion(){
 		return this.opcion;
 	}
@@ -102,7 +111,15 @@ public class Controlador{
 	public String getMedicamento(){
 		return this.medicamento;
 	}
-
+	public String getSint1(){
+		return sint1;
+	}
+	public String getSint2(){
+		return sint2;
+	}
+	public String getSint3(){
+		return sint3;
+	}
 	public CentroSalud getCentroSalud(){
 		return this.centro;
 	}
