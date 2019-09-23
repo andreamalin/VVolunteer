@@ -70,6 +70,7 @@ public class Controlador{
 	public void setDepartamento(Integer dept){
 		this.departamento = dept;
 	}
+	
 	//Setters opcion 2
 	public void setNombre(String nombre){
 		this.nombre = nombre;
@@ -95,6 +96,7 @@ public class Controlador{
 	public void setSintoma3(String sintoma3){
 		this.sint3 = sintoma3;
 	}
+	
 	//Getters de todos los atributos
 	public Integer getOpcion(){
 		return this.opcion;

@@ -16,17 +16,17 @@ Fecha de creación: 31/09/2019
 La clase main se encarga de mostrar todos los datos que el usuario solicita,
 los manda al controlador.
 **********************************************************/
-
 import java.util.Scanner;
+
 public class Main{
 	//Metodo principal
 	public static void main (String[] args){
 
 		// Instancia de objetos; input es para números y scan es para strings
-		Integer option_aux = 1;
 		Scanner input = new Scanner(System.in);
 		Scanner scan = new Scanner(System.in);
 		Controlador control = new Controlador();
+		Vista vista = new Vista();
 
 		// Iniciando el programa
 		do{
@@ -46,7 +46,6 @@ public class Main{
 					System.out.print("Ingrese su Contrasena: ");
 					control.setPassword(scan.nextLine());		
 
-						
 					if(control.getCentroSalud().accountManager(control.getUsername(), control.getPassword()) == false){
 						System.out.print("\nSus datos son invalidos, vuelva a intentar\n");
 					} else{
@@ -63,20 +62,13 @@ public class Main{
 								case 1:
 
 									// Verificar cual centro de salud quiere
-									System.out.print("\nEstos son los centros de salud con los que posee comunicacion: ");
-									option_aux = 1;
-									for(int i = 0; i < control.getCentroSalud().getGrafico().length; i++){
-										if((control.getCentroSalud().getCuentas()[control.getCentroSalud().getLoggedOnPosition()].getNumberOfIdentification()) == (control.getCentroSalud().getGrafico()[i].getNumberOfIdentification())){
-											System.out.print("\n" + option_aux + ". " + control.getCentroSalud().getGrafico()[i].getCentroSaludNombre());
-											option_aux++;
-										}
-									}
+									vista.obtenerCentroDeSalud(control, input);
 
 									// System.out.println("\nSe cuenta en el inventario con la siguiente medicina: ");
 									// for(int i = 0; i < 3; i++){
 									// 	System.out.print("- " + (control.getCentroSalud().getGrafico().getInventario())[i].getNombreMedicamento() + " de la cual se tiene "  + (control.getCentroSalud().getGrafico().getInventario())[i].getCantidadEnInventario() + " en el inventario\n");
 									// }
-									// System.out.print("Actualizando inventario..... el inventario se ha actualizado");
+							
 								break;
 
 								// Obtener recomendaciones para la siguiente jornada
@@ -89,6 +81,7 @@ public class Main{
 
 									// // Mostrando las recomendacioes
 									// System.out.print(control.getCentroSalud().getGrafico().elaborarDatos(control.getCantidadNecesitada()));
+									// System.out.print("Actualizando inventario..... el inventario se ha actualizado");
 
 								break;
 
