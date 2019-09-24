@@ -31,4 +31,12 @@ public class Vista{
 		 	System.out.print("- " + (control.getCentroSalud().getGrafico()[j].getInventario())[i].getNombreMedicamento() + " de la cual se tiene "  + (control.getCentroSalud().getGrafico()[j].getInventario())[i].getCantidadEnInventario() + " en el inventario\n");
 		}
 	}
+
+	// Pidiendole al usuario los medicamentos utilizados en la jornada 
+	public void pedirMedicinaNecesitada(Controlador control, Integer j, Scanner input){
+		for(int i = 0; i < 3; i++){
+		 	System.out.print("Ingrese la cantidad de medicina necesitada en esta jornada de " + (control.getCentroSalud().getGrafico()[j].getInventario())[i].getNombreMedicamento() + ": ");
+		 	control.agregarANecesitados(input.nextInt(),i);
+		}
+	}
 }

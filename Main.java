@@ -60,7 +60,6 @@ public class Main{
 
 								// Ver el inventario del centro de salud
 								case 1:
-
 									// Verificar cual centro de salud quiere
 									vista.obtenerCentroDeSalud(control, input);
 									vista.mostrarInventario(control, control.obtenerPosicionCentroSalud());
@@ -70,14 +69,12 @@ public class Main{
 								// Obtener recomendaciones para la siguiente jornada
 								case 2:
 
-									// for(int i = 0; i < 3; i++){
-									// 	System.out.print("Ingrese la cantidad de medicina necesitada en esta jornada de " + (control.getCentroSalud().getGrafico().getInventario())[i].getNombreMedicamento() + ": ");
-									// 	control.agregarANecesitados(input.nextInt(),i);
-									// }
+									vista.obtenerCentroDeSalud(control, input);
+									vista.pedirMedicinaNecesitada(control, control.obtenerPosicionCentroSalud(), input);
 
-									// // Mostrando las recomendacioes
-									// System.out.print(control.getCentroSalud().getGrafico().elaborarDatos(control.getCantidadNecesitada()));
-									// System.out.print("Actualizando inventario..... el inventario se ha actualizado");
+									// Mostrando las recomendacioes
+									System.out.print(control.getCentroSalud().getGrafico()[control.obtenerPosicionCentroSalud()].elaborarDatos(control.getCantidadNecesitada()));
+									System.out.print("\nActualizando inventario..... el inventario se ha actualizado");
 
 								break;
 
