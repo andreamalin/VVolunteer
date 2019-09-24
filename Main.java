@@ -10,23 +10,25 @@ Integrantes grupo:
 Autores de la clase:
 -> Diego Crespo 19541
 -> Laura Tamath 19365
+-> Diego Alvarez 19498
 Fecha de creación: 31/09/2019
-Última fecha de modificación: 05/09/2019
+Última fecha de modificación: 24/09/2019
 
 La clase main se encarga de mostrar todos los datos que el usuario solicita,
 los manda al controlador.
 **********************************************************/
-
 import java.util.Scanner;
+
 public class Main{
 	//Metodo principal
 	public static void main (String[] args){
 
 		// Instancia de objetos; input es para números y scan es para strings
-		Integer option_aux = 1;
 		Scanner input = new Scanner(System.in);
 		Scanner scan = new Scanner(System.in);
 		Controlador control = new Controlador();
+		SegundoControlador controlA = new SegundoControlador();
+		Vista vista = new Vista();
 
 		// Iniciando el programa
 		do{
@@ -36,7 +38,15 @@ public class Main{
 			System.out.println("               Estamos para servirte               ");
 			System.out.println("\n\t\t 1. Centro de Salud \n\t\t 2. Reportar \n\t\t 3. Ayudar\n\t\t 4. Salir\n");
 			System.out.print(" _________________________________________________ \nIngrese su opcion: ");
-			control.setOpcion(input.nextInt()); 
+			control.defensa(input.next());
+			while(control.getBandera()==false){
+				System.out.println(" Favor ingrese una opcion, numeros ");
+				control.defensa(input.next());
+				if(control.getBandera()==true){
+					control.setOpcion(control.getOpcion()); 
+				}
+			}
+			
 
 			// Opcion para entrar a la cuenta y utilizar las funciones del programa
 			if (control.getOpcion() == 1){
@@ -46,7 +56,6 @@ public class Main{
 					System.out.print("Ingrese su Contrasena: ");
 					control.setPassword(scan.nextLine());		
 
-						
 					if(control.getCentroSalud().accountManager(control.getUsername(), control.getPassword()) == false){
 						System.out.print("\nSus datos son invalidos, vuelva a intentar\n");
 					} else{
@@ -55,40 +64,35 @@ public class Main{
 						System.out.println("\n\tBienvenid@ " + control.getUsername()); 
 						do{
 							System.out.print("\n\nEstas son las opciones que puede realizar:\n1. Ver inventario\n2. Recomendaciones para la siguiente jornada\n3. Ver medicinas\n4. Buscar medicina por sintomas\n5. Cerrar Sesion\nIngrese la opcion que desea realizar: ");
-							control.setOpcion(input.nextInt()); 
-				 	
+							// Se verifica si lo ingresado es un numero o son palabras
+							control.defensa(input.next()); 
+
+				 			while(control.getBandera()==false){
+								System.out.println(" Favor ingrese una opcion, numeros ");
+								control.defensa(input.next());
+								if(control.getBandera()==true){
+									control.setOpcion(control.getOpcion()); 
+								}
+							}
 							switch(control.getOpcion()){
 
 								// Ver el inventario del centro de salud
 								case 1:
-
 									// Verificar cual centro de salud quiere
-									System.out.print("\nEstos son los centros de salud con los que posee comunicacion: ");
-									option_aux = 1;
-									for(int i = 0; i < control.getCentroSalud().getGrafico().length; i++){
-										if((control.getCentroSalud().getCuentas()[control.getCentroSalud().getLoggedOnPosition()].getNumberOfIdentification()) == (control.getCentroSalud().getGrafico()[i].getNumberOfIdentification())){
-											System.out.print("\n" + option_aux + ". " + control.getCentroSalud().getGrafico()[i].getCentroSaludNombre());
-											option_aux++;
-										}
-									}
-
-									// System.out.println("\nSe cuenta en el inventario con la siguiente medicina: ");
-									// for(int i = 0; i < 3; i++){
-									// 	System.out.print("- " + (control.getCentroSalud().getGrafico().getInventario())[i].getNombreMedicamento() + " de la cual se tiene "  + (control.getCentroSalud().getGrafico().getInventario())[i].getCantidadEnInventario() + " en el inventario\n");
-									// }
-									// System.out.print("Actualizando inventario..... el inventario se ha actualizado");
+									vista.obtenerCentroDeSalud(control, input);
+									vista.mostrarInventario(control, control.obtenerPosicionCentroSalud());
+							
 								break;
 
 								// Obtener recomendaciones para la siguiente jornada
 								case 2:
 
-									// for(int i = 0; i < 3; i++){
-									// 	System.out.print("Ingrese la cantidad de medicina necesitada en esta jornada de " + (control.getCentroSalud().getGrafico().getInventario())[i].getNombreMedicamento() + ": ");
-									// 	control.agregarANecesitados(input.nextInt(),i);
-									// }
+									vista.obtenerCentroDeSalud(control, input);
+									vista.pedirMedicinaNecesitada(control, control.obtenerPosicionCentroSalud(), input);
 
-									// // Mostrando las recomendacioes
-									// System.out.print(control.getCentroSalud().getGrafico().elaborarDatos(control.getCantidadNecesitada()));
+									// Mostrando las recomendacioes
+									System.out.print(control.getCentroSalud().getGrafico()[control.obtenerPosicionCentroSalud()].elaborarDatos(control.getCantidadNecesitada()));
+									System.out.print("\nActualizando inventario..... el inventario se ha actualizado");
 
 								break;
 
@@ -106,13 +110,13 @@ public class Main{
 								case 4:
 									//Se pide un maximo de 3 sintomas
 									System.out.println("Ingrese el primer sintoma: ");
-									control.setSintoma1(scan.next());
+									controlA.setSintoma1(scan.next());
 									System.out.println("Ingrese el segundo sintoma: ");
-									control.setSintoma2(scan.next());
+									controlA.setSintoma2(scan.next());
 									System.out.println("Ingrese el tercer sintoma: ");
-									control.setSintoma3(scan.next());
+									controlA.setSintoma3(scan.next());
 
-									control.getCentroSalud().getMedicamento().buscarSintomas(control.getSint1(), control.getSint2(), control.getSint3());
+									control.getCentroSalud().getMedicamento().buscarSintomas(controlA.getSint1(), controlA.getSint2(), controlA.getSint3());
 									System.out.println(control.getCentroSalud().getMedicamento().mostrarRecomendados());
 
 							}
@@ -128,26 +132,26 @@ public class Main{
 				//Se piden los datos del usuario
 				System.out.println("\n_________________________________________________\n");
 				System.out.print("Ingrese su Nombre: ");				
-				control.setNombre(scan.nextLine());
+				controlA.setNombre(scan.nextLine());
 				System.out.print("Ingrese su Correo Electronico: ");
-				control.setCorreo(scan.nextLine());	
+				controlA.setCorreo(scan.nextLine());	
 				System.out.print("Ingrese su Telefono: ");
-				control.setTel(scan.nextLine());
+				controlA.setTel(scan.nextLine());
 				System.out.print("Ingrese su direccion: ");
-				control.setDireccion(scan.nextLine());
+				controlA.setDireccion(scan.nextLine());
 				System.out.print("Ingrese sus sintomas: ");	
-				control.setSintomas(scan.nextLine());
+				controlA.setSintomas(scan.nextLine());
 				System.out.println("\n_________________________________________________\n");
 				//Se manda la ayuda
-				System.out.println(control.mandarAyuda());
+				System.out.println(controlA.mandarAyuda());
 
 			// Ayudar es para que pueda ir a ayudar a un centro de salud
 			} else if (control.getOpcion() == 3){
 				System.out.println("A continacion debe de seleccionar el departamento en el que se encuentra (en numeros)");
 				System.out.println("1.Ciudad de Guatemala\n" +"2.Quetzaltenango, Xela\n"+"3.Sacatequepez, Antigua Guatemala\n"+"4. Alta Verapaz, Coban\n5. Otro\nIngrese en donde se encuentra: ");
 				
-				control.setDepartamento(input.nextInt());
-				System.out.println("\n_________________________________________________\n\n"+control.mostrarInfoCentro()+"_________________________________________________");
+				controlA.setDepartamento(input.nextInt());
+				System.out.println("\n_________________________________________________\n\n"+controlA.mostrarInfoCentro()+"_________________________________________________");
 			
 			// Salir del programa y defensiva por si no es ninguna opcion
 			} else if (control.getOpcion() == 4){
