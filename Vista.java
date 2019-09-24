@@ -15,14 +15,20 @@ public class Vista{
 			}
 		}
 
+		// Obteniendo el centro de salud que quiere el usuario
 		do{	
 			System.out.print("\nIngrese el centro de salud con el cual desea interactuar: ");
 			centroDeSaludSeleccionado = input.nextInt();
-		}while((centroDeSaludSeleccionado < 0) || (centroDeSaludSeleccionado > (cantidadCentrosMostrados - 2)));
+		}while((centroDeSaludSeleccionado < 0) || (centroDeSaludSeleccionado > cantidadCentrosMostrados));
 
 		control.setOpcion(centroDeSaludSeleccionado);
 	}
 
-	
-
+	// Mostrando los datos del Centro de Salud seleccionado
+	public void mostrarInventario(Controlador control, Integer j){
+		System.out.println("\nSe cuenta en el inventario de " + control.getCentroSalud().getGrafico()[j].getCentroSaludNombre() + " con las siguientes medicinas: ");
+			for(int i = 0; i < 3; i++){
+		 	System.out.print("- " + (control.getCentroSalud().getGrafico()[j].getInventario())[i].getNombreMedicamento() + " de la cual se tiene "  + (control.getCentroSalud().getGrafico()[j].getInventario())[i].getCantidadEnInventario() + " en el inventario\n");
+		}
+	}
 }

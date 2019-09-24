@@ -49,6 +49,20 @@ public class Controlador{
 		return ayuda;
 	}
 	
+	// Encontrar posición del centro de salud deseado
+	public Integer obtenerPosicionCentroSalud(){
+		Integer position, contador = 0;
+		for(int i = 0; i < centro.getGrafico().length; i++){
+			if((centro.getCuentas()[centro.getLoggedOnPosition()].getNumberOfIdentification()) == (centro.getGrafico()[i].getNumberOfIdentification())){
+				contador++;
+				if(contador == opcion){
+					return i;
+				}
+			}
+		}
+		return 0;
+	}
+
 	// Agregar un elemento a la lista de necesitados
 	public void agregarANecesitados(Integer cantidad, Integer lugar){
 		this.necesitados[lugar] = cantidad; 

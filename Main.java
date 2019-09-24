@@ -63,11 +63,7 @@ public class Main{
 
 									// Verificar cual centro de salud quiere
 									vista.obtenerCentroDeSalud(control, input);
-
-									// System.out.println("\nSe cuenta en el inventario con la siguiente medicina: ");
-									// for(int i = 0; i < 3; i++){
-									// 	System.out.print("- " + (control.getCentroSalud().getGrafico().getInventario())[i].getNombreMedicamento() + " de la cual se tiene "  + (control.getCentroSalud().getGrafico().getInventario())[i].getCantidadEnInventario() + " en el inventario\n");
-									// }
+									vista.mostrarInventario(control, control.obtenerPosicionCentroSalud());
 							
 								break;
 
