@@ -19,7 +19,7 @@ las cedes para que la población pueda donar medicamento.
 **********************************************************/
 public class Controlador{
 	private Integer opcion;
-	private String medicamento, username, password;
+	private String medicamento, username, password, sint1, sint2, sint3;
 	private boolean bandera;
 	private Integer[] necesitados = new Integer[3];
 	private CentroSalud centro = new CentroSalud();
@@ -40,21 +40,6 @@ public class Controlador{
 		return 0;
 	}
 	
-	// Encontrar posición del centro de salud deseado
-	public Integer obtenerPosicionCentroSalud(){
-		Integer position, contador = 0;
-		for(int i = 0; i < centro.getGrafico().length; i++){
-			if((centro.getCuentas()[centro.getLoggedOnPosition()].getNumberOfIdentification()) == (centro.getGrafico()[i].getNumberOfIdentification())){
-				contador++;
-				if(contador == opcion){
-					return i;
-				}
-			}
-		}
-		return 0;
-	}
-
-
 	// Agregar un elemento a la lista de necesitados
 	public void agregarANecesitados(Integer cantidad, Integer lugar){
 		this.necesitados[lugar] = cantidad; 
@@ -91,22 +76,7 @@ public class Controlador{
 		this.departamento = dept;
 	}
 	
-	//Setters opcion 2
-	public void setNombre(String nombre){
-		this.nombre = nombre;
-	}
-	public void setCorreo(String correo){
-		this.correo = correo;
-	}
-	public void setTel(String telefono){
-		this.tel = telefono;
-	}
-	public void setDireccion(String direccion){
-		this.dir = direccion;
-	}
-	public void setSintomas(String sintomas){
-		this.sint = sintomas;
-	}
+	//Setters opcion buscar por sintomas
 	public void setSintoma1(String sintoma1){
 		this.sint1 = sintoma1;
 	}

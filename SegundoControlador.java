@@ -11,17 +11,14 @@ Autores de la clase:
 -> Diego Alvarez 19498
 Fecha de creación: 24/09/2019
 Última fecha de modificación: 24/09/2019
-
 Esta clase se encarga de enviar a los centros de salud los datos
 del usuario, sintomas y datos personales.
 **********************************************************/
 public class SegundoControlador{
-
 	private Integer departamento;
-	private CentroSalud centro = new CentroSalud();
+	private String nombre,correo,tel, dir,sint;
 	private Reportar reporte = new Reportar();
 	private Ayudar ayuda = new Ayudar();
-	private String nombre,correo,tel, dir,sint, sint1, sint2, sint3;
 
 	//Realizar opcion
 	public String mostrarInfoCentro(){
@@ -66,27 +63,9 @@ public class SegundoControlador{
 	public void setSintomas(String sintomas){
 		this.sint = sintomas;
 	}
-	public void setSintoma1(String sintoma1){
-		this.sint1 = sintoma1;
-	}
-	public void setSintoma2(String sintoma2){
-		this.sint2 = sintoma2;
-	}
-	public void setSintoma3(String sintoma3){
-		this.sint3 = sintoma3;
-	}
 	public void setDepartamento(Integer dept){
 		this.departamento = dept;
 	}
 
-	public String getSint1(){
-		return sint1;
-	}
-	public String getSint2(){
-		return sint2;
-	}
-	public String getSint3(){
-		return sint3;
-	}
 
 }
