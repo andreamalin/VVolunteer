@@ -43,6 +43,23 @@ public class Controlador{
 		}
 		return 0;
 	}
+<<<<<<< HEAD
+=======
+	
+	// Encontrar posición del centro de salud deseado
+	public Integer obtenerPosicionCentroSalud(){
+		Integer position, contador = 0;
+		for(int i = 0; i < centro.getGrafico().length; i++){
+			if((centro.getCuentas()[centro.getLoggedOnPosition()].getNumberOfIdentification()) == (centro.getGrafico()[i].getNumberOfIdentification())){
+				contador++;
+				if(contador == opcion){
+					return i;
+				}
+			}
+		}
+		return 0;
+	}
+>>>>>>> f6817c6a5f5faad810372f9741b086b7d4405786
 
 	// Agregar un elemento a la lista de necesitados
 	public void agregarANecesitados(Integer cantidad, Integer lugar){
@@ -75,8 +92,40 @@ public class Controlador{
 	public void setMedicamento(String medicamento){
 		this.medicamento = medicamento;
 	}
+<<<<<<< HEAD
 	
 	
+=======
+	public void setDepartamento(Integer dept){
+		this.departamento = dept;
+	}
+	
+	//Setters opcion 2
+	public void setNombre(String nombre){
+		this.nombre = nombre;
+	}
+	public void setCorreo(String correo){
+		this.correo = correo;
+	}
+	public void setTel(String telefono){
+		this.tel = telefono;
+	}
+	public void setDireccion(String direccion){
+		this.dir = direccion;
+	}
+	public void setSintomas(String sintomas){
+		this.sint = sintomas;
+	}
+	public void setSintoma1(String sintoma1){
+		this.sint1 = sintoma1;
+	}
+	public void setSintoma2(String sintoma2){
+		this.sint2 = sintoma2;
+	}
+	public void setSintoma3(String sintoma3){
+		this.sint3 = sintoma3;
+	}
+>>>>>>> f6817c6a5f5faad810372f9741b086b7d4405786
 	
 	//Getters de todos los atributos
 	public Integer getOpcion(){

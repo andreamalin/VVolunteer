@@ -28,6 +28,7 @@ public class Main{
 		Scanner scan = new Scanner(System.in);
 		Controlador control = new Controlador();
 		SegundoControlador controlA = new SegundoControlador();
+
 		Vista vista = new Vista();
 
 		// Iniciando el programa
