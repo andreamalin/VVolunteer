@@ -26,9 +26,19 @@ public class Controlador{
 	private Reportar reporte = new Reportar();
 	private Ayudar ayuda = new Ayudar();
 
-	
-
-
+	// Encontrar posición del centro de salud deseado
+	public Integer obtenerPosicionCentroSalud(){
+		Integer position, contador = 0;
+		for(int i = 0; i < centro.getGrafico().length; i++){
+			if((centro.getCuentas()[centro.getLoggedOnPosition()].getNumberOfIdentification()) == (centro.getGrafico()[i].getNumberOfIdentification())){
+				contador++;
+				if(contador == opcion){
+					return i;
+				}
+			}
+		}
+		return 0;
+	}
 	
 	// Encontrar posición del centro de salud deseado
 	public Integer obtenerPosicionCentroSalud(){
@@ -43,23 +53,7 @@ public class Controlador{
 		}
 		return 0;
 	}
-<<<<<<< HEAD
-=======
-	
-	// Encontrar posición del centro de salud deseado
-	public Integer obtenerPosicionCentroSalud(){
-		Integer position, contador = 0;
-		for(int i = 0; i < centro.getGrafico().length; i++){
-			if((centro.getCuentas()[centro.getLoggedOnPosition()].getNumberOfIdentification()) == (centro.getGrafico()[i].getNumberOfIdentification())){
-				contador++;
-				if(contador == opcion){
-					return i;
-				}
-			}
-		}
-		return 0;
-	}
->>>>>>> f6817c6a5f5faad810372f9741b086b7d4405786
+
 
 	// Agregar un elemento a la lista de necesitados
 	public void agregarANecesitados(Integer cantidad, Integer lugar){
@@ -92,10 +86,7 @@ public class Controlador{
 	public void setMedicamento(String medicamento){
 		this.medicamento = medicamento;
 	}
-<<<<<<< HEAD
-	
-	
-=======
+
 	public void setDepartamento(Integer dept){
 		this.departamento = dept;
 	}
@@ -125,7 +116,6 @@ public class Controlador{
 	public void setSintoma3(String sintoma3){
 		this.sint3 = sintoma3;
 	}
->>>>>>> f6817c6a5f5faad810372f9741b086b7d4405786
 	
 	//Getters de todos los atributos
 	public Integer getOpcion(){
