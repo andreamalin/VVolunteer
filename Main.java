@@ -62,9 +62,9 @@ public class Main{
 					} else{
 
 						//------------------ Ingresando sesion ---------------------------
-						System.out.println("\n\tBienvenid@ " + control.getUsername()); 
+						System.out.println(vista.bienvenidav()); 
 						do{
-							System.out.print("\n\nEstas son las opciones que puede realizar:\n1. Ver inventario\n2. Recomendaciones para la siguiente jornada\n3. Ver medicinas\n4. Buscar medicina por sintomas\n5. Cerrar Sesion\nIngrese la opcion que desea realizar: ");
+							System.out.print(vista.menuv());
 							// Se verifica si lo ingresado es un numero o son palabras
 							control.defensa(input.next()); 
 
@@ -92,8 +92,8 @@ public class Main{
 									vista.pedirMedicinaNecesitada(control, control.obtenerPosicionCentroSalud(), input);
 
 									// Mostrando las recomendacioes
-									System.out.print(control.getCentroSalud().getGrafico()[control.obtenerPosicionCentroSalud()].elaborarDatos(control.getCantidadNecesitada()));
-									System.out.print("\nActualizando inventario..... el inventario se ha actualizado");
+									//System.out.print(control.getCentroSalud().getGrafico()[control.obtenerPosicionCentroSalud()].elaborarDatos(control.getCantidadNecesitada()));
+									System.out.print(vista.mostrarrecomendacionesv());
 
 								break;
 
@@ -121,7 +121,6 @@ public class Main{
 									System.out.println(control.getCentroSalud().getMedicamento().mostrarRecomendados());
 
 							}
-
 						}while(control.getOpcion() != 5);
 
 						// Regresando a la opcion del ususuario para que no se termine el programa
@@ -142,17 +141,17 @@ public class Main{
 				controlA.setDireccion(scan.nextLine());
 				System.out.print("Ingrese sus sintomas: ");	
 				controlA.setSintomas(scan.nextLine());
-				System.out.println("\n_________________________________________________\n");
+			//	System.out.println("\n_________________________________________________\n");   SE AGREGO ESTE TEXTO EN EL METODO MANDARAYUDAV
 				//Se manda la ayuda
-				System.out.println(controlA.mandarAyuda());
+				System.out.println(vista.mandarAyudaV());
 
 			// Ayudar es para que pueda ir a ayudar a un centro de salud
 			} else if (control.getOpcion() == 3){
-				System.out.println("A continacion debe de seleccionar el departamento en el que se encuentra (en numeros)");
-				System.out.println("1.Ciudad de Guatemala\n" +"2.Quetzaltenango, Xela\n"+"3.Sacatequepez, Antigua Guatemala\n"+"4. Alta Verapaz, Coban\n5. Otro\nIngrese en donde se encuentra: ");
+			//	System.out.println("A continacion debe de seleccionar el departamento en el que se encuentra (en numeros)");    SE AGREGO ESTE TEXTO Y EL QUE ESTABA DESPUES EN METODO OPCIONV
+				System.out.println(vista.opcionv());
 				
 				controlA.setDepartamento(input.nextInt());
-				System.out.println("\n_________________________________________________\n\n"+controlA.mostrarInfoCentro()+"_________________________________________________");
+				System.out.println(vista.mostrarinfocentroV());
 			
 			// Salir del programa y defensiva por si no es ninguna opcion
 			} else if (control.getOpcion() == 4){

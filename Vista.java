@@ -2,6 +2,9 @@ import java.util.Scanner;
 
 public class Vista{
 
+	Controlador control = new Controlador();
+	SegundoControlador controlA = new SegundoControlador();
+
 	// Obtener el centro de salud con el cual quiere interactuar el usuario
 	public void obtenerCentroDeSalud(Controlador control, Scanner input){
 		Integer centroDeSaludSeleccionado, cantidadCentrosMostrados = 1;
@@ -36,7 +39,42 @@ public class Vista{
 	public void pedirMedicinaNecesitada(Controlador control, Integer j, Scanner input){
 		for(int i = 0; i < 3; i++){
 		 	System.out.print("Ingrese la cantidad de medicina necesitada en esta jornada de " + (control.getCentroSalud().getGrafico()[j].getInventario())[i].getNombreMedicamento() + ": ");
-		 	control.agregarANecesitados(input.nextInt(),i);
+			 control.agregarANecesitados(input.nextInt(),i);
+	
+
+	
+	
 		}
+		
 	}
+	public String mostrarinfocentroV(){
+		String x ="\n_________________________________________________\n\n"+controlA.mostrarInfoCentro()+"_____________________________________________";
+		return x;
+	
+	}
+	public String mandarayudaV(){
+		String j ="\n_________________________________________________\n\n"+controlA.mandarAyuda();
+		return j;
+	
+	}
+	public String mostrarrecomendacionesv(){
+		String h = control.getCentroSalud().getGrafico()[control.obtenerPosicionCentroSalud()].elaborarDatos(control.getCantidadNecesitada()) + "\nActualizando inventario..... el inventario se ha actualizado" ;
+		return h;
+	
+	}
+	public String bienvenidav(){
+		String r = "\n\tBienvenid@ " + control.getUsername();
+		return r;
+	}
+	public String menuv(){
+		String v = "\n\nEstas son las opciones que puede realizar:\n1. Ver inventario\n2. Recomendaciones para la siguiente jornada\n3. Ver medicinas\n4. Buscar medicina por sintomas\n5. Cerrar Sesion\nIngrese la opcion que desea realizar: ";
+		return v;
+	}
+	public String opcionv(){
+		String t = "A continacion debe de seleccionar el departamento en el que se encuentra (en numeros)" + "\n1.Ciudad de Guatemala\n" +"2.Quetzaltenango, Xela\n"+"3.Sacatequepez, Antigua Guatemala\n"+"4. Alta Verapaz, Coban\n5. Otro\nIngrese en donde se encuentra: ";
+		return t;
+	}
+
+	
+
 }
