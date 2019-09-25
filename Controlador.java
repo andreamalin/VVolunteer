@@ -71,10 +71,6 @@ public class Controlador{
 	public void setMedicamento(String medicamento){
 		this.medicamento = medicamento;
 	}
-
-	public void setDepartamento(Integer dept){
-		this.departamento = dept;
-	}
 	
 	//Setters opcion buscar por sintomas
 	public void setSintoma1(String sintoma1){
@@ -108,5 +104,14 @@ public class Controlador{
 	}
 	public CentroSalud getCentroSalud(){
 		return this.centro;
+	}
+	public String getSint1(){
+		return this.sint1;
+	}
+	public String getSint2(){
+		return this.sint2;
+	}
+	public String getSint3(){
+		return this.sint3;
 	}
 }

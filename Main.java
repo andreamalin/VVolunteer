@@ -111,13 +111,13 @@ public class Main{
 								case 4:
 									//Se pide un maximo de 3 sintomas
 									System.out.println("Ingrese el primer sintoma: ");
-									controlA.setSintoma1(scan.next());
+									control.setSintoma1(scan.next());
 									System.out.println("Ingrese el segundo sintoma: ");
-									controlA.setSintoma2(scan.next());
+									control.setSintoma2(scan.next());
 									System.out.println("Ingrese el tercer sintoma: ");
-									controlA.setSintoma3(scan.next());
+									control.setSintoma3(scan.next());
 
-									control.getCentroSalud().getMedicamento().buscarSintomas(controlA.getSint1(), controlA.getSint2(), controlA.getSint3());
+									control.getCentroSalud().getMedicamento().buscarSintomas(control.getSint1(), control.getSint2(), control.getSint3());
 									System.out.println(control.getCentroSalud().getMedicamento().mostrarRecomendados());
 
 							}
@@ -143,7 +143,7 @@ public class Main{
 				controlA.setSintomas(scan.nextLine());
 			//	System.out.println("\n_________________________________________________\n");   SE AGREGO ESTE TEXTO EN EL METODO MANDARAYUDAV
 				//Se manda la ayuda
-				System.out.println(vista.mandarAyudaV());
+				System.out.println(vista.mandarayudaV());
 
 			// Ayudar es para que pueda ir a ayudar a un centro de salud
 			} else if (control.getOpcion() == 3){

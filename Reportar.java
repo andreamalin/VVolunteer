@@ -49,8 +49,8 @@ public class Reportar{
 	// a la persona inmediatamente 
 	public boolean enCamino(){
 		Random r = new Random();
-		int r1 = r.nextInt(100);
-		if (r1 == 67){
+		int r1 = r.nextInt(10);
+		if (r1 == 5){
 			bandera = true;
 		}
 		else{

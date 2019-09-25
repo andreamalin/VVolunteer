@@ -45,7 +45,7 @@ public class Vista{
 	
 	
 		}
-		
+	//Vistas programa
 	}
 	public String mostrarinfocentroV(){
 		String x ="\n_________________________________________________\n\n"+controlA.mostrarInfoCentro()+"_____________________________________________";
