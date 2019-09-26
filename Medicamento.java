@@ -49,6 +49,7 @@ public class Medicamento{
 	}
 
 	public void buscarSintomas(String sintoma1, String sintoma2, String sintoma3){
+		busquedaSintomas = new ArrayList<Integer>();
 		int longitud = listamedic.length/5; //Se obtiene la cantidad de medicamentos
 		//Se revisan las primeras posiciones de sintomas
 		for (int i=1; i<listamedic.length; i+=5) { 

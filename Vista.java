@@ -1,8 +1,6 @@
 import java.util.Scanner;
 
 public class Vista{
-
-	SegundoControlador controlA = new SegundoControlador();
 	Scanner input = new Scanner(System.in);
 
 	// Obtener el centro de salud con el cual quiere interactuar el usuario
@@ -47,24 +45,26 @@ public class Vista{
 	}
 
 	//Vistas programa
-	public String mostrarinfocentroV(){
+	public String mostrarinfocentroV(SegundoControlador controlA){
 		String x ="\n_________________________________________________\n\n"+controlA.mostrarInfoCentro()+"_____________________________________________";
 		return x;
 	
 	}
-	public String mandarayudaV(){
+	public String mandarayudaV(SegundoControlador controlA){
 		String j ="\n_________________________________________________\n\n"+controlA.mandarAyuda();
 		return j;
 	}
 	
-	public void menuv(){
-		System.out.print("\n\nEstas son las opciones que puede realizar:\n1. Ver inventario\n2. Recomendaciones para la siguiente jornada\n3. Ver medicinas\n4. Buscar medicina por sintomas\n5. Cerrar Sesion\nIngrese la opcion que desea realizar: ");
+	public String menuv(){
+		String a ="\n\nEstas son las opciones que puede realizar:\n1. Ver inventario\n2. Recomendaciones para la siguiente jornada\n3. Ver medicinas\n4. Buscar medicina por sintomas\n5. Cerrar Sesion\nIngrese la opcion que desea realizar: ";
+		return a;
 	}
 	public String opcionv(){
 		String t = "A continacion debe de seleccionar el departamento en el que se encuentra (en numeros)" + "\n1.Ciudad de Guatemala\n" +"2.Quetzaltenango, Xela\n"+"3.Sacatequepez, Antigua Guatemala\n"+"4. Alta Verapaz, Coban\n5. Otro\nIngrese en donde se encuentra: ";
 		return t;
 	}
-	public void vistaMain(){
-		System.out.println("\n\n _________________________________________________ "+"\n                Bienvenido a VMedic+               \n" +" La salud es un derecho de todos los seres humanos \n"+ "               Estamos para servirte               \n" + "\n\t\t 1. Centro de Salud \n\t\t 2. Reportar \n\t\t 3. Ayudar\n\t\t 4. Salir\n" +" _________________________________________________ \nIngrese su opcion: ");
+	public String vistaMain(){
+		String a = "\n\n _________________________________________________ "+"\n                Bienvenido a VMedic+               \n" +" La salud es un derecho de todos los seres humanos \n"+ "               Estamos para servirte               \n" + "\n\t\t 1. Centro de Salud \n\t\t 2. Reportar \n\t\t 3. Ayudar\n\t\t 4. Salir\n" +" _________________________________________________ \nIngrese su opcion: ";
+		return a;
 	}
 }

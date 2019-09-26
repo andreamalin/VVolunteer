@@ -33,7 +33,7 @@ public class Main{
 
 		// Iniciando el programa
 		do{
-			vista.vistaMain(); 
+			System.out.println(vista.vistaMain()); 
 			control.defensa(scan.nextLine());
 
 			while(control.getBandera()==false){
@@ -60,7 +60,7 @@ public class Main{
 						//------------------ Ingresando sesion ---------------------------
 						System.out.println("\n\tBienvenid@ " + control.getUsername()); 
 						do{
-							vista.menuv();
+							System.out.print(vista.menuv());
 							// Se verifica si lo ingresado es un numero o son palabras
 							control.defensa(scan.nextLine()); 
 
@@ -136,7 +136,7 @@ public class Main{
 				controlA.setSintomas(scan.nextLine());
 			//	System.out.println("\n_________________________________________________\n");   SE AGREGO ESTE TEXTO EN EL METODO MANDARAYUDAV
 				//Se manda la ayuda
-				System.out.println(vista.mandarayudaV());
+				System.out.println(vista.mandarayudaV(controlA));
 
 			// Ayudar es para que pueda ir a ayudar a un centro de salud
 			} else if (control.getOpcion() == 3){
@@ -144,7 +144,7 @@ public class Main{
 				System.out.println(vista.opcionv());
 				
 				controlA.setDepartamento(input.nextInt());
-				System.out.println(vista.mostrarinfocentroV());
+				System.out.println(vista.mostrarinfocentroV(controlA));
 			
 			// Salir del programa y defensiva por si no es ninguna opcion
 			} else if (control.getOpcion() == 4){
