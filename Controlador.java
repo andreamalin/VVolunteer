@@ -32,9 +32,9 @@ public class Controlador{
 		for(int i = 0; i < centro.getGrafico().length; i++){
 			if((centro.getCuentas()[centro.getLoggedOnPosition()].getNumberOfIdentification()) == (centro.getGrafico()[i].getNumberOfIdentification())){
 				contador++;
-				if(contador == opcion){
+				if(contador == this.opcion){
 					return i;
-				}
+				} 
 			}
 		}
 		return 0;
@@ -44,6 +44,7 @@ public class Controlador{
 	public void agregarANecesitados(Integer cantidad, Integer lugar){
 		this.necesitados[lugar] = cantidad; 
 	}
+
 	// defensiva contra strings
 	public boolean defensa(String op){
 	// se verifica si lo ingresado es un entero 
@@ -58,6 +59,7 @@ public class Controlador{
 		}
 	return bandera;
 	}
+
 	// Setters de todos los atributos
 	public void setOpcion(Integer opcion){
 		this.opcion = opcion;

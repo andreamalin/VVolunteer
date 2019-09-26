@@ -39,10 +39,11 @@ public class Main{
 			System.out.println("               Estamos para servirte               ");
 			System.out.println("\n\t\t 1. Centro de Salud \n\t\t 2. Reportar \n\t\t 3. Ayudar\n\t\t 4. Salir\n");
 			System.out.print(" _________________________________________________ \nIngrese su opcion: ");
-			control.defensa(input.next());
+			control.defensa(scan.nextLine());
+
 			while(control.getBandera()==false){
 				System.out.println(" Favor ingrese una opcion, numeros ");
-				control.defensa(input.next());
+				control.defensa(scan.nextLine());
 				if(control.getBandera()==true){
 					control.setOpcion(control.getOpcion()); 
 				}
@@ -62,45 +63,42 @@ public class Main{
 					} else{
 
 						//------------------ Ingresando sesion ---------------------------
-						System.out.println(vista.bienvenidav()); 
+						System.out.println("\n\tBienvenid@ " + control.getUsername()); 
 						do{
-							System.out.print(vista.menuv());
+							vista.menuv();
 							// Se verifica si lo ingresado es un numero o son palabras
-							control.defensa(input.next()); 
+							control.defensa(scan.nextLine()); 
 
 				 			while(control.getBandera()==false){
 								System.out.println(" Favor ingrese una opcion, numeros ");
-								control.defensa(input.next());
+								control.defensa(scan.nextLine());
 								if(control.getBandera()==true){
 									control.setOpcion(control.getOpcion()); 
 								}
 							}
+
 							switch(control.getOpcion()){
 
 								// Ver el inventario del centro de salud
 								case 1:
 									// Verificar cual centro de salud quiere
-									vista.obtenerCentroDeSalud(control, input);
-									vista.mostrarInventario(control, control.obtenerPosicionCentroSalud());
+									vista.obtenerCentroDeSalud(control);
+									vista.mostrarInventario(control);
 							
 								break;
 
 								// Obtener recomendaciones para la siguiente jornada
 								case 2:
 
-									vista.obtenerCentroDeSalud(control, input);
-									vista.pedirMedicinaNecesitada(control, control.obtenerPosicionCentroSalud(), input);
-
-									// Mostrando las recomendacioes
-									//System.out.print(control.getCentroSalud().getGrafico()[control.obtenerPosicionCentroSalud()].elaborarDatos(control.getCantidadNecesitada()));
-									System.out.print(vista.mostrarrecomendacionesv());
-
+									vista.obtenerCentroDeSalud(control);
+									vista.pedirMedicinaNecesitada(control);
+		
 								break;
 
 								// Buscar medicina
 								case 3:
 									System.out.print("Ingrese el nombre de la medicina a buscar: ");
-									control.setMedicamento(scan.next());
+									control.setMedicamento(scan.nextLine());
 
 									control.getCentroSalud().getMedicamento().buscarMedicamento(control.getMedicamento());
 									System.out.println(control.getCentroSalud().getMedicamento().mostrarInformacion());
@@ -111,11 +109,11 @@ public class Main{
 								case 4:
 									//Se pide un maximo de 3 sintomas
 									System.out.println("Ingrese el primer sintoma: ");
-									control.setSintoma1(scan.next());
+									control.setSintoma1(scan.nextLine());
 									System.out.println("Ingrese el segundo sintoma: ");
-									control.setSintoma2(scan.next());
+									control.setSintoma2(scan.nextLine());
 									System.out.println("Ingrese el tercer sintoma: ");
-									control.setSintoma3(scan.next());
+									control.setSintoma3(scan.nextLine());
 
 									control.getCentroSalud().getMedicamento().buscarSintomas(control.getSint1(), control.getSint2(), control.getSint3());
 									System.out.println(control.getCentroSalud().getMedicamento().mostrarRecomendados());

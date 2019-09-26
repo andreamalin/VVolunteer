@@ -39,7 +39,7 @@ public class Regiones{
 
 	// Haciendo las recomendaciones de cuanto necesita cada uno
 	public String elaborarDatos(Integer[] medicinaNecesitada){
-		String recomendacion = "\nSe reviso el inventario y el medicamento que se necesito y se llego a la siguiente conclusion: ";
+		String recomendacion = "\nSe reviso el inventario y el medicamento que se necesito, y se llego a la siguiente conclusion: ";
 
 		//Conviertiendo a positivos si estan en negativos
 		for(int i = 0; i < medicinaNecesitada.length; i++){
