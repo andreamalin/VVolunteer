@@ -33,12 +33,7 @@ public class Main{
 
 		// Iniciando el programa
 		do{
-			System.out.println("\n\n _________________________________________________ ");
-			System.out.println("                Bienvenido a VMedic+               \n");
-			System.out.println(" La salud es un derecho de todos los seres humanos ");
-			System.out.println("               Estamos para servirte               ");
-			System.out.println("\n\t\t 1. Centro de Salud \n\t\t 2. Reportar \n\t\t 3. Ayudar\n\t\t 4. Salir\n");
-			System.out.print(" _________________________________________________ \nIngrese su opcion: ");
+			vista.vistaMain(); 
 			control.defensa(scan.nextLine());
 
 			while(control.getBandera()==false){
