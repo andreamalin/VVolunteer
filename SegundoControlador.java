@@ -17,13 +17,13 @@ del usuario, sintomas y datos personales.
 public class SegundoControlador{
 	private Integer departamento;
 	private String nombre,correo,tel, dir,sint;
-	private Reportar reporte = new Reportar();
-	private Ayudar ayuda = new Ayudar();
+	private PeticionAyuda peticionAyuda = new PeticionAyuda();
+	private RegistrarDonacion registrarDonacion = new RegistrarDonacion();
 
 	//Realizar opcion
 	public String mostrarInfoCentro(){
-		ayuda.generarInformacion(departamento);
-		String informacion = ayuda.mostrarInformacion();	
+		registrarDonacion.generarInformacion(departamento);
+		String informacion = registrarDonacion.mostrarInformacion();	
 
 		return informacion;
 	}
@@ -31,12 +31,12 @@ public class SegundoControlador{
 
 	public String mandarAyuda(){
 		//Se guardan los datos
-		reporte.setInfo(nombre,correo,tel,dir,sint);
+		peticionAyuda.setInfo(nombre,correo,tel,dir,sint);
 
 		String ayuda = "";
 		boolean reporto= true;
 		while(reporto){
-			if (reporte.enCamino()){
+			if (peticionAyuda.enCamino()){
 				ayuda += "La ayuda va en camino";
 				reporto = false;
 			} else {

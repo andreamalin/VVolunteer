@@ -9,9 +9,9 @@ public class Vista{
 
 		// Mostrandole los centros de salud que puede utilizar
 		System.out.print("\nEstos son los centros de salud con los que posee comunicacion: ");
-		for(int i = 0; i < control.getCentroSalud().getGrafico().length; i++){
-			if((control.getCentroSalud().getCuentas()[control.getCentroSalud().getLoggedOnPosition()].getNumberOfIdentification()) == (control.getCentroSalud().getGrafico()[i].getNumberOfIdentification())){
-				System.out.print("\n" + (cantidadCentrosMostrados + 1) + ". " + control.getCentroSalud().getGrafico()[i].getCentroSaludNombre());
+		for(int i = 0; i < control.getLength(); i++){
+			if(control.numeroIdentificacion()){
+				System.out.print("\n" + (cantidadCentrosMostrados + 1) + ". " + control.getNombre(i));
 				cantidadCentrosMostrados++;
 			}
 		}
@@ -26,22 +26,23 @@ public class Vista{
 	}
 
 	// Mostrando los datos del Centro de Salud seleccionado
-	public void mostrarInventario(Controlador control){
-		Integer j = control.obtenerPosicionCentroSalud();;
-		System.out.println("\nSe cuenta en el inventario de " + control.getCentroSalud().getGrafico()[j].getCentroSaludNombre() + " con las siguientes medicinas: ");
-			for(int i = 0; i < 3; i++){
-		 	System.out.print("- " + (control.getCentroSalud().getGrafico()[j].getInventario())[i].getNombreMedicamento() + " de la cual se tiene "  + (control.getCentroSalud().getGrafico()[j].getInventario())[i].getCantidadEnInventario() + " en el inventario\n");
-		}
+	public String mostrarInventario(Controlador control){
+		String b = "";
+		b+= "\nSe cuenta en el inventario de " + control.getInventario() + " con las siguientes medicinas:\n";
+		b+= control.getMed();
+		return b;
 	}
 
 	// Pidiendole al usuario los medicamentos utilizados en la jornada 
-	public void pedirMedicinaNecesitada(Controlador control){
+	public String pedirMedicinaNecesitada(Controlador control){
+		String a = "";
 		Integer j = control.obtenerPosicionCentroSalud();
 		for(int i = 0; i < 3; i++){
-		 	System.out.print("Ingrese la cantidad de medicina necesitada en esta jornada de " + (control.getCentroSalud().getGrafico()[j].getInventario())[i].getNombreMedicamento() + ": ");
-			 control.agregarANecesitados(input.nextInt(),i);
+		 	System.out.print(control.getJornada(i));
+			control.agregarANecesitados(input.nextInt(),i);
 		}
-		System.out.print(control.getCentroSalud().getGrafico()[j].elaborarDatos(control.getCantidadNecesitada()));
+		a += control.getTotal();
+		return a;
 	}
 
 	//Vistas programa
@@ -64,7 +65,7 @@ public class Vista{
 		return t;
 	}
 	public String vistaMain(){
-		String a = "\n\n _________________________________________________ "+"\n                Bienvenido a VMedic+               \n" +" La salud es un derecho de todos los seres humanos \n"+ "               Estamos para servirte               \n" + "\n\t\t 1. Centro de Salud \n\t\t 2. Reportar \n\t\t 3. Ayudar\n\t\t 4. Salir\n" +" _________________________________________________ \nIngrese su opcion: ";
+		String a = "\n\n _________________________________________________ "+"\n                Bienvenido a VMedic+               \n" +" La salud es un derecho de todos los seres humanos \n"+ "               Estamos para servirte               \n" + "\n\t\t 1. Centro de Salud \n\t\t 2. Registrar Peticion de Ayuda \n\t\t 3. Registrar Donacion\n\t\t 4. Salir\n" +" _________________________________________________ \nIngrese su opcion: ";
 		return a;
 	}
 }

@@ -26,6 +26,7 @@ public class Main{
 		// Instancia de objetos; input es para números y scan es para strings
 		Scanner input = new Scanner(System.in);
 		Scanner scan = new Scanner(System.in);
+
 		Controlador control = new Controlador();
 		SegundoControlador controlA = new SegundoControlador();
 
@@ -36,10 +37,10 @@ public class Main{
 			System.out.println(vista.vistaMain()); 
 			control.defensa(scan.nextLine());
 
-			while(control.getBandera()==false){
+			while(!control.getBandera()){
 				System.out.println(" Favor ingrese una opcion, numeros ");
 				control.defensa(scan.nextLine());
-				if(control.getBandera()==true){
+				if(control.getBandera()){
 					control.setOpcion(control.getOpcion()); 
 				}
 			}
@@ -78,7 +79,7 @@ public class Main{
 								case 1:
 									// Verificar cual centro de salud quiere
 									vista.obtenerCentroDeSalud(control);
-									vista.mostrarInventario(control);
+									System.out.print(vista.mostrarInventario(control));
 							
 								break;
 
@@ -86,7 +87,7 @@ public class Main{
 								case 2:
 
 									vista.obtenerCentroDeSalud(control);
-									vista.pedirMedicinaNecesitada(control);
+									System.out.print(vista.pedirMedicinaNecesitada(control));
 		
 								break;
 
