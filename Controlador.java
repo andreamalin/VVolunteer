@@ -18,11 +18,15 @@ Esta clase se encarga de mostrar los numeros y direcciones de
 las cedes para que la población pueda donar medicamento.
 **********************************************************/
 public class Controlador{
-	private Integer opcion, posicionIdentificacion;
+	Vista vista = new Vista();
+
+	private Integer opcion;
 	private String medicamento, username, password, sint1, sint2, sint3;
 	private boolean bandera;
 	private Integer[] necesitados = new Integer[3];
 	private CentroSalud centro = new CentroSalud();
+	private Reportar reporte = new Reportar();
+	private Ayudar ayuda = new Ayudar();
 
 	// Encontrar posición del centro de salud deseado
 	public Integer obtenerPosicionCentroSalud(){
@@ -115,44 +119,18 @@ public class Controlador{
 		return this.sint3;
 	}
 	//Metodos para la vista
-	public Integer getLength(){
-		return centro.getGrafico().length;
-	}
 	public String getNombre(int i){
 		return centro.getGrafico()[i].getCentroSaludNombre();
-	}
-	public String getInventario(){
-		Integer j = obtenerPosicionCentroSalud();
-		return centro.getGrafico()[j].getCentroSaludNombre();
-	}
-	public String getMed(){
-		String a = "";
-		Integer j = obtenerPosicionCentroSalud();
-		for(int i = 0; i < 3; i++){
-			a += "- " + centro.getGrafico()[j].getInventario()[i].getNombreMedicamento() + " de la cual se tiene "  + centro.getGrafico()[j].getInventario()[i].getCantidadEnInventario()  + " en el inventario\n";
-		}
-		return a;
-	}
-	public String getJornada(int i){
-		String a = "";
-		Integer j = obtenerPosicionCentroSalud();
-	 	a += "Ingrese la cantidad de medicina necesitada en esta jornada de " + centro.getGrafico()[j].getInventario()[i].getNombreMedicamento() + ": ";
-	 	return a;
-	}
-	public String getTotal(){
-		Integer j = obtenerPosicionCentroSalud();
-		return centro.getGrafico()[j].elaborarDatos(getCantidadNecesitada());
 	}
 	//
 	public boolean numeroIdentificacion(){
 		Integer centroDeSaludSeleccionado, cantidadCentrosMostrados = 0;
 
-		for(int i = 0; i < getLength(); i++){
+		for(int i = 0; i < centro.getGrafico().length; i++){
 			if((centro.getCuentas()[centro.getLoggedOnPosition()].getNumberOfIdentification()) == (centro.getGrafico()[i].getNumberOfIdentification())){
 				posicionIdentificacion = i;
 				return true;	
 			}		
 		} return false;
 	}
-
 }

@@ -1,8 +1,40 @@
+/**********************************************************
+Main.java	
+Integrantes grupo:
+-> Andrea Amaya 19357
+-> Diego Alvarez 19498
+-> Diego Crespo 19541
+-> Brandon Hernandez 19376
+-> Laura Tamath 19365	
+
+Autores de la clase:
+NO SE QUIEN LA CREOOOOOO
+
+Fecha de creación: 31/09/2019
+Última fecha de modificación: 20/10/2019
+
+Vista encargada del primer Y segundo controlador
+**********************************************************/
 import java.util.Scanner;
 
 public class Vista{
 	Scanner input = new Scanner(System.in);
+	public void iniciarPrograma(Controlador control){
+		// Iniciando el programa
+		do{
+			System.out.println(vistaMain()); 
+			control.defensa(scan.nextLine());
 
+			while(!control.getBandera()){
+				System.out.println(" Favor ingrese una opcion, numeros ");
+				control.defensa(scan.nextLine());
+				if(control.getBandera()){
+					control.setOpcion(control.getOpcion()); 
+				}
+			}
+		}
+			
+	}
 	// Obtener el centro de salud con el cual quiere interactuar el usuario
 	public void obtenerCentroDeSalud(Controlador control){
 		Integer centroDeSaludSeleccionado, cantidadCentrosMostrados = 0;
@@ -25,47 +57,40 @@ public class Vista{
 		control.setOpcion(centroDeSaludSeleccionado);
 	}
 
-	// Mostrando los datos del Centro de Salud seleccionado
-	public String mostrarInventario(Controlador control){
-		String b = "";
-		b+= "\nSe cuenta en el inventario de " + control.getInventario() + " con las siguientes medicinas:\n";
-		b+= control.getMed();
-		return b;
-	}
+	public void mostrarInventario(Controlador control){
+		Integer j = control.obtenerPosicionCentroSalud();
+		System.out.println("\nSe cuenta en el inventario de " + control.getCentroSalud().getGrafico()[j].getCentroSaludNombre() + " con las siguientes medicinas: ");
+			for(int i = 0; i < 3; i++){
+		 		System.out.print("- " + (control.getCentroSalud().getGrafico()[j].getInventario())[i].getNombreMedicamento() + " de la cual se tiene "  + (control.getCentroSalud().getGrafico()[j].getInventario())[i].getCantidadEnInventario() + " en el inventario\n");
+			}
+		}
 
 	// Pidiendole al usuario los medicamentos utilizados en la jornada 
-	public String pedirMedicinaNecesitada(Controlador control){
-		String a = "";
+	public void pedirMedicinaNecesitada(Controlador control){
 		Integer j = control.obtenerPosicionCentroSalud();
 		for(int i = 0; i < 3; i++){
-		 	System.out.print(control.getJornada(i));
-			control.agregarANecesitados(input.nextInt(),i);
+		 	System.out.print("Ingrese la cantidad de medicina necesitada en esta jornada de " + (control.getCentroSalud().getGrafico()[j].getInventario())[i].getNombreMedicamento() + ": ");
+			 control.agregarANecesitados(input.nextInt(),i);
 		}
-		a += control.getTotal();
-		return a;
+		System.out.print(control.getCentroSalud().getGrafico()[j].elaborarDatos(control.getCantidadNecesitada()));
 	}
 
 	//Vistas programa
-	public String mostrarinfocentroV(SegundoControlador controlA){
-		String x ="\n_________________________________________________\n\n"+controlA.mostrarInfoCentro()+"_____________________________________________";
-		return x;
+	public void mostrarinfocentroV(SegundoControlador controlA){
+		System.out.println("\n_________________________________________________\n\n"+controlA.mostrarInfoCentro()+"_____________________________________________");
 	
 	}
-	public String mandarayudaV(SegundoControlador controlA){
-		String j ="\n_________________________________________________\n\n"+controlA.mandarAyuda();
-		return j;
+	public void mandarayudaV(SegundoControlador controlA){
+		System.out.println("\n_________________________________________________\n\n"+controlA.mandarAyuda());
 	}
 	
-	public String menuv(){
-		String a ="\n\nEstas son las opciones que puede realizar:\n1. Ver inventario\n2. Recomendaciones para la siguiente jornada\n3. Ver medicinas\n4. Buscar medicina por sintomas\n5. Cerrar Sesion\nIngrese la opcion que desea realizar: ";
-		return a;
+	public void menuv(){
+		System.out.println("\n\nEstas son las opciones que puede realizar:\n1. Ver inventario\n2. Recomendaciones para la siguiente jornada\n3. Ver medicinas\n4. Buscar medicina por sintomas\n5. Cerrar Sesion\nIngrese la opcion que desea realizar: ");
 	}
-	public String opcionv(){
-		String t = "A continacion debe de seleccionar el departamento en el que se encuentra (en numeros)" + "\n1.Ciudad de Guatemala\n" +"2.Quetzaltenango, Xela\n"+"3.Sacatequepez, Antigua Guatemala\n"+"4. Alta Verapaz, Coban\n5. Otro\nIngrese en donde se encuentra: ";
-		return t;
+	public void opcionv(){
+		System.out.println("A continacion debe de seleccionar el departamento en el que se encuentra (en numeros)" + "\n1.Ciudad de Guatemala\n" +"2.Quetzaltenango, Xela\n"+"3.Sacatequepez, Antigua Guatemala\n"+"4. Alta Verapaz, Coban\n5. Otro\nIngrese en donde se encuentra: ");
 	}
-	public String vistaMain(){
-		String a = "\n\n _________________________________________________ "+"\n                Bienvenido a VMedic+               \n" +" La salud es un derecho de todos los seres humanos \n"+ "               Estamos para servirte               \n" + "\n\t\t 1. Centro de Salud \n\t\t 2. Registrar Peticion de Ayuda \n\t\t 3. Registrar Donacion\n\t\t 4. Salir\n" +" _________________________________________________ \nIngrese su opcion: ";
-		return a;
+	public void vistaMain(){
+		System.out.println("\n\n _________________________________________________ "+"\n                Bienvenido a VMedic+               \n" +" La salud es un derecho de todos los seres humanos \n"+ "               Estamos para servirte               \n" + "\n\t\t 1. Centro de Salud \n\t\t 2. Registrar Peticion de Ayuda \n\t\t 3. Registrar Donacion\n\t\t 4. Salir\n" +" _________________________________________________ \nIngrese su opcion: ");
 	}
 }

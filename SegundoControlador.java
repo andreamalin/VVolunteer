@@ -11,6 +11,7 @@ Autores de la clase:
 -> Diego Alvarez 19498
 Fecha de creación: 24/09/2019
 Última fecha de modificación: 24/09/2019
+
 Esta clase se encarga de enviar a los centros de salud los datos
 del usuario, sintomas y datos personales.
 **********************************************************/
