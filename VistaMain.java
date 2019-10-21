@@ -51,7 +51,7 @@ public class VistaMain{
 		}while(bandera == false);
 			
 
-		// Convirtiendo la 
+		// Convirtiendo la opcion string a una opcion entera
 		opcion = Integer.parseInt(opcionS);
 		return opcion;
 	}

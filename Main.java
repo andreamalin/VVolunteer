@@ -22,7 +22,7 @@ public class Main{
 	public static void main (String[] args){
 		Integer opcionMain = 0;
 		// Instancia de objetos
-		//ControladorCentroSalud control = new ControladorCentroSalud();
+		ControladorCentroSalud controlCentroSalud = new ControladorCentroSalud();
 		//SegundoControlador controlA = new SegundoControlador();
 		VistaMain vistaMain = new VistaMain();
 
@@ -34,7 +34,7 @@ public class Main{
 			switch(opcionMain){
 				// Ingresando al controlador de centro de salud
 				case 1:
-	
+					controlCentroSalud.opcionEnCentroSalud();
 				break;
 
 				// Ingresando al controlador de ayudar y reportar

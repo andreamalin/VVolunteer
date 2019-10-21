@@ -18,60 +18,86 @@ Esta clase se encarga de mostrar los numeros y direcciones de
 las cedes para que la población pueda donar medicamento.
 **********************************************************/
 public class ControladorCentroSalud{
-	private VistaCentroSalud vista = new VistaCentroSalud();
+	private VistaCentroSalud vistaCentroSalud = new VistaCentroSalud();
 
-	private Integer opcion;
 	private String medicamento, username, password, sint1, sint2, sint3;
-	private boolean bandera;
 	private Integer[] necesitados = new Integer[3];
 	private CentroSalud centro = new CentroSalud();
-	private Reportar reporte = new Reportar();
-	private Ayudar ayuda = new Ayudar();
+	//private Reportar reporte = new Reportar();
+	//private Ayudar ayuda = new Ayudar();
 
-	// Encontrar posición del centro de salud deseado
-	public Integer obtenerPosicionCentroSalud(){
-		Integer position, contador = 0;
-		for(int i = 0; i < centro.getGrafico().length; i++){
-			if((centro.getCuentas()[centro.getLoggedOnPosition()].getNumberOfIdentification()) == (centro.getGrafico()[i].getNumberOfIdentification())){
-				contador++;
-				if(contador == this.opcion){
-					return i;
-				} 
-			}
+	// Estructura de las opciones del centro de salud
+	public void opcionEnCentroSalud(){
+		String[] datosUsuario = new String[2];
+		Integer opcionCentroSalud = 0;
+
+		// Consiguiendo el usuario y la contraseña del usuario 
+		datosUsuario = vistaCentroSalud.inicioSesion();
+
+		// Verificando que el usuario haya logrado en su cuenta
+		if(centro.accountManager(datosUsuario) == false){
+			vistaCentroSalud.datosInvalidos();
+		// Cuando el usuario logra ingresar al sistema se ejecuta lo siguiente:
+		} else{
+
+			do{
+				opcionCentroSalud = vistaCentroSalud.menuCentroSalud();
+
+				// Cambiando a la opcion que el usuario desea
+				switch(opcionCentroSalud){
+					// Ver inventario
+					case 1:
+						
+					break;
+
+					// Recomendaciones para la siguiente jornada
+					case 2:
+					break;
+
+					// Ver medicina
+					case 3:
+					break;
+
+					// Buscar medicamento por sintoma
+					case 4:
+					break;
+
+					// Cerrar sesion, en donde no se mostrara nada por lo que estara vacia
+					case 5:
+					break;
+
+					// Alguna ocpion invalida
+					default:
+						vistaCentroSalud.datosInvalidos();
+					break;
+				}
+			}while(opcionCentroSalud != 5);
 		}
-		return 0;
+
 	}
+
+
+	// // Encontrar posición del centro de salud deseado
+	// public Integer obtenerPosicionCentroSalud(){
+	// 	Integer position, contador = 0;
+	// 	for(int i = 0; i < centro.getGrafico().length; i++){
+	// 		if((centro.getCuentas()[centro.getLoggedOnPosition()].getNumberOfIdentification()) == (centro.getGrafico()[i].getNumberOfIdentification())){
+	// 			contador++;
+	// 			if(contador == this.opcion){
+	// 				return i;
+	// 			} 
+	// 		}
+	// 	}
+	// 	return 0;
+	// }
 	
 	// Agregar un elemento a la lista de necesitados
 	public void agregarANecesitados(Integer cantidad, Integer lugar){
 		this.necesitados[lugar] = cantidad; 
 	}
 
-	// defensiva contra strings
-	public boolean defensa(String op){
-	// se verifica si lo ingresado es un entero 
-		try{
-			Integer.parseInt(op);
-			bandera = true;
-		}catch(NumberFormatException nfe){
-			bandera = false;
-		}
-		if (bandera == true){
-			this.opcion = Integer.parseInt(op);
-		}
-	return bandera;
-	}
-
 	// Setters de todos los atributos
-	public void setOpcion(Integer opcion){
-		this.opcion = opcion;
-	}	
-	public void setUsername(String username){
-		this.username = username;
-	}
-	public void setPassword(String password){
-		this.password = password; 
-	}
+
 	public void setMedicamento(String medicamento){
 		this.medicamento = medicamento;
 	}
@@ -88,18 +114,7 @@ public class ControladorCentroSalud{
 	}
 	
 	//Getters de todos los atributos
-	public Integer getOpcion(){
-		return this.opcion;
-	}
-	public boolean getBandera(){
-		return this.bandera;
-	}
-	public String getUsername(){
-		return this.username;
-	}
-	public String getPassword(){
-		return this.password;
-	}
+
 	public Integer[] getCantidadNecesitada(){
 		return this.necesitados;
 	}
@@ -119,18 +134,18 @@ public class ControladorCentroSalud{
 		return this.sint3;
 	}
 	//Metodos para la vista
-	public String getNombre(int i){
-		return centro.getGrafico()[i].getCentroSaludNombre();
-	}
-	//
-	public boolean numeroIdentificacion(){
-		Integer centroDeSaludSeleccionado, cantidadCentrosMostrados = 0;
+	// public String getNombre(int i){
+	// 	return centro.getGrafico()[i].getCentroSaludNombre();
+	// }
+	// //
+	// public boolean numeroIdentificacion(){
+	// 	Integer centroDeSaludSeleccionado, cantidadCentrosMostrados = 0;
 
-		for(int i = 0; i < centro.getGrafico().length; i++){
-			if((centro.getCuentas()[centro.getLoggedOnPosition()].getNumberOfIdentification()) == (centro.getGrafico()[i].getNumberOfIdentification())){
-				posicionIdentificacion = i;
-				return true;	
-			}		
-		} return false;
-	}
+	// 	for(int i = 0; i < centro.getGrafico().length; i++){
+	// 		if((centro.getCuentas()[centro.getLoggedOnPosition()].getNumberOfIdentification()) == (centro.getGrafico()[i].getNumberOfIdentification())){
+	// 			posicionIdentificacion = i;
+	// 			return true;	
+	// 		}		
+	// 	} return false;
+	// }
 }

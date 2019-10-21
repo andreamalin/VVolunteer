@@ -18,6 +18,7 @@ del usuario, sintomas y datos personales.
 public class SegundoControlador{
 	private Integer departamento;
 	private String nombre,correo,tel, dir,sint;
+	private VistaUsuario vistaUsuario = new VistaUsuario();
 	private PeticionAyuda peticionAyuda = new PeticionAyuda();
 	private RegistrarDonacion registrarDonacion = new RegistrarDonacion();
 
