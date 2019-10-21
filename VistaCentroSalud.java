@@ -40,7 +40,7 @@ public class VistaCentroSalud{
 		Boolean bandera = false;
 
 		// Mostrando el menu de inicio de sesion
-		System.out.println("|\n|\tBienvenid@ " + nombreUsuario ); 
+		System.out.println("|\n|\n|\t\tBienvenid@ " + nombreUsuario ); 
 		System.out.println("|___________________________________________________");
 		System.out.println("|Estas son las opciones que puede realizar:\t    |");
 		System.out.println("| 1. Ver inventario\t\t\t\t    |");
@@ -73,9 +73,39 @@ public class VistaCentroSalud{
 	}
 
 
+
+	// OPCION 3 que quiere ver los medicamentos
+	public String pidiendoMedicamento(){
+		String medicamento;
+		System.out.print("| Ingrese el nombre de la medicina a buscar: ");
+		medicamento = scan.nextLine();
+
+		return medicamento;
+	}
+	
+	// OPCION 4 que quiere buscar por sintomas
+	public String[] obtenerSintomas(){
+		String[] sintomas = new String[3];
+
+		// Pidiendole los sintomas al paciente
+		System.out.print("| Ingrese el primer sintoma: ");
+		sintomas[0] = scan.nextLine();
+		System.out.print("| Ingrese el segundo sintoma: ");
+		sintomas[1] = scan.nextLine();
+		System.out.print("| Ingrese el tercer sintoma: ");
+		sintomas[2] = scan.nextLine();
+
+		return sintomas;
+	}
+
+	// Mostrando cualquier mensaje
+	public void mostrandoMensaje(String informacion){
+		System.out.print(informacion);
+	}
+
 	// Mostrandole al usuario que los datos ingresados fueron invalidos
 	public void datosInvalidos(){
-		System.out.print("| Sus datos son invalidos\n");
+		System.out.print("| Los datos ingresados son invalidos\n");
 	}
 
 	// // Obtener el centro de salud con el cual quiere interactuar el usuario
@@ -119,53 +149,6 @@ public class VistaCentroSalud{
 	// 	System.out.print(control.getCentroSalud().getGrafico()[j].elaborarDatos(control.getCantidadNecesitada()));
 	// }
 
-	// //Vistas programa
-	
-	
-	
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-	
-	// public void opcion2(Controlador controlA){
-	// 	System.out.println("\n_________________________________________________\n");
-	// 	System.out.print("Ingrese su Nombre: ");				
-	// 	controlA.setNombre(scan.nextLine());
-	// 	System.out.print("Ingrese su Correo Electronico: ");
-	// 	controlA.setCorreo(scan.nextLine());	
-	// 	System.out.print("Ingrese su Telefono: ");
-	// 	controlA.setTel(scan.nextLine());
-	// 	System.out.print("Ingrese su direccion: ");
-	// 	controlA.setDireccion(scan.nextLine());
-	// 	System.out.print("Ingrese sus sintomas: ");	
-	// 	controlA.setSintomas(scan.nextLine());
-	// 	//Se manda la ayuda
-	// 	System.out.println(vista.mandarayudaV(controlA));
-	// }
-	// public void opcion3(Controlador controlA){
-	// 	System.out.println(vista.opcionv());		
-	// 	controlA.setDepartamento(input.nextInt());
-	// 	System.out.println(vista.mostrarinfocentroV(controlA));
-	// }
-	// public void escogerOpcion(Controlador control, Controlador controlA){
-	// 	// Opcion para entrar a la cuenta y utilizar las funciones del programa
-	// 	if (control.getOpcion() == 1){
-	// 		opcion1(control);
-			
-
-
 	// 				switch(control.getOpcion()){
 	// 				// Ver el inventario del centro de salud
 	// 				case 1:
@@ -180,53 +163,5 @@ public class VistaCentroSalud{
 	// 					vista.obtenerCentroDeSalud(control);
 	// 					System.out.print(vista.pedirMedicinaNecesitada(control));
 	// 					break;
-
-	// 				// Buscar medicina
-	// 				case 3:
-	// 					System.out.print("Ingrese el nombre de la medicina a buscar: ");
-	// 					control.setMedicamento(scan.nextLine());
-
-	// 					control.getCentroSalud().getMedicamento().buscarMedicamento(control.getMedicamento());
-	// 					System.out.println(control.getCentroSalud().getMedicamento().mostrarInformacion());
-	// 					break;
-
-	// 				//Buscar medicina por sintomas
-	// 				case 4:
-	// 				//Se pide un maximo de 3 sintomas
-	// 					System.out.println("Ingrese el primer sintoma: ");
-	// 					control.setSintoma1(scan.nextLine());
-	// 					System.out.println("Ingrese el segundo sintoma: ");
-	// 					control.setSintoma2(scan.nextLine());
-	// 					System.out.println("Ingrese el tercer sintoma: ");
-	// 					control.setSintoma3(scan.nextLine());
-
-	// 					control.getCentroSalud().getMedicamento().buscarSintomas(control.getSint1(), control.getSint2(), control.getSint3());
-	// 					System.out.println(control.getCentroSalud().getMedicamento().mostrarRecomendados());
-	// 		} while(control.getOpcion() != 5);
-	// 			// Regresando a la opcion del usuario para que no se termine el programa
-	// 			control.setOpcion(1);
-	// 		}
-		
-	// 	}
-	// 	// Reportar a un voluntariado que necesita ayuda
-	// 	} else if (control.getOpcion() == 2){
-	// 		opcion2(controlA);
-	// 	// Ayudar es para que pueda ir a ayudar a un centro de salud
-	// 	} else if (control.getOpcion() == 3){
-	// 		opcion3(controlA);
-	// }
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 }

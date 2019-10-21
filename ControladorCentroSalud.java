@@ -19,17 +19,14 @@ las cedes para que la población pueda donar medicamento.
 **********************************************************/
 public class ControladorCentroSalud{
 	private VistaCentroSalud vistaCentroSalud = new VistaCentroSalud();
-
-	private String medicamento, username, password, sint1, sint2, sint3;
-	private Integer[] necesitados = new Integer[3];
 	private CentroSalud centro = new CentroSalud();
-	//private Reportar reporte = new Reportar();
-	//private Ayudar ayuda = new Ayudar();
+	private Integer[] necesitados = new Integer[3];
 
 	// Estructura de las opciones del centro de salud
 	public void opcionEnCentroSalud(){
 		String[] datosUsuario = new String[2];
 		Integer opcionCentroSalud = 0;
+		String mensaje = "| Ha cerrado sesion\n|___________________________________________________";
 
 		// Consiguiendo el usuario y la contraseña del usuario 
 		datosUsuario = vistaCentroSalud.inicioSesion();
@@ -41,13 +38,13 @@ public class ControladorCentroSalud{
 		} else{
 
 			do{
-				opcionCentroSalud = vistaCentroSalud.menuCentroSalud();
+				opcionCentroSalud = vistaCentroSalud.menuCentroSalud((centro.getCuentas()[centro.getLoggedOnPosition()]).getUsername());
 
 				// Cambiando a la opcion que el usuario desea
 				switch(opcionCentroSalud){
 					// Ver inventario
 					case 1:
-						
+						//vistaCentroSalud.obtenerCentroDeSalud();
 					break;
 
 					// Recomendaciones para la siguiente jornada
@@ -56,14 +53,17 @@ public class ControladorCentroSalud{
 
 					// Ver medicina
 					case 3:
+						 opcion3CentroSalud();
 					break;
 
 					// Buscar medicamento por sintoma
 					case 4:
+						opcion4CentroSalud();
 					break;
 
-					// Cerrar sesion, en donde no se mostrara nada por lo que estara vacia
+					// Cerrar sesion
 					case 5:
+						vistaCentroSalud.mostrandoMensaje(mensaje);
 					break;
 
 					// Alguna ocpion invalida
@@ -74,6 +74,25 @@ public class ControladorCentroSalud{
 			}while(opcionCentroSalud != 5);
 		}
 
+	}
+
+
+
+
+	// Sirve para mostrarle al usuario la informacion de la medicina
+	private void opcion3CentroSalud(){
+		centro.getMedicamento().buscarMedicamento(vistaCentroSalud.pidiendoMedicamento());
+		vistaCentroSalud.mostrandoMensaje(centro.getMedicamento().mostrarInformacion());  
+	}
+
+	// Sirve para pedirle los datos al usuario, conseguir la información y mostrarla; por medio de su vista
+	private void opcion4CentroSalud(){
+		String[] sintomas = new String[3];
+		sintomas = vistaCentroSalud.obtenerSintomas();
+
+		// Obteniendo los resultados de la busqueda y mostrandosela al usuario
+		centro.getMedicamento().buscarSintomas(sintomas[0], sintomas[1], sintomas[2]);
+		vistaCentroSalud.mostrandoMensaje(centro.getMedicamento().mostrarRecomendados());
 	}
 
 
@@ -95,44 +114,11 @@ public class ControladorCentroSalud{
 	public void agregarANecesitados(Integer cantidad, Integer lugar){
 		this.necesitados[lugar] = cantidad; 
 	}
-
-	// Setters de todos los atributos
-
-	public void setMedicamento(String medicamento){
-		this.medicamento = medicamento;
-	}
-	
-	//Setters opcion buscar por sintomas
-	public void setSintoma1(String sintoma1){
-		this.sint1 = sintoma1;
-	}
-	public void setSintoma2(String sintoma2){
-		this.sint2 = sintoma2;
-	}
-	public void setSintoma3(String sintoma3){
-		this.sint3 = sintoma3;
-	}
-	
-	//Getters de todos los atributos
-
+		
 	public Integer[] getCantidadNecesitada(){
 		return this.necesitados;
 	}
-	public String getMedicamento(){
-		return this.medicamento;
-	}
-	public CentroSalud getCentroSalud(){
-		return this.centro;
-	}
-	public String getSint1(){
-		return this.sint1;
-	}
-	public String getSint2(){
-		return this.sint2;
-	}
-	public String getSint3(){
-		return this.sint3;
-	}
+
 	//Metodos para la vista
 	// public String getNombre(int i){
 	// 	return centro.getGrafico()[i].getCentroSaludNombre();
