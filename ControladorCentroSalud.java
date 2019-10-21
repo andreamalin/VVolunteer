@@ -17,8 +17,8 @@ Fecha de creación: 31/09/2019
 Esta clase se encarga de mostrar los numeros y direcciones de
 las cedes para que la población pueda donar medicamento.
 **********************************************************/
-public class Controlador{
-	Vista vista = new Vista();
+public class ControladorCentroSalud{
+	private VistaCentroSalud vista = new VistaCentroSalud();
 
 	private Integer opcion;
 	private String medicamento, username, password, sint1, sint2, sint3;

@@ -20,17 +20,37 @@ La clase main se encarga de mostrar datos al usuario.
 public class Main{
 	//Metodo principal
 	public static void main (String[] args){
+		Integer opcionMain = 0;
 		// Instancia de objetos
-		Controlador control = new Controlador();
-		SegundoControlador controlA = new SegundoControlador();
-
-		VistaMain vista = new VistaMain();
+		//ControladorCentroSalud control = new ControladorCentroSalud();
+		//SegundoControlador controlA = new SegundoControlador();
+		VistaMain vistaMain = new VistaMain();
 
 		// Iniciando el programa
-		vista.iniciarPrograma(control);
-		
-		while(vista.seguir()){
-			escogerOpcion(control, controlA);
-		}
+		do{
+			opcionMain = vistaMain.MenuPrincipal();
+
+			// Cambiando a la opcion que el usuario desea
+			switch(opcionMain){
+				// Ingresando al controlador de centro de salud
+				case 1:
+	
+				break;
+
+				// Ingresando al controlador de ayudar y reportar
+				case 2:
+
+				break;
+				case 3:
+
+				break;
+
+				// Saliendo o para obtener otra opción
+				default:
+					vistaMain.opcionDefault(opcionMain);
+				break;
+			}
+		}while(opcionMain != 4);	
 	}
+
 }
