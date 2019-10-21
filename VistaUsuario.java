@@ -1,45 +1,69 @@
+import java.util.Scanner;
+
 public class VistaUsuario{
+	Scanner scan = new Scanner(System.in);
+
+	// OPCION 2 del main
+	public String[] conseguirInfoAyudar(){
+		String[] datosAyuda = new String[5];
+
+		// Pidiendole los datos al usuario
+	 	System.out.println("|\n|_________________________________________________");
+	 	System.out.print("| Ingrese su Nombre: ");				
+	 	datosAyuda[0] = scan.nextLine();
+	 	System.out.print("| Ingrese su Correo Electronico: ");
+	 	datosAyuda[1] = scan.nextLine();	
+	 	System.out.print("| Ingrese su Telefono: ");
+	 	datosAyuda[2] = scan.nextLine();
+	 	System.out.print("| Ingrese su direccion: ");
+	 	datosAyuda[3] = scan.nextLine();
+	 	System.out.print("| Ingrese sus sintomas: ");	
+	 	datosAyuda[4] = scan.nextLine();
+	 	System.out.println("|_________________________________________________");
+	 	
+	 	return datosAyuda;
+	}
 
 
-		// //Vistas programa
-	// public void opcion2(Controlador controlA){
-	// 	System.out.println("\n_________________________________________________\n");
-	// 	System.out.print("Ingrese su Nombre: ");				
-	// 	controlA.setNombre(scan.nextLine());
-	// 	System.out.print("Ingrese su Correo Electronico: ");
-	// 	controlA.setCorreo(scan.nextLine());	
-	// 	System.out.print("Ingrese su Telefono: ");
-	// 	controlA.setTel(scan.nextLine());
-	// 	System.out.print("Ingrese su direccion: ");
-	// 	controlA.setDireccion(scan.nextLine());
-	// 	System.out.print("Ingrese sus sintomas: ");	
-	// 	controlA.setSintomas(scan.nextLine());
-	// 	//Se manda la ayuda
-	// 	System.out.println(vista.mandarayudaV(controlA));
-	// }
-	// public void opcion3(Controlador controlA){
-	// 	System.out.println(vista.opcionv());		
-	// 	controlA.setDepartamento(input.nextInt());
-	// 	System.out.println(vista.mostrarinfocentroV(controlA));
-	// }
-	// public void escogerOpcion(Controlador control, Controlador controlA){
-	// 	// Opcion para entrar a la cuenta y utilizar las funciones del programa
-	// 	if (control.getOpcion() == 1){
-	// 		opcion1(control);
+	public Integer conseguirInfoDonacion(){
+		String opcionS;
+		Integer opcion = 0;
+		Boolean bandera = false;
+
+		System.out.println("|\n|_________________________________________________");
+	 	System.out.println("| A continacion debe de seleccionar el departamento\n| en el que se encuentra (en numeros)");
+	 	System.out.println("| 1. Ciudad de Guatemala");
+	 	System.out.println("| 2. Quetzaltenango, Xela");
+	 	System.out.println("| 3. Sacatequepez, Antigua Guatemala");
+	 	System.out.println("| 4. Alta Verapaz, Coban");
+	 	System.out.println("| 5. Otro");
+	 	
+	 	// Pidiendole al usuario que ingrese una opcion valida
+	 	do{
+			do{
+				System.out.print("| Ingrese en donde se encuentra: ");
+				opcionS = scan.nextLine();
 			
+				// Viendo si es un numero lo ingresado
+				try{
+					Integer.parseInt(opcionS);
+					bandera = true;
+				}catch(NumberFormatException nfe){
+					bandera = false;
+					System.out.print("| Favor ingrese una opcion, con numeros ");
+				}
+			}while(bandera == false);
 
+			// Convirtiendo la opcion string a una opcion entera 
+			opcion = Integer.parseInt(opcionS);
+		while((opcion < 1) || (opcion > 5));
 
-
-	public void mostrarinfocentroV(SegundoControlador controlA){
-		System.out.println("\n_________________________________________________\n\n"+controlA.mostrarInfoCentro()+"_____________________________________________");
-	
+		return opcion;
 	}
-	public void mandarayudaV(SegundoControlador controlA){
-		System.out.println("\n_________________________________________________\n\n"+controlA.mandarAyuda());
-	}
 
-		public void opcionv(){
-		System.out.println("A continacion debe de seleccionar el departamento en el que se encuentra (en numeros)" + "\n1.Ciudad de Guatemala\n" +"2.Quetzaltenango, Xela\n"+"3.Sacatequepez, Antigua Guatemala\n"+"4. Alta Verapaz, Coban\n5. Otro\nIngrese en donde se encuentra: ");
+	// Mostrando cualquier mensaje
+	public void mostrandoMensaje(String informacion){
+		System.out.print(informacion);
 	}
 
 }

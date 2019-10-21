@@ -19,32 +19,27 @@ reporta ayuda y mandar la ayuda lo antes posible.
 
 import java.util.Random;
 public class PeticionAyuda{
-	private String nombre_usuario, correo, telefono, direccion, sintomas;
 	private boolean bandera;
 	private String[] info;
-// se crearon variables 
-	public void setInfo(String nom, String cor, String tel, String dire, String sint){
-	// se convierte el numero de telefono a texto para agregarlo al array
-	// de tipo String
-		this.nombre_usuario = nom;
-		this.correo = cor;
-		this.telefono = tel;
-		this.direccion = dire;
-		this.sintomas = sint;
+	// se crearon variables 
+
+	public void setInfo(String[] datosUsuario){
 	// se guardan los datos en un array de una dimension
 		info = new String[5];
-		info[0] = this.nombre_usuario;
-		info[1] = this.correo;
-		info[2] = this.telefono;
-		info[3] = this.direccion;
-		info[4] = this.sintomas;
+		this.info[0] = datosUsuario[0];
+		this.info[1] = datosUsuario[1];
+		this.info[2] = datosUsuario[2];
+		this.info[3] = datosUsuario[3];
+		this.info[4] = datosUsuario[4];
 	}
+
 	// se retorna la informacion
 	public String getInfo(){
 		// se concatenan los datos ingresados por el usuario y con sus especificaciones en una variable de tipo texto para mostrarla
-		String informacion = "Nombre de usuario: " + nombre_usuario + " Correo: " + correo + " Direccion: "+ direccion + " Sintomas: " + sintomas+ " Telefono: " + telefono;
+		String informacion = "Nombre de usuario: " + info[0] + " Correo: " + info[1] + " Direccion: "+ info[2] + " Sintomas: " + info[4] + " Telefono: " + info[3];
 		return informacion;
 	}
+
 	// se crea un numero aleatorio para verificar si se puede ayudar 
 	// a la persona inmediatamente 
 	public boolean enCamino(){

@@ -23,7 +23,7 @@ public class Main{
 		Integer opcionMain = 0;
 		// Instancia de objetos
 		ControladorCentroSalud controlCentroSalud = new ControladorCentroSalud();
-		//SegundoControlador controlA = new SegundoControlador();
+		ControladorUsuario controlUsuario = new ControladorUsuario();
 		VistaMain vistaMain = new VistaMain();
 
 		// Iniciando el programa
@@ -37,12 +37,12 @@ public class Main{
 					controlCentroSalud.opcionEnCentroSalud();
 				break;
 
-				// Ingresando al controlador de ayudar y reportar
+				// Ingresando al controlador de peticion ayudar y registrar donacion
 				case 2:
-
+					controlUsuario.peticionDeAyuda();
 				break;
 				case 3:
-
+					controlUsuario.registrarDonacion();
 				break;
 
 				// Saliendo o para obtener otra opción
