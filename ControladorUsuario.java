@@ -16,13 +16,14 @@ Esta clase se encarga de enviar a los centros de salud los datos
 del usuario, sintomas y datos personales.
 **********************************************************/
 public class ControladorUsuario{
-	private VistaUsuario vistaUsuario = new VistaUsuario();
+    private VistaUsuario vistaUsuario = new VistaUsuario();
 	private PeticionAyuda peticionAyuda = new PeticionAyuda();
 	private RegistrarDonacion registrarDonacion = new RegistrarDonacion();
 
+
 	// Haciendo la opcion 2 del main
 	public void peticionDeAyuda(){
-		String[] datosAyudar = new String[5];
+		String[] datosAyudar = new String[3];
 
 		// Pidiendole los datos al usuario y mostrando la ayuda
 		datosAyudar = vistaUsuario.conseguirInfoAyudar();
@@ -55,5 +56,8 @@ public class ControladorUsuario{
 		}
 		return ayuda;
 	}
+
+	
+
 
 }

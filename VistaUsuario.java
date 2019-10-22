@@ -10,15 +10,13 @@ public class VistaUsuario{
 		// Pidiendole los datos al usuario
 	 	System.out.println("|\n|_________________________________________________");
 	 	System.out.print("| Ingrese su Nombre: ");				
-	 	datosAyuda[0] = scan.nextLine();
-	 	System.out.print("| Ingrese su Correo Electronico: ");
-	 	datosAyuda[1] = scan.nextLine();	
+	 	datosAyuda[0] = scan.nextLine();	
 	 	System.out.print("| Ingrese su Telefono: ");
-	 	datosAyuda[2] = scan.nextLine();
+	 	datosAyuda[1] = scan.nextLine();
 	 	System.out.print("| Ingrese su direccion: ");
-	 	datosAyuda[3] = scan.nextLine();
+	 	datosAyuda[2] = scan.nextLine();
 	 	System.out.print("| Ingrese sus sintomas: ");	
-	 	datosAyuda[4] = scan.nextLine();
+	 	datosAyuda[3] = scan.nextLine();
 	 	System.out.println("|_________________________________________________");
 	 	
 	 	return datosAyuda;
@@ -56,7 +54,7 @@ public class VistaUsuario{
 
 			// Convirtiendo la opcion string a una opcion entera 
 			opcion = Integer.parseInt(opcionS);
-		while((opcion < 1) || (opcion > 5));
+		}while((opcion < 1) || (opcion > 5));
 
 		return opcion;
 	}

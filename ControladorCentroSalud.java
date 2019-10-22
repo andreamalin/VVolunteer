@@ -18,6 +18,7 @@ Esta clase se encarga de mostrar los numeros y direcciones de
 las cedes para que la población pueda donar medicamento.
 **********************************************************/
 public class ControladorCentroSalud{
+	private PeticionAyuda peticionAyuda = new PeticionAyuda();
 	private VistaCentroSalud vistaCentroSalud = new VistaCentroSalud();
 	private CentroSalud centro = new CentroSalud();
 	private Integer[] necesitados = new Integer[3];
@@ -38,7 +39,7 @@ public class ControladorCentroSalud{
 		} else{
 
 			do{
-				opcionCentroSalud = vistaCentroSalud.menuCentroSalud((centro.getCuentas()[centro.getLoggedOnPosition()]).getUsername());
+				opcionCentroSalud = vistaCentroSalud.menuCentroSalud((centro.getCuentas()[centro.getLoggedOnPosition()]).getUsername(),peticionAyuda.getInfo());
 
 				// Cambiando a la opcion que el usuario desea
 				switch(opcionCentroSalud){
@@ -84,7 +85,7 @@ public class ControladorCentroSalud{
 		centro.getMedicamento().buscarMedicamento(vistaCentroSalud.pidiendoMedicamento());
 		vistaCentroSalud.mostrandoMensaje(centro.getMedicamento().mostrarInformacion());  
 	}
-
+	
 	// Sirve para pedirle los datos al usuario, conseguir la información y mostrarla; por medio de su vista
 	private void opcion4CentroSalud(){
 		String[] sintomas = new String[3];
@@ -94,7 +95,8 @@ public class ControladorCentroSalud{
 		centro.getMedicamento().buscarSintomas(sintomas[0], sintomas[1], sintomas[2]);
 		vistaCentroSalud.mostrandoMensaje(centro.getMedicamento().mostrarRecomendados());
 	}
-
+	// retorna las notificaciones ingresadas
+	
 
 	// // Encontrar posición del centro de salud deseado
 	// public Integer obtenerPosicionCentroSalud(){
