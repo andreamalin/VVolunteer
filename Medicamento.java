@@ -26,8 +26,8 @@ public class Medicamento{
 	private String dosis;
 	private String similares;
 
-	LeerMedicamento medicina = new LeerMedicamento();
-	ArrayList<Integer> busquedaSintomas = new ArrayList<Integer>(); //Lista con posiciones de medicamentos
+	private static LeerMedicamento medicina = new LeerMedicamento();
+	private static ArrayList<Integer> busquedaSintomas = new ArrayList<Integer>(); //Lista con posiciones de medicamentos
 
 	String [] listamedic = medicina.getLista(); //Se manda a llamar la lista de medicamento
 	String [] nombresmedicamentos; //Nombre de medicamentos encontrados
@@ -49,53 +49,16 @@ public class Medicamento{
 	}
 
 	public void buscarSintomas(String sintoma1, String sintoma2, String sintoma3){
-		busquedaSintomas = new ArrayList<Integer>();
+		int posicionactual = 0;
 		int longitud = listamedic.length/5; //Se obtiene la cantidad de medicamentos
 		//Se revisan las primeras posiciones de sintomas
-		for (int i=1; i<listamedic.length; i+=5) { 
-			//Se revisa si es sintoma pertenece a la lista de los medicamentos
-			if (sintoma1.equalsIgnoreCase(listamedic[i]) || sintoma2.equalsIgnoreCase(listamedic[i]) || sintoma3.equalsIgnoreCase(listamedic[i])) {
-				Integer posicionPosible = i;
-				if (posicionPosible > 5) { //Si la posicion posible es mayor de 5
-					while (posicionPosible > longitud){ //Se resta 5 hasta que sea menor de la cantidad de medicamento
-						posicionPosible = posicionPosible - 5; //Se restan 5 posiciones para devolver la posicion del nombre
-					}
-				} else {
-					posicionPosible = 0; //Si la posicion posible es menor de 5, es el primer medicamento de la lista
+		for (int i=0; i<longitud; i++) { //Cantidad de medicamentos
+			for (int j=0; j<5; j++) { //Se recorre fila por fila
+				//Se busca el sintoma en esa fila
+				if (sintoma1.equalsIgnoreCase(listamedic[posicionactual]) || sintoma2.equalsIgnoreCase(listamedic[posicionactual]) || sintoma3.equalsIgnoreCase(listamedic[posicionactual])) {
+					busquedaSintomas.add(i); //Se agrega a la lista el indice de la posicion posible	
 				}
-				busquedaSintomas.add(posicionPosible); //Se agrega a la lista el indice de la posicion posible
-			}
-		}
-		//Se revisan las primeras posiciones de sintomas
-		for (int j=2; j<listamedic.length; j+=5) { 
-			//Se revisa si es sintoma pertenece a la lista de los medicamentos
-			if (sintoma1.equalsIgnoreCase(listamedic[j]) || sintoma2.equalsIgnoreCase(listamedic[j]) || sintoma3.equalsIgnoreCase(listamedic[j])) {
-				Integer posicionPosible = j;
-				if (posicionPosible > 5) { //Si la posicion posible es mayor de 5
-					while (posicionPosible > longitud){ //Se resta 5 hasta que sea menor de la cantidad de medicamento
-						posicionPosible = posicionPosible - 5; //Se restan 5 posiciones para devolver la posicion del nombre
-					}
-				posicionPosible = posicionPosible - 1;
-				} else {
-					posicionPosible = 0; //Si la posicion posible es menor de 5, es el primer medicamento de la lista
-				}
-				busquedaSintomas.add(posicionPosible); //Se agrega a la lista el indice de la posicion posible
-			}
-		}
-		//Se revisan las terceras posiciones de sintomas
-		for (int k=3; k<listamedic.length; k+=5) { 
-			//Se revisa si es sintoma pertenece a la lista de los medicamentos
-			if (sintoma1.equalsIgnoreCase(listamedic[k]) || sintoma2.equalsIgnoreCase(listamedic[k]) || sintoma3.equalsIgnoreCase(listamedic[k])) {
-				Integer posicionPosible = k;
-				if (posicionPosible > 5) { //Si la posicion posible es mayor de 5
-					while (posicionPosible > longitud){ //Se resta 5 hasta que sea menor de la cantidad de medicamento
-						posicionPosible = posicionPosible - 5; //Se restan 5 posiciones para devolver la posicion del nombre
-					}
-					posicionPosible = posicionPosible - 1; 
-				} else {
-					posicionPosible = 0; //Si la posicion posible es menor de 5, es el primer medicamento de la lista
-				}
-				busquedaSintomas.add(posicionPosible); //Se agrega a la lista el indice de la posicion posible
+				posicionactual ++;
 			}
 		}
 	}
@@ -173,6 +136,7 @@ public class Medicamento{
 			}
 			a += "+-Se recomienda buscar la informacion del medicamento listado-+\n\n";
 		}
+		busquedaSintomas.clear(); //Se limpia la lista
 		return a;
 	}
 
