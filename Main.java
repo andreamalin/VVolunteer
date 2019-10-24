@@ -45,12 +45,15 @@ public class Main{
 					controlUsuario.registrarDonacion();
 				break;
 
+				case 4:
+					controlUsuario.registrarReporte();
+
 				// Saliendo o para obtener otra opción
 				default:
 					vistaMain.opcionDefault(opcionMain);
 				break;
 			}
-		}while(opcionMain != 4);	
+		}while(opcionMain != 5);	
 	}
 
 }

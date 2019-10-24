@@ -64,4 +64,37 @@ public class VistaUsuario{
 		System.out.print(informacion);
 	}
 
+	//Pedir datos para realizar el reporte
+	public void reportePaciente(){
+		String[] datosReporte = new String[4];
+
+		System.out.println("\n___________________________________________________\n             A quien desea reportar?\n___________________________________________________\n1.A paciente\n2.A voluntario");
+		String acc = scan.nextLine();
+		System.out.println("\t\t<<<< R E P O R T A R >>>>");
+
+		if (acc.equalsIgnoreCase("1")) { //Reportar a un paciente
+			System.out.print("| Ingrese su nombre: ");
+			datosReporte[0] = scan.nextLine();
+			System.out.print("| Ingrese el nombre del paciente atendido: ");
+			datosReporte[1] = scan.nextLine();
+			System.out.print("| Ingrese su numero de telefono para ser atendido su problema: ");
+			datosReporte[2] = scan.nextLine();
+			System.out.print("| Ingrese el motivo por el cual el paciente lo hizo sentir incomodo: ");
+			datosReporte[3] = scan.nextLine();
+		} else if (acc.equalsIgnoreCase("2")) { //Reportar un voluntario
+			System.out.print("| Ingrese su nombre: ");
+			datosReporte[0] = scan.nextLine();
+			System.out.print("| Ingrese el nombre del voluntario: ");
+			datosReporte[1] = scan.nextLine();
+			System.out.print("| Ingrese su numero de telefono para ser atendido su problema: ");
+			datosReporte[2] = scan.nextLine();
+			System.out.print("| Ingrese el motivo por el cual el voluntario lo hizo sentir incomodo: ");
+			datosReporte[3] = scan.nextLine();			
+		} else {
+			System.out.print("Opcion invalida");
+		}
+		System.out.println("\nSu reporte esta en revision, gracias por informarnos, lo notificaremos lo más pronto posible\n");
+		System.out.println("|_________________________________________________");
+	}
+
 }

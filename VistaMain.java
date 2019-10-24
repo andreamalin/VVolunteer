@@ -32,7 +32,8 @@ public class VistaMain{
 		System.out.println("|\t 1. Centro de Salud\t\t\t    |");
 		System.out.println("|\t 2. Registrar Peticion de Ayuda\t\t    |");
 		System.out.println("|\t 3. Registrar Donacion\t\t\t    |");
-		System.out.println("|\t 4. Salir\t\t\t\t    |");
+		System.out.println("|\t 4. Reportar Voluntario/Paciente\t    |");
+		System.out.println("|\t 5. Salir\t\t\t\t    |");
 		System.out.print("|___________________________________________________|");
 		
 		// Pidiendole al usuario que ingrese una opcion valida

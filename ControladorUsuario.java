@@ -19,6 +19,7 @@ public class ControladorUsuario{
     private VistaUsuario vistaUsuario = new VistaUsuario();
 	private PeticionAyuda peticionAyuda = new PeticionAyuda();
 	private RegistrarDonacion registrarDonacion = new RegistrarDonacion();
+	private Rpaciente reportarPaciente = new Rpaciente();
 
 
 	// Haciendo la opcion 2 del main
@@ -57,6 +58,10 @@ public class ControladorUsuario{
 		return ayuda;
 	}
 
+	public void registrarReporte(){
+		vistaUsuario.reportePaciente();
+
+	}
 	
 
 
