@@ -1,5 +1,6 @@
 import java.util.Scanner;
-
+import java.util.*;
+import java.io.*;
 public class VistaUsuario{
 	Scanner scan = new Scanner(System.in);
 
@@ -81,6 +82,14 @@ public class VistaUsuario{
 			datosReporte[2] = scan.nextLine();
 			System.out.print("| Ingrese el motivo por el cual el paciente lo hizo sentir incomodo: ");
 			datosReporte[3] = scan.nextLine();
+				try(FileWriter fw = new FileWriter("reportePaciente.txt", true);
+		    		BufferedWriter bw = new BufferedWriter(fw);
+		    		PrintWriter out = new PrintWriter(bw))
+			    {
+			    out.println(datosReporte[0] + " " + datosReporte[1] + " " + datosReporte[2] + " " + datosReporte[3]);       
+				}catch (IOException e) {
+				
+				}
 		} else if (acc.equalsIgnoreCase("2")) { //Reportar un voluntario
 			System.out.print("| Ingrese su nombre: ");
 			datosReporte[0] = scan.nextLine();
@@ -89,7 +98,16 @@ public class VistaUsuario{
 			System.out.print("| Ingrese su numero de telefono para ser atendido su problema: ");
 			datosReporte[2] = scan.nextLine();
 			System.out.print("| Ingrese el motivo por el cual el voluntario lo hizo sentir incomodo: ");
-			datosReporte[3] = scan.nextLine();			
+			datosReporte[3] = scan.nextLine();		
+
+			try(FileWriter fw = new FileWriter("reporteVoluntario.txt", true);
+		    		BufferedWriter bw = new BufferedWriter(fw);
+		    		PrintWriter out = new PrintWriter(bw))
+			    {
+			    out.println(datosReporte[0] + " " + datosReporte[1] + " " + datosReporte[2] + " " + datosReporte[3]);       
+				}catch (IOException e) {
+				
+				}
 		} else {
 			System.out.print("Opcion invalida");
 		}
