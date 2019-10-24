@@ -18,6 +18,7 @@ Esta clase se encarga de mostrar los numeros y direcciones de
 las cedes para que la población pueda donar medicamento.
 **********************************************************/
 public class ControladorCentroSalud{
+	private PeticionAyuda peticionAyuda = new PeticionAyuda();
 	private VistaCentroSalud vistaCentroSalud = new VistaCentroSalud();
 	private CentroSalud centro = new CentroSalud();
 	private Integer[] necesitados = new Integer[3];
@@ -38,7 +39,7 @@ public class ControladorCentroSalud{
 		} else{
 
 			do{
-				opcionCentroSalud = vistaCentroSalud.menuCentroSalud((centro.getCuentas()[centro.getLoggedOnPosition()]).getUsername());
+				opcionCentroSalud = vistaCentroSalud.menuCentroSalud((centro.getCuentas()[centro.getLoggedOnPosition()]).getUsername(),peticionAyuda.getInfo());
 
 				// Cambiando a la opcion que el usuario desea
 				switch(opcionCentroSalud){
@@ -115,7 +116,7 @@ public class ControladorCentroSalud{
 		centro.getMedicamento().buscarMedicamento(vistaCentroSalud.pidiendoMedicamento());
 		vistaCentroSalud.mostrandoMensaje(centro.getMedicamento().mostrarInformacion());  
 	}
-
+	
 	// Sirve para pedirle los datos al usuario, conseguir la información y mostrarla; por medio de su vista
 	private void opcion4CentroSalud(){
 		String[] sintomas = new String[3];
@@ -126,7 +127,26 @@ public class ControladorCentroSalud{
 		vistaCentroSalud.mostrandoMensaje(centro.getMedicamento().mostrarRecomendados());
 	}
 
+
 	
+
+	// retorna las notificaciones ingresadas
+	
+
+	// // Encontrar posición del centro de salud deseado
+	// public Integer obtenerPosicionCentroSalud(){
+	// 	Integer position, contador = 0;
+	// 	for(int i = 0; i < centro.getGrafico().length; i++){
+	// 		if((centro.getCuentas()[centro.getLoggedOnPosition()].getNumberOfIdentification()) == (centro.getGrafico()[i].getNumberOfIdentification())){
+	// 			contador++;
+	// 			if(contador == this.opcion){
+	// 				return i;
+	// 			} 
+	// 		}
+	// 	}
+	// 	return 0;
+	// }
+
 	
 	// Agregar un elemento a la lista de necesitados
 	public void agregarANecesitados(Integer cantidad, Integer lugar){

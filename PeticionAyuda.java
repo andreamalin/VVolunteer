@@ -16,29 +16,56 @@ Fecha de creación: 31/09/2019
 La clase PeticionAyuda se encarga de pedir los datos del usuario que
 reporta ayuda y mandar la ayuda lo antes posible.
 **********************************************************/
-
+import java.util.*;
+import java.io.*;
 import java.util.Random;
 public class PeticionAyuda{
 	private boolean bandera;
-	private String[] info;
+	private String info = "";
 	// se crearon variables 
 
 	public void setInfo(String[] datosUsuario){
-	// se guardan los datos en un array de una dimension
-		info = new String[5];
-		this.info[0] = datosUsuario[0];
-		this.info[1] = datosUsuario[1];
-		this.info[2] = datosUsuario[2];
-		this.info[3] = datosUsuario[3];
-		this.info[4] = datosUsuario[4];
+		
+	    try(FileWriter fw = new FileWriter("notificaciones.txt", true);
+		    BufferedWriter bw = new BufferedWriter(fw);
+		    PrintWriter out = new PrintWriter(bw))
+		    {
+		        out.println(datosUsuario[0] + " " + datosUsuario[1] + " " + datosUsuario[2] + " " + datosUsuario[3]);       
+		}catch (IOException e) {
+		}
 	}
 
 	// se retorna la informacion
 	public String getInfo(){
 		// se concatenan los datos ingresados por el usuario y con sus especificaciones en una variable de tipo texto para mostrarla
-		String informacion = "Nombre de usuario: " + info[0] + " Correo: " + info[1] + " Direccion: "+ info[2] + " Sintomas: " + info[4] + " Telefono: " + info[3];
-		return informacion;
+		File f = new File( "C:notificaciones.txt" );
+		BufferedReader entrada;
+		try {
+			entrada = new BufferedReader(new FileReader(f));
+				
+				this.info = "";
+				while(entrada.ready()){
+					this.info += "|\t" + entrada.readLine() + "\n";
+				}
+		}catch (IOException e) {
+			e.printStackTrace();
+		}
+		/*finally{
+		try{
+			entrada = new BufferedReader( new FileReader( f ) );
+			entrada.close();
+		}catch(IOException e1){
+		
+		}
+		
+		}
+		*/
+		return this.info;
 	}
+		
+	
+
+
 
 	// se crea un numero aleatorio para verificar si se puede ayudar 
 	// a la persona inmediatamente 

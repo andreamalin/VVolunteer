@@ -34,13 +34,17 @@ public class VistaCentroSalud{
 	}
 
 	// Menu adentro del sistema
-	public Integer menuCentroSalud(String nombreUsuario){
+	public Integer menuCentroSalud(String nombreUsuario, String noti){
 		String opcionS;
 		Integer opcion = 0;
 		Boolean bandera = false;
 
 		// Mostrando el menu de inicio de sesion
 		System.out.println("|\n|\n|\t\tBienvenid@ " + nombreUsuario ); 
+		System.out.println("|___________________________________________________");
+		System.out.println("|                   Notificaciones:                 ");
+		System.out.println("|         Nombre: Numero: Direccion: Sintomas:      ");
+		System.out.println("|\n"+noti);
 		System.out.println("|___________________________________________________");
 		System.out.println("|Estas son las opciones que puede realizar:\t    |");
 		System.out.println("| 1. Ver inventario\t\t\t\t    |");
