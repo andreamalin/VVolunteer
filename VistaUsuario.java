@@ -56,7 +56,7 @@ public class VistaUsuario{
 
 			// Convirtiendo la opcion string a una opcion entera 
 			opcion = Integer.parseInt(opcionS);
-		while((opcion < 1) || (opcion > 5));
+		}while((opcion < 1) || (opcion > 5));
 
 		return opcion;
 	}

@@ -72,7 +72,52 @@ public class VistaCentroSalud{
 		return opcion;
 	}
 
+	// OPCION 1 Y 2
+	// Obtener el centro de salud con el cual quiere interactuar el usuario
+	public Integer obtenerCentroDeSalud(String[] informacion){
+		Integer centroDeSaludSeleccionado, cantidadCentrosMostrados = informacion.length;
+		String opcionS;
+		Boolean bandera = false;
 
+		// Mostrandole los centros de salud que puede utilizar
+		System.out.print("|\n| Estos son los centros de salud con los que posee comunicacion: ");
+		for(int i = 0; i < cantidadCentrosMostrados; i++){
+			System.out.print(informacion[i]);
+		}
+
+		// Obteniendo el centro de salud que quiere el usuario
+		do{
+			do{	
+				System.out.print("\n| Ingrese el centro de salud con el cual desea interactuar: ");
+				opcionS = scan.nextLine();
+
+				// Confirmando que haya ingresado un numero
+				try{
+					Integer.parseInt(opcionS);
+					bandera = true;
+				}catch(NumberFormatException nfe){
+					bandera = false;
+					System.out.print("| Favor ingrese una opcion, con numeros ");
+				}
+			}while(bandera == false);
+
+			centroDeSaludSeleccionado = Integer.parseInt(opcionS);
+
+		}while((centroDeSaludSeleccionado < 0) || (centroDeSaludSeleccionado > cantidadCentrosMostrados));	
+
+		return centroDeSaludSeleccionado;
+	}
+
+	// OPCION 2
+	// Pidiendole al usuario los medicamentos utilizados en la jornada 
+	// public void pedirMedicinaNecesitada(Controlador control){
+	// 	Integer j = control.obtenerPosicionCentroSalud();
+	// 	for(int i = 0; i < 3; i++){
+	// 	 	System.out.print("Ingrese la cantidad de medicina necesitada en esta jornada de " + (control.getCentroSalud().getGrafico()[j].getInventario())[i].getNombreMedicamento() + ": ");
+	// 		 control.agregarANecesitados(input.nextInt(),i);
+	// 	}
+	// 	System.out.print(control.getCentroSalud().getGrafico()[j].elaborarDatos(control.getCantidadNecesitada()));
+	// }
 
 	// OPCION 3 que quiere ver los medicamentos
 	public String pidiendoMedicamento(){
@@ -107,61 +152,4 @@ public class VistaCentroSalud{
 	public void datosInvalidos(){
 		System.out.print("| Los datos ingresados son invalidos\n");
 	}
-
-	// // Obtener el centro de salud con el cual quiere interactuar el usuario
-	// public void obtenerCentroDeSalud(Controlador control){
-	// 	Integer centroDeSaludSeleccionado, cantidadCentrosMostrados = 0;
-
-	// 	// Mostrandole los centros de salud que puede utilizar
-	// 	System.out.print("\nEstos son los centros de salud con los que posee comunicacion: ");
-	// 	for(int i = 0; i < control.getLength(); i++){
-	// 		if(control.numeroIdentificacion()){
-	// 			System.out.print("\n" + (cantidadCentrosMostrados + 1) + ". " + control.getNombre(i));
-	// 			cantidadCentrosMostrados++;
-	// 		}
-	// 	}
-
-	// 	// Obteniendo el centro de salud que quiere el usuario
-	// 	do{	
-	// 		System.out.print("\nIngrese el centro de salud con el cual desea interactuar: ");
-	// 		centroDeSaludSeleccionado = input.nextInt();
-	// 	}while((centroDeSaludSeleccionado < 0) || (centroDeSaludSeleccionado > cantidadCentrosMostrados));
-
-	// 	control.setOpcion(centroDeSaludSeleccionado);
-	// }
-
-
-	// public void mostrarInventario(Controlador control){
-	// 	Integer j = control.obtenerPosicionCentroSalud();
-	// 	System.out.println("\nSe cuenta en el inventario de " + control.getCentroSalud().getGrafico()[j].getCentroSaludNombre() + " con las siguientes medicinas: ");
-	// 		for(int i = 0; i < 3; i++){
-	// 	 		System.out.print("- " + (control.getCentroSalud().getGrafico()[j].getInventario())[i].getNombreMedicamento() + " de la cual se tiene "  + (control.getCentroSalud().getGrafico()[j].getInventario())[i].getCantidadEnInventario() + " en el inventario\n");
-	// 		}
-	// 	}
-
-	// // Pidiendole al usuario los medicamentos utilizados en la jornada 
-	// public void pedirMedicinaNecesitada(Controlador control){
-	// 	Integer j = control.obtenerPosicionCentroSalud();
-	// 	for(int i = 0; i < 3; i++){
-	// 	 	System.out.print("Ingrese la cantidad de medicina necesitada en esta jornada de " + (control.getCentroSalud().getGrafico()[j].getInventario())[i].getNombreMedicamento() + ": ");
-	// 		 control.agregarANecesitados(input.nextInt(),i);
-	// 	}
-	// 	System.out.print(control.getCentroSalud().getGrafico()[j].elaborarDatos(control.getCantidadNecesitada()));
-	// }
-
-	// 				switch(control.getOpcion()){
-	// 				// Ver el inventario del centro de salud
-	// 				case 1:
-	// 					// Verificar cual centro de salud quiere
-
-	// 					obtenerCentroDeSalud(control);
-	// 					System.out.print(mostrarInventario(control));
-	// 					break;
-
-	// 				// Obtener recomendaciones para la siguiente jornada
-	// 				case 2:
-	// 					vista.obtenerCentroDeSalud(control);
-	// 					System.out.print(vista.pedirMedicinaNecesitada(control));
-	// 					break;
-
 }

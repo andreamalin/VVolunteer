@@ -44,7 +44,7 @@ public class ControladorCentroSalud{
 				switch(opcionCentroSalud){
 					// Ver inventario
 					case 1:
-						//vistaCentroSalud.obtenerCentroDeSalud();
+						opcion1CentroSalud();
 					break;
 
 					// Recomendaciones para la siguiente jornada
@@ -76,7 +76,38 @@ public class ControladorCentroSalud{
 
 	}
 
+	//
+	private void opcion1CentroSalud(){
+		Integer seleccionado;
+		seleccionado = conseguirPosicionSalud();
+		vistaCentroSalud.mostrandoMensaje(mostrarInventario(seleccionado));
+	}
 
+	private void opcion2CentroSalud(){
+		Integer seleccionado;
+		seleccionado = conseguirPosicionSalud();
+	}
+
+	private Integer conseguirPosicionSalud(){
+		Integer centroSaludSeleccionado;
+
+		// Consiguiendo el centro de salud con el que desea interactuar
+		centroSaludSeleccionado = vistaCentroSalud.obtenerCentroDeSalud(obtenerCentroDeSalud());
+		centroSaludSeleccionado = obtenerPosicionCentroSalud(centroSaludSeleccionado);
+
+		return centroSaludSeleccionado;
+	}
+
+	private String mostrarInventario(Integer seleccionado){
+		Integer j = seleccionado;
+		String mensaje;
+		mensaje = "|\n| Se cuenta en el inventario de " + centro.getGrafico()[j].getCentroSaludNombre() + " con las siguientes medicinas:\n";
+		for(int i = 0; i < 3; i++){
+		 	mensaje += "| - " + (centro.getGrafico()[j].getInventario())[i].getNombreMedicamento() + " de la cual se tiene "  + (centro.getGrafico()[j].getInventario())[i].getCantidadEnInventario() + " en el inventario\n";
+		}
+
+		return mensaje;
+	}
 
 
 	// Sirve para mostrarle al usuario la informacion de la medicina
@@ -95,20 +126,7 @@ public class ControladorCentroSalud{
 		vistaCentroSalud.mostrandoMensaje(centro.getMedicamento().mostrarRecomendados());
 	}
 
-
-	// // Encontrar posición del centro de salud deseado
-	// public Integer obtenerPosicionCentroSalud(){
-	// 	Integer position, contador = 0;
-	// 	for(int i = 0; i < centro.getGrafico().length; i++){
-	// 		if((centro.getCuentas()[centro.getLoggedOnPosition()].getNumberOfIdentification()) == (centro.getGrafico()[i].getNumberOfIdentification())){
-	// 			contador++;
-	// 			if(contador == this.opcion){
-	// 				return i;
-	// 			} 
-	// 		}
-	// 	}
-	// 	return 0;
-	// }
+	
 	
 	// Agregar un elemento a la lista de necesitados
 	public void agregarANecesitados(Integer cantidad, Integer lugar){
@@ -119,19 +137,41 @@ public class ControladorCentroSalud{
 		return this.necesitados;
 	}
 
-	//Metodos para la vista
-	// public String getNombre(int i){
-	// 	return centro.getGrafico()[i].getCentroSaludNombre();
-	// }
-	// //
-	// public boolean numeroIdentificacion(){
-	// 	Integer centroDeSaludSeleccionado, cantidadCentrosMostrados = 0;
 
-	// 	for(int i = 0; i < centro.getGrafico().length; i++){
-	// 		if((centro.getCuentas()[centro.getLoggedOnPosition()].getNumberOfIdentification()) == (centro.getGrafico()[i].getNumberOfIdentification())){
-	// 			posicionIdentificacion = i;
-	// 			return true;	
-	// 		}		
-	// 	} return false;
-	// }
+	// METODOS PARA OBTENER INFORMACION DEL USUARIO  A QUE CENTRO DE SALUD HACER REFERENCIA
+	// Consiguiendo los centros de salud que puede elegir el usuario 
+	private String[] obtenerCentroDeSalud(){
+		Integer cantidadCentrosMostrados = 0;
+		String[] mensaje = new String[centro.getGrafico().length];
+		for(int i = 0; i < centro.getGrafico().length; i++){
+			if((numeroIdentificacion())){
+				mensaje[i] = "\n| " + (cantidadCentrosMostrados + 1) + ". " + (centro.getGrafico()[i]).getCentroSaludNombre();
+				cantidadCentrosMostrados++;
+			}
+		}
+		return mensaje;
+	}
+
+	// Encontrar posición del centro de salud deseado
+	private Integer obtenerPosicionCentroSalud(Integer opcion){
+		Integer contador = 0;
+		for(int i = 0; i < centro.getGrafico().length; i++){
+			if((centro.getCuentas()[centro.getLoggedOnPosition()].getNumberOfIdentification()) == (centro.getGrafico()[i].getNumberOfIdentification())){
+				contador++;
+				if(contador == opcion){
+					return i;
+				} 
+			}
+		}
+		return 0;
+	}
+
+	// Viendo si el numero de identificacion es igual al de 
+	private boolean numeroIdentificacion(){
+		for(int i = 0; i < centro.getGrafico().length; i++){
+			if((centro.getCuentas()[centro.getLoggedOnPosition()].getNumberOfIdentification()) == (centro.getGrafico()[i].getNumberOfIdentification())){
+				return true;	
+			}		
+		} return false;
+	}
 }
