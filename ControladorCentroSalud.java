@@ -50,6 +50,7 @@ public class ControladorCentroSalud{
 
 					// Recomendaciones para la siguiente jornada
 					case 2:
+						opcion2CentroSalud();
 					break;
 
 					// Ver medicina
@@ -77,26 +78,11 @@ public class ControladorCentroSalud{
 
 	}
 
-	//
+	// Realizando las operaciones para poder obtener los datos de la opcion 1
 	private void opcion1CentroSalud(){
 		Integer seleccionado;
 		seleccionado = conseguirPosicionSalud();
 		vistaCentroSalud.mostrandoMensaje(mostrarInventario(seleccionado));
-	}
-
-	private void opcion2CentroSalud(){
-		Integer seleccionado;
-		seleccionado = conseguirPosicionSalud();
-	}
-
-	private Integer conseguirPosicionSalud(){
-		Integer centroSaludSeleccionado;
-
-		// Consiguiendo el centro de salud con el que desea interactuar
-		centroSaludSeleccionado = vistaCentroSalud.obtenerCentroDeSalud(obtenerCentroDeSalud());
-		centroSaludSeleccionado = obtenerPosicionCentroSalud(centroSaludSeleccionado);
-
-		return centroSaludSeleccionado;
 	}
 
 	private String mostrarInventario(Integer seleccionado){
@@ -109,6 +95,38 @@ public class ControladorCentroSalud{
 
 		return mensaje;
 	}
+
+
+	// Realizando las operaciones para poder obtener los datos de la opcion 2
+	private void opcion2CentroSalud(){
+		String[] nombreMedicamento;
+		Integer[] cantidadNecesitada;
+		Integer seleccionado;
+
+		seleccionado = conseguirPosicionSalud();
+		
+		// Creando los arrays en donde estaran los nombres y la cantidad necesitada
+		nombreMedicamento = new String[3];
+		cantidadNecesitada = new Integer[3];
+
+		// Consiguiendo los datos del inventario y pidiendole al usuario que elija cuantos se necesitaron
+		nombreMedicamento = (centro.getGrafico()[seleccionado]).getMedicamentos();
+		cantidadNecesitada = vistaCentroSalud.pedirMedicinaNecesitada(nombreMedicamento);
+
+		// Utilizando la informacion recogida y mostrandole al usuario lo obtenido
+		vistaCentroSalud.mostrandoMensaje((centro.getGrafico()[seleccionado]).elaborarDatos(cantidadNecesitada));
+	}
+
+	private Integer conseguirPosicionSalud(){
+		Integer centroSaludSeleccionado;
+
+		// Consiguiendo el centro de salud con el que desea interactuar
+		centroSaludSeleccionado = vistaCentroSalud.obtenerCentroDeSalud(obtenerCentroDeSalud());
+		centroSaludSeleccionado = obtenerPosicionCentroSalud(centroSaludSeleccionado);
+
+		return centroSaludSeleccionado;
+	}
+
 
 
 	// Sirve para mostrarle al usuario la informacion de la medicina
@@ -131,7 +149,6 @@ public class ControladorCentroSalud{
 	
 
 	// retorna las notificaciones ingresadas
-	
 
 	// // Encontrar posición del centro de salud deseado
 	// public Integer obtenerPosicionCentroSalud(){
@@ -146,17 +163,6 @@ public class ControladorCentroSalud{
 	// 	}
 	// 	return 0;
 	// }
-
-	
-	// Agregar un elemento a la lista de necesitados
-	public void agregarANecesitados(Integer cantidad, Integer lugar){
-		this.necesitados[lugar] = cantidad; 
-	}
-		
-	public Integer[] getCantidadNecesitada(){
-		return this.necesitados;
-	}
-
 
 	// METODOS PARA OBTENER INFORMACION DEL USUARIO  A QUE CENTRO DE SALUD HACER REFERENCIA
 	// Consiguiendo los centros de salud que puede elegir el usuario 

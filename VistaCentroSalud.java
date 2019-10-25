@@ -114,14 +114,32 @@ public class VistaCentroSalud{
 
 	// OPCION 2
 	// Pidiendole al usuario los medicamentos utilizados en la jornada 
-	// public void pedirMedicinaNecesitada(Controlador control){
-	// 	Integer j = control.obtenerPosicionCentroSalud();
-	// 	for(int i = 0; i < 3; i++){
-	// 	 	System.out.print("Ingrese la cantidad de medicina necesitada en esta jornada de " + (control.getCentroSalud().getGrafico()[j].getInventario())[i].getNombreMedicamento() + ": ");
-	// 		 control.agregarANecesitados(input.nextInt(),i);
-	// 	}
-	// 	System.out.print(control.getCentroSalud().getGrafico()[j].elaborarDatos(control.getCantidadNecesitada()));
-	// }
+	public Integer[] pedirMedicinaNecesitada(String[] datosMedicamentos){
+		// Inicializando las variables en donde se guardan los medicamentos
+		Integer[] cantidadMedicamentos = new Integer[datosMedicamentos.length];
+		String[] cantidadMedicamentosS = new String[datosMedicamentos.length];
+		Boolean bandera = false;
+
+		for(int i = 0; i < datosMedicamentos.length; i++){
+			 do{	
+			 	// Pidiendole el tipo de medicamento que utilizo
+				System.out.print("| Ingrese la cantidad de medicina necesitada en esta jornada de " + datosMedicamentos[i] + ": ");
+				cantidadMedicamentosS[i] = input.nextLine();
+
+				// Confirmando que haya ingresado un numero
+				try{
+					Integer.parseInt(cantidadMedicamentosS[i]);
+					bandera = true;
+				}catch(NumberFormatException nfe){
+					bandera = false;
+					System.out.print("| Favor ingrese una opcion, con numeros ");
+				}
+			}while(bandera == false);
+
+			cantidadMedicamentos[i] = Integer.parseInt(cantidadMedicamentosS[i]);
+		}
+		return cantidadMedicamentos;
+	}
 
 	// OPCION 3 que quiere ver los medicamentos
 	public String pidiendoMedicamento(){
