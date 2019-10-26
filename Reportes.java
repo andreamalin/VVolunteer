@@ -28,6 +28,6 @@ public class Reportes{
 		this.motivo = motivo;
 	}
 	//Todos los reportes ingresan a un txt dependiendo del tipo
-	public void meterDatos(){
+	public void meterDatos(String[] datos){
 	}
 }

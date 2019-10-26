@@ -23,7 +23,7 @@ public class LeerMedicamento {
 	private String txt = ""; //Cada linea de texto se metera a esta variable
 	private String[] lista; //Lista creada a partir del txt
 
-	public void meterMedicamento() { //Codigo adaptado de https://www.quora.com/How-do-I-read-a-file-line-by-line-in-Java
+	private void meterMedicamento() { //Codigo adaptado de https://www.quora.com/How-do-I-read-a-file-line-by-line-in-Java
 		try {
 			Scanner scanner = new Scanner(new File("medicamento.txt")); //Se lee el archivo de texto
 			while (scanner.hasNextLine()) {
@@ -35,7 +35,7 @@ public class LeerMedicamento {
 		}
 	}
 
-	public void listaInformativa(){
+	private void listaInformativa(){
 		meterMedicamento();
 		lista = txt.split(", "); //Se crea una lista con el nombre, informacion y dosis de los medicamentos
 

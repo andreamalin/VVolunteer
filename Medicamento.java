@@ -63,7 +63,7 @@ public class Medicamento{
 		}
 	}
 
-	public boolean eliminarRepetidos(){
+	private boolean eliminarRepetidos(){
 		if (busquedaSintomas.size() > 0) {
 			Collections.sort(busquedaSintomas); //Se ordena de menor a menor la lista de similares
 			Set<Integer> listalimpia = new HashSet<Integer>(busquedaSintomas); //Se limpia la lista de los repetidos
@@ -76,7 +76,7 @@ public class Medicamento{
 		}
 	}
 
-	public void separarMed(){ //Se realiza una lista que contenga unicamente los nombres del medicamento
+	private void separarMed(){ //Se realiza una lista que contenga unicamente los nombres del medicamento
 		int longitud = listamedic.length/5;
 		int a = 0;
 		nombresmedicamentos = new String[longitud]; //Se realiza una lista con la longitud de cantidad de medicamentos
@@ -88,7 +88,7 @@ public class Medicamento{
 		}
 	}
 
-	public void buscarSimilares(){ //Se buscan los medicamentos similares
+	private void buscarSimilares(){ //Se buscan los medicamentos similares
 		separarMed(); //Se separa el medicamento
 		similares = "                  "; //Se define similares
 		int contador=0; //Contador para ingresar a la posicion de la lista

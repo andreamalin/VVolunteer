@@ -60,14 +60,15 @@ public class ControladorUsuario{
 
 	public void registrarReporte(){
 		String[] datos = vistaUsuario.reportar();
-		reporte = new Reportes(datos[0], datos[1], datos[2], datos[3]);
 
-		if (datos[4] == "1") {
+		if (datos[4].equalsIgnoreCase("1")) {
 			ReportarVoluntario reportarV = (ReportarVoluntario)reporte;
-			reportarV.meterDatos();
-		} else if (datos[4] == "2") {
+			reportarV = new ReportarVoluntario(datos[0], datos[1], datos[2], datos[3]);
+			reportarV.meterDatos(datos);
+		} else if (datos[4].equalsIgnoreCase("2")) {
 			ReportarPaciente reportarP = (ReportarPaciente)reporte;	
-			reportarP.meterDatos();
+			reportarP = new ReportarPaciente(datos[0], datos[1], datos[2], datos[3]);
+			reportarP.meterDatos(datos);
 		} 
 	}
 }

@@ -20,6 +20,8 @@ La clase ReportarPaciente hereda de Reportes.
 **********************************************************/
 import java.util.*;
 import java.io.*;
+import java.util.Scanner;
+
 
 public class ReportarPaciente extends Reportes{
 	//Constructor	
@@ -27,12 +29,12 @@ public class ReportarPaciente extends Reportes{
 		super(nombrep, nombrev, numero, motivo);
 	}
 	//Override
-	public void meterDatos(){
+	public void meterDatos(String[] datos){
 		try(FileWriter fw = new FileWriter("reportesPacientes.txt", true); //Se mandan los reportes de los voluntarios hacia los pacientes
 			BufferedWriter bw = new BufferedWriter(fw);
 			PrintWriter out = new PrintWriter(bw))
 		{
-			out.println(this.nombrep + " " + this.nombrev + " " + this.numero + " " + this.motivo); 
+			out.println(datos[0] + " " + datos[1] + " " + datos[2] + " " + datos[3]);
 		}catch (IOException e) {
 		}
 	}

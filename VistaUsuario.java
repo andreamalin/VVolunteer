@@ -97,7 +97,7 @@ public class VistaUsuario{
 			System.out.print("Opcion invalida");
 		}
 		datosReporte[4] = acc;
-		System.out.println("\nSu reporte esta en revision, gracias por informarnos,\nlo notificaremos lo mas pronto posible\n");
+		System.out.println("\n| Su reporte esta en revision, gracias por informarnos,\n| lo notificaremos lo mas pronto posible\n");
 		System.out.println("|___________________________________________________");
 
 		return datosReporte;

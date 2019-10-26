@@ -1,12 +1,12 @@
 Vitaflenaco, Dolor, Inflamacion, Colicos, Tomar una cápsula cada 8 horas después de comer., 
 Paracetamol, Dolor, Nerviosismo, Fiebre, La dosis normal para analgesia y el control de la fiebre es de 325 a 1000 mg cada cuatro horas., 
-Desloratadina, Alergia, Fiebre, Lagrimeo, Tomar una vez al dia.,
+Desloratadina, Alergia, Fiebre, Lagrimeo, Tomar una vez al dia., 
 Aspirina, Dolor, Fiebre, Inflamacion, De 500 a 1000 mg cada 8 horas., 
 Loratadina, Alergia, Congestion, Resfriado, Por lo general se toma una vez al día con o sin alimentos., 
 Loperamida, Antidiarreico, Desinflamatorio intestinal, Gastroenteritis, La dosis recomendada es de 4 mg cada 8 horas., 
 Subsalicilato, Antidiarreico, Malestar estomacal, Malestares gastrointestinales, La dosis recomendada es de 524 mg cada 6 horas., 
 Esomeprazol, Acido gastrico, Lesiones en el esofago, Reflujo gastroesfagico, Por 4 semanas tomar 40 mg una vez al dia., 
-Rabeprazol, Acido gastrico, Esofagitis erosiva, Ulceras estomacales, 20 mg al dia.,
-Eszopiclona, Insomnio, Antidepresivo, Ansiedad, Tomar 2 mg antes de dormir.,  
-Ramelteon, Insomnio, Ansiedad, Agripnia, Tomar 8 mg media hora antes de dormir.
+Rabeprazol, Acido gastrico, Esofagitis erosiva, Ulceras estomacales, 20 mg al dia., 
+Eszopiclona, Insomnio, Antidepresivo, Ansiedad, Tomar 2 mg antes de dormir., 
+Ramelteon, Insomnio, Ansiedad, Agripnia, Tomar 8 mg media hora antes de dormir., 
 
