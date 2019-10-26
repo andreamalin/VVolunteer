@@ -1,6 +1,5 @@
 import java.util.Scanner;
-import java.util.*;
-import java.io.*;
+
 public class VistaUsuario{
 	Scanner scan = new Scanner(System.in);
 
@@ -66,10 +65,10 @@ public class VistaUsuario{
 	}
 
 	//Pedir datos para realizar el reporte
-	public void reportePaciente(){
-		String[] datosReporte = new String[4];
+	public String[] reportar(){
+		String[] datosReporte = new String[5];
 
-		System.out.println("\n___________________________________________________\n             A quien desea reportar?\n___________________________________________________\n1.A paciente\n2.A voluntario");
+		System.out.println("\n___________________________________________________\n             A quien desea reportar?\n___________________________________________________\n1.Paciente\n2.Voluntario");
 		String acc = scan.nextLine();
 		System.out.println("\t\t<<<< R E P O R T A R >>>>");
 
@@ -82,37 +81,26 @@ public class VistaUsuario{
 			datosReporte[2] = scan.nextLine();
 			System.out.print("| Ingrese el motivo por el cual el paciente lo hizo sentir incomodo: ");
 			datosReporte[3] = scan.nextLine();
-				try(FileWriter fw = new FileWriter("reportePaciente.txt", true);
-		    		BufferedWriter bw = new BufferedWriter(fw);
-		    		PrintWriter out = new PrintWriter(bw))
-			    {
-			    out.println(datosReporte[0] + " " + datosReporte[1] + " " + datosReporte[2] + " " + datosReporte[3]);       
-				}catch (IOException e) {
-				
-				}
+
 		} else if (acc.equalsIgnoreCase("2")) { //Reportar un voluntario
 			System.out.print("| Ingrese su nombre: ");
 			datosReporte[0] = scan.nextLine();
-			System.out.print("| Ingrese el nombre del voluntario: ");
+			System.out.print("| Ingrese el nombre del voluntario que lo atendio: ");
 			datosReporte[1] = scan.nextLine();
 			System.out.print("| Ingrese su numero de telefono para ser atendido su problema: ");
 			datosReporte[2] = scan.nextLine();
 			System.out.print("| Ingrese el motivo por el cual el voluntario lo hizo sentir incomodo: ");
 			datosReporte[3] = scan.nextLine();		
 
-			try(FileWriter fw = new FileWriter("reporteVoluntario.txt", true);
-		    		BufferedWriter bw = new BufferedWriter(fw);
-		    		PrintWriter out = new PrintWriter(bw))
-			    {
-			    out.println(datosReporte[0] + " " + datosReporte[1] + " " + datosReporte[2] + " " + datosReporte[3]);       
-				}catch (IOException e) {
-				
-				}
+
 		} else {
 			System.out.print("Opcion invalida");
 		}
-		System.out.println("\nSu reporte esta en revision, gracias por informarnos, lo notificaremos lo más pronto posible\n");
-		System.out.println("|_________________________________________________");
+		datosReporte[4] = acc;
+		System.out.println("\nSu reporte esta en revision, gracias por informarnos,\nlo notificaremos lo mas pronto posible\n");
+		System.out.println("|___________________________________________________");
+
+		return datosReporte;
 	}
 
 }

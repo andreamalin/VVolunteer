@@ -19,7 +19,7 @@ public class ControladorUsuario{
     private VistaUsuario vistaUsuario = new VistaUsuario();
 	private PeticionAyuda peticionAyuda = new PeticionAyuda();
 	private RegistrarDonacion registrarDonacion = new RegistrarDonacion();
-	private Rpaciente reportarPaciente = new Rpaciente();
+	private Reportes reporte;
 
 
 	// Haciendo la opcion 2 del main
@@ -59,10 +59,15 @@ public class ControladorUsuario{
 	}
 
 	public void registrarReporte(){
-		vistaUsuario.reportePaciente();
+		String[] datos = vistaUsuario.reportar();
+		reporte = new Reportes(datos[0], datos[1], datos[2], datos[3]);
 
+		if (datos[4] == "1") {
+			ReportarVoluntario reportarV = (ReportarVoluntario)reporte;
+			reportarV.meterDatos();
+		} else if (datos[4] == "2") {
+			ReportarPaciente reportarP = (ReportarPaciente)reporte;	
+			reportarP.meterDatos();
+		} 
 	}
-	
-
-
 }
