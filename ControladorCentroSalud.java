@@ -62,12 +62,18 @@ public class ControladorCentroSalud{
 					case 4:
 						opcion4CentroSalud();
 					break;
-					// Centro de notificaciones
+
+					//Agregar medicina
 					case 5:
-						opcion5CentroNotificaciones();
+						opcion5CentroSalud();
+					break;
+
+					// Centro de notificaciones
+					case 6:
+						opcion6CentroNotificaciones();
 					break;
 					// Cerrar sesion
-					case 6:
+					case 7:
 						vistaCentroSalud.mostrandoMensaje(mensaje);
 					break;
 
@@ -76,7 +82,7 @@ public class ControladorCentroSalud{
 						vistaCentroSalud.datosInvalidos();
 					break;
 				}
-			}while(opcionCentroSalud != 6);
+			}while(opcionCentroSalud != 7);
 		}
 
 	}
@@ -118,6 +124,7 @@ public class ControladorCentroSalud{
 
 		// Utilizando la informacion recogida y mostrandole al usuario lo obtenido
 		vistaCentroSalud.mostrandoMensaje((centro.getGrafico()[seleccionado]).elaborarDatos(cantidadNecesitada));
+		peticionAyuda.setRecomendaciones((centro.getGrafico()[seleccionado]).elaborarDatos(cantidadNecesitada), centro.getGrafico()[seleccionado].getCentroSaludNombre());
 	}
 
 	private Integer conseguirPosicionSalud(){
@@ -148,7 +155,14 @@ public class ControladorCentroSalud{
 		vistaCentroSalud.mostrandoMensaje(centro.getMedicamento().mostrarRecomendados());
 	}
 
-	private void opcion5CentroNotificaciones(){
+	//Sirve para agregar un nuevo medicamento
+	private void opcion5CentroSalud(){
+		centro.getMedicamento().agregarMed(vistaCentroSalud.obtenerNuevoMed());
+	}
+
+
+
+	private void opcion6CentroNotificaciones(){
 		vistaCentroSalud.notificaciones(peticionAyuda.getInfo());
 	}
 	

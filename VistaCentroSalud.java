@@ -44,12 +44,13 @@ public class VistaCentroSalud{
 		System.out.println("|___________________________________________________");
 		System.out.println("|___________________________________________________|");
 		System.out.println("|Estas son las opciones que puede realizar:\t    |");
-		System.out.println("| 1. Ver inventario\t\t\t\t    |");
+		System.out.println("| 1. Ver inventario de medicina\t\t\t    |");
 		System.out.println("| 2. Recomendaciones para la siguiente jornada\t    |");
 		System.out.println("| 3. Ver medicinas\t\t\t\t    |");
 		System.out.println("| 4. Buscar medicina por sintomas\t\t    |");
-		System.out.println("| 5. Centro de Notificaciones\t\t\t|");
-		System.out.println("| 6. Cerrar Sesion\t\t\t\t    |");
+		System.out.println("| 5. Agregar medicina\t\t\t\t    |");
+		System.out.println("| 6. Centro de Notificaciones\t\t\t    |");
+		System.out.println("| 7. Cerrar Sesion\t\t\t\t    |");
 		System.out.println("|___________________________________________________|");
 
 		// Pidiendole al usuario que ingrese una opcion valida
@@ -163,6 +164,25 @@ public class VistaCentroSalud{
 		return sintomas;
 	}
 
+	//OPCION 5 pedir informacion del medicamento
+	public String[] obtenerNuevoMed(){
+		String[] info = new String[5];
+
+		// Pidiendole los datos
+		System.out.print("| Ingrese el nombre del medicamento: ");
+		info[0] = scan.nextLine();
+		System.out.print("| Ingrese el primer sintoma que alivia: ");
+		info[1] = scan.nextLine();
+		System.out.print("| Ingrese el segundo sintoma que alivia: ");
+		info[2] = scan.nextLine();
+		System.out.print("| Ingrese el tercer sintoma que alivia: ");
+		info[3] = scan.nextLine();
+		System.out.print("| Ingrese la dosis recomendada: ");
+		info[4] = scan.nextLine();
+
+		return info;
+	}	
+
 	// Mostrando cualquier mensaje
 	public void mostrandoMensaje(String informacion){
 		System.out.print(informacion);
@@ -174,8 +194,9 @@ public class VistaCentroSalud{
 	}
 
 	public void notificaciones(String noti){
-		System.out.println("|                   Notificaciones:                 ");
-		System.out.println("|         Nombre: Numero: Direccion: Sintomas:      ");
-		System.out.println("|\n"+noti);
+		System.out.println("|                   Notificaciones:                 \n|");
+		System.out.println("|       Peticiones de ayuda      ");
+		System.out.println("|       | Nombre - Numero - Direccion - Sintomas      ");
+		System.out.println(noti);
 	}
 }

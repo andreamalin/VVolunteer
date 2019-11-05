@@ -61,7 +61,7 @@ public class VistaMain{
 	public void opcionDefault(Integer opcion){
 		switch(opcion){
 			// Mensaje para salir del programa
-			case 4:
+			case 5:
 				System.out.println("| Gracias por utilizar VMedic+");
 				System.out.println("|___________________________________________________");
 			break;

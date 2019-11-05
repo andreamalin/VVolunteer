@@ -18,6 +18,7 @@ sobre un medicamento presente en el inventario o mostrar que
 no está disponible.
 **********************************************************/
 import java.util.*; 
+import java.io.*;
 
 public class Medicamento{
 	//Propiedades del medicamento a recetar
@@ -29,10 +30,11 @@ public class Medicamento{
 	private static LeerMedicamento medicina = new LeerMedicamento();
 	private static ArrayList<Integer> busquedaSintomas = new ArrayList<Integer>(); //Lista con posiciones de medicamentos
 
-	String [] listamedic = medicina.getLista(); //Se manda a llamar la lista de medicamento
-	String [] nombresmedicamentos; //Nombre de medicamentos encontrados
+	static String [] listamedic; //Se manda a llamar la lista de medicamento
+	static String [] nombresmedicamentos; //Nombre de medicamentos encontrados
 
 	public boolean buscarMedicamento(String nombremedicamento){ //Se busca el medicamento por el nombre igresado por el usuario
+		listamedic = medicina.getLista(); //Se manda a llamar la lista de medicamento
 		for (int i=0; i<listamedic.length; i++) { //Si se encuentra el medicamento
 			if (nombremedicamento.equalsIgnoreCase(listamedic[i])) {
 				this.nombre = nombremedicamento; //Se define el nombre, los tres sintomas y la dosis
@@ -49,6 +51,7 @@ public class Medicamento{
 	}
 
 	public void buscarSintomas(String sintoma1, String sintoma2, String sintoma3){
+		listamedic = medicina.getLista(); //Se manda a llamar la lista de medicamento
 		int posicionactual = 0;
 		int longitud = listamedic.length/5; //Se obtiene la cantidad de medicamentos
 		//Se revisan las primeras posiciones de sintomas
@@ -65,10 +68,21 @@ public class Medicamento{
 
 	private boolean eliminarRepetidos(){
 		if (busquedaSintomas.size() > 0) {
+			//Se eliminan sintomas repetidos
 			Collections.sort(busquedaSintomas); //Se ordena de menor a menor la lista de similares
 			Set<Integer> listalimpia = new HashSet<Integer>(busquedaSintomas); //Se limpia la lista de los repetidos
 			busquedaSintomas.clear(); //Se borra lo actual de la lista
 			busquedaSintomas.addAll(listalimpia); //Se agrega a la lista la lista limpia	
+			/*
+			//Se eliminan nombres repetidos
+			for (int j=0; j<busquedaSintomas.size(); j++) {
+				for (int i=0; i<busquedaSintomas.size(); i++) {
+					if (busquedaSintomas.get(j).equalsIgnoreCase(busquedaSintomas.get(i))) {
+						busquedaSintomas.remove(j);
+					}
+				}				
+			}
+			*/
 
 			return true;	
 		} else {
@@ -111,14 +125,14 @@ public class Medicamento{
 		if (buscarMedicamento(nombre)) {		//Si se encuentra el medicamento
 			buscarSimilares(); //Se busca el medicamento similar
 
-			a = "\n\n+-----------NOMBRE DEL MEDICAMENTO-----------+\n"; 
-			a += "                  "+nombre;
-			a += "\n\n+------------SINTOMAS QUE ALIVIA------------+\n";
-			a += "     " + sintoma1 + "     " + sintoma2 + "      " + sintoma3;
-			a += "\n\n+-------------DOSIS RECOMENDADA-------------+\n";
-			a += dosis;
-			a += "\n\n+------------MEDICAMENTO SIMILAR------------+\n";
-			a += similares;
+			a = "|\n|\n|+-----------NOMBRE DEL MEDICAMENTO-----------+\n"; 
+			a += "|                  "+nombre;
+			a += "\n|\n|+------------SINTOMAS QUE ALIVIA------------+\n";
+			a += "|     " + sintoma1 + "     " + sintoma2 + "      " + sintoma3;
+			a += "\n|\n|+-------------DOSIS RECOMENDADA-------------+\n";
+			a += "|" +dosis;
+			a += "\n|\n|+------------MEDICAMENTO SIMILAR------------+\n";
+			a += "|" +similares;
 
 			return a;	//Se muestra en pantalla la información ordenada
 		}
@@ -126,18 +140,27 @@ public class Medicamento{
 	}
 
 	public String mostrarRecomendados(){
-		String a = "\n\n+-----Medicamento para sintomas escritos no encontrado en la base-----+\n"; //Si no se encuentra el medicamento
+		String a = "|\n|\n|+-----Medicamento para sintomas escritos no encontrado en la base-----+\n"; //Si no se encuentra el medicamento
 		if (eliminarRepetidos()) {
 			separarMed(); //Se separa el medicamento por nombres
-			a = "\n\n+-------------LISTADO MEDICAMENTOS RECOMENDADOS-------------+\n";
+			a = "|\n|\n|+-------------LISTADO MEDICAMENTOS RECOMENDADOS-------------+\n";
 			for (int i=0; i<busquedaSintomas.size(); i++) {
 				int indice = busquedaSintomas.get(i);
-				a += "                       "+nombresmedicamentos[indice] + "\n";	
+				a += "|                       "+nombresmedicamentos[indice] + "\n";	
 			}
-			a += "+-Se recomienda buscar la informacion del medicamento listado-+\n\n";
+			a += "|+-Se recomienda buscar la informacion del medicamento listado-+\n|\n";
 		}
 		busquedaSintomas.clear(); //Se limpia la lista
 		return a;
+	}
+	public void agregarMed(String[] med){
+	    try(FileWriter fw = new FileWriter("medicamento.txt", true);
+		    BufferedWriter bw = new BufferedWriter(fw);
+		    PrintWriter out = new PrintWriter(bw))
+		    {
+		    	out.print(med[0]+ ", " + med[1]+ ", "+med[2]+ ", "+med[3]+ ", "+med[4]+ ", \n");       
+		}catch (IOException e) {
+		}
 	}
 
 }
