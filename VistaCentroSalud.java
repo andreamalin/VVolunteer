@@ -91,7 +91,7 @@ public class VistaCentroSalud{
 		// Obteniendo el centro de salud que quiere el usuario
 		do{
 			do{	
-				System.out.print("\n| Ingrese el centro de salud con el cual desea interactuar: ");
+				System.out.print("| Ingrese el centro de salud con el cual desea interactuar: ");
 				opcionS = scan.nextLine();
 
 				// Confirmando que haya ingresado un numero
@@ -108,6 +108,7 @@ public class VistaCentroSalud{
 
 		}while((centroDeSaludSeleccionado < 0) || (centroDeSaludSeleccionado > cantidadCentrosMostrados));	
 
+		centroDeSaludSeleccionado--;
 		return centroDeSaludSeleccionado;
 	}
 

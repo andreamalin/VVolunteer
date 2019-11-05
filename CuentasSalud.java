@@ -16,13 +16,12 @@ Fecha de creación: 31/09/2019
 La clase CuentasSalud se encarga de ayudar la clase CentroSalud
 **********************************************************/
 public class CuentasSalud{
-	private String username, password; //Se lleva un registro de las cuentas
-	private Integer numberOfIdentification;
+	private String username, password, identification; //Se lleva un registro de las cuentas
 
-	public CuentasSalud(String username, String password, Integer numberOfIdentification){ //Se guarda la nueva cuenta
+	public CuentasSalud(String username, String password, String identification){ //Se guarda la nueva cuenta
 		this.username = username;
 		this.password = password;
-		this.numberOfIdentification = numberOfIdentification;
+		this.identification = identification;
 	}
 
 	public String getUsername(){ //Se obtiene el nombre de la cuenta
@@ -33,7 +32,7 @@ public class CuentasSalud{
 		return this.password;
 	}
 
-	public Integer getNumberOfIdentification(){
-		return this.numberOfIdentification;
+	public String getIdentification(){
+		return this.identification;
 	}
 }

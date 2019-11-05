@@ -23,9 +23,9 @@ public class CentroSalud{
 
 		// Constructor de las cuentas ingresadas del centro de salud y los diferentes centros de salud
 		public CentroSalud(){
-			cuentas[0] = new CuentasSalud("Diego", "LaPiCeRo123", 1);
-			cuentas[1] = new CuentasSalud("Andrea", "VOYALLORAR", 1);
-			cuentas[2] = new CuentasSalud("Laura", "PythonTeExtrano", 2);
+			cuentas[0] = new CuentasSalud("Diego", "LaPiCeRo123", "Voluntario");
+			cuentas[1] = new CuentasSalud("Andrea", "VOYALLORAR", "Gerente");
+			cuentas[2] = new CuentasSalud("Laura", "PythonTeExtrano", "Voluntario");
 
 			grafico[0] = new Regiones("Santa Fe", 1);
 			grafico[1] = new Regiones("La Rosa de Guadalupe", 1);
