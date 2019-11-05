@@ -200,4 +200,23 @@ public class VistaCentroSalud{
 		System.out.println("|       | Nombre - Numero - Direccion - Sintomas      ");
 		System.out.println(noti);
 	}
+	public void eliminarnotificaciones(){
+		String elim,elim2;
+		
+		System.out.println("Desea eliminar las notificaciones? \n 1.Si \n 2.No");
+		
+		elim = scan.nextLine();
+		Integer.parseInt(elim);		
+		if (elim = 1){
+			System.out.println("Que notificacion desea eliminar"); //Ingresa numero respectivamente con la posicion de las notificaciones desplegadas
+			elim2 = scan.nextLine();
+										//Agregar instrucciones para eliminar la linea respectiva
+
+			
+		}
+		else if (elim=2){
+			break;
+		}
+	}
+
 }

@@ -163,7 +163,9 @@ public class ControladorCentroSalud{
 
 	private void opcion6CentroNotificaciones(){
 		vistaCentroSalud.notificaciones(peticionAyuda.getInfo());
+	//	vistaCentroSalud.eliminarnotificaciones();
 	}
+	
 	
 	// retorna las notificaciones ingresadas
 
