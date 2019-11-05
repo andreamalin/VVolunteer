@@ -43,9 +43,9 @@ public class PeticionAyuda{
 		try {
 			entrada = new BufferedReader(new FileReader(f));
 				
-				this.info = "";
+				this.info = "|";
 				while(entrada.ready()){
-					this.info += "|\t" + entrada.readLine() + "\n";
+					this.info += "\t" + entrada.readLine() + "\n|";
 				}
 		}catch (IOException e) {
 			e.printStackTrace();

@@ -34,7 +34,7 @@ public class VistaCentroSalud{
 	}
 
 	// Menu adentro del sistema
-	public Integer menuCentroSalud(String nombreUsuario, String noti){
+	public Integer menuCentroSalud(String nombreUsuario){
 		String opcionS;
 		Integer opcion = 0;
 		Boolean bandera = false;
@@ -42,16 +42,14 @@ public class VistaCentroSalud{
 		// Mostrando el menu de inicio de sesion
 		System.out.println("|\n|\n|\t\tBienvenid@ " + nombreUsuario ); 
 		System.out.println("|___________________________________________________");
-		System.out.println("|                   Notificaciones:                 ");
-		System.out.println("|         Nombre: Numero: Direccion: Sintomas:      ");
-		System.out.println("|\n"+noti);
-		System.out.println("|___________________________________________________");
+		System.out.println("|___________________________________________________|");
 		System.out.println("|Estas son las opciones que puede realizar:\t    |");
 		System.out.println("| 1. Ver inventario\t\t\t\t    |");
 		System.out.println("| 2. Recomendaciones para la siguiente jornada\t    |");
 		System.out.println("| 3. Ver medicinas\t\t\t\t    |");
 		System.out.println("| 4. Buscar medicina por sintomas\t\t    |");
-		System.out.println("| 5. Cerrar Sesion\t\t\t\t    |");
+		System.out.println("| 5. Centro de Notificaciones\t\t\t|");
+		System.out.println("| 6. Cerrar Sesion\t\t\t\t    |");
 		System.out.println("|___________________________________________________|");
 
 		// Pidiendole al usuario que ingrese una opcion valida
@@ -173,5 +171,11 @@ public class VistaCentroSalud{
 	// Mostrandole al usuario que los datos ingresados fueron invalidos
 	public void datosInvalidos(){
 		System.out.print("| Los datos ingresados son invalidos\n");
+	}
+
+	public void notificaciones(String noti){
+		System.out.println("|                   Notificaciones:                 ");
+		System.out.println("|         Nombre: Numero: Direccion: Sintomas:      ");
+		System.out.println("|\n"+noti);
 	}
 }
