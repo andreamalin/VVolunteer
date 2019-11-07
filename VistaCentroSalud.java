@@ -194,29 +194,36 @@ public class VistaCentroSalud{
 		System.out.print("| Los datos ingresados son invalidos\n");
 	}
 
-	public void notificaciones(String noti){
+	public void notificaciones(String noti, String recomendaciones){
 		System.out.println("|                   Notificaciones:                 \n|");
 		System.out.println("|       Peticiones de ayuda      ");
 		System.out.println("|       | Nombre - Numero - Direccion - Sintomas      ");
 		System.out.println(noti);
+		System.out.println("| Recomendaciones para la siguiente jornada en Resguardando Tu Salud");
+		System.out.println(recomendaciones);
 	}
-	public void eliminarnotificaciones(){
-		String elim,elim2;
+	public int eliminarnotificaciones(){
+		int elim,elim2;
 		
-		System.out.println("Desea eliminar las notificaciones? \n 1.Si \n 2.No");
-		
-		elim = scan.nextLine();
-		Integer.parseInt(elim);		
-		if (elim = 1){
-			System.out.println("Que notificacion desea eliminar"); //Ingresa numero respectivamente con la posicion de las notificaciones desplegadas
-			elim2 = scan.nextLine();
-										//Agregar instrucciones para eliminar la linea respectiva
+		System.out.println("|Elija que desea borrar \n |1.Notificaciones \n |2.Recomendaciones \n |3. Salir ");
+		elim = scan.nextInt();
+	
+		if (elim == 1){
+			System.out.println("|Que notificacion desea eliminar"); //Ingresa numero respectivamente con la posicion de las notificaciones desplegadas
+			elim2 = scan.nextInt();
 
-			
+										//Agregar instrucciones para eliminar la linea respectiv			
 		}
-		else if (elim=2){
-			break;
+		else if (elim==2){
+			System.out.println("|Que recomendacion desea eliminar"); //Ingresa numero respectivamente con la posicion de las notificaciones desplegadas
+			elim2 = scan.nextInt();
 		}
+		else if (elim == 3){
+			System.out.println("|");
+		}else{
+			System.out.println("|Ingrese una opcion valida");
+		}
+		return elim2;
 	}
 
 }
