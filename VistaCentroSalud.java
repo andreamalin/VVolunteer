@@ -203,7 +203,7 @@ public class VistaCentroSalud{
 		System.out.println(recomendaciones);
 	}
 	public int eliminarnotificaciones(){
-		int elim,elim2;
+		int elim,elim2=0;
 		
 		System.out.println("|Elija que desea borrar \n |1.Notificaciones \n |2.Recomendaciones \n |3. Salir ");
 		elim = scan.nextInt();
