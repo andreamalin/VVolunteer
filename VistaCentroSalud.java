@@ -163,7 +163,7 @@ public class VistaCentroSalud{
 		System.out.println("|       Peticiones de ayuda      ");
 		System.out.print("| Nombre - Numero - Direccion - Sintomas      ");
 		System.out.println(noti);
-		System.out.print("| Recomendaciones para la siguiente jornada en Resguardando Tu Salud");
+		System.out.print("| Recomendaciones de jornada");
 		System.out.println(recomendaciones);
 	}
 

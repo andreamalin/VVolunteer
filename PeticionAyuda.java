@@ -22,10 +22,11 @@ import java.io.*;
 public class PeticionAyuda{
 	private boolean bandera;
 	private int contadorRec;
+	
 	private ArrayList<String> peticiones = new ArrayList<String>(); //Lista con las peticiones de ayuda 
 	private ArrayList<String> recomendaciones = new ArrayList<String>(); //Lista con las recomendaciones de inventario
-	// se crearon variables 
 
+	// se crearon variables 
 	public void setInfo(String[] datosUsuario){
 	  
 	    try(FileWriter fw = new FileWriter("notificaciones.txt", true);
@@ -40,11 +41,11 @@ public class PeticionAyuda{
 	//Se agregan los cambios de medicamento
 	public void setRecomendaciones(String recomendacion, String nombrecentro){
 		contadorRec += 1;
-	    try(FileWriter fw = new FileWriter("notificaciones.txt", true);
+	    try(FileWriter fw = new FileWriter("Recomendaciones.txt", true);
 		    BufferedWriter bw = new BufferedWriter(fw);
 		    PrintWriter out = new PrintWriter(bw))
 		    {
-		    	out.println("|\n|"+contadorRec+"Recomendaciones para la siguiente jornada en "+ nombrecentro + "\n" + recomendacion);       
+		    	out.println("\n|"+contadorRec+". Recomendaciones para la siguiente jornada en "+ nombrecentro + "\n" + recomendacion);       
 		}catch (IOException e) {
 		}
 	}
@@ -105,7 +106,9 @@ public class PeticionAyuda{
 			}
 		} else if (centrodenotificaciones == 2) {
 			try {
-				recomendaciones.remove(eliminar-1);
+				for (int i=0; i<5; i++) {
+					recomendaciones.remove((eliminar-1)+i);
+				}
 				bandera = true;
 			} catch (IndexOutOfBoundsException e) {
 				error = "Notificacion invalida";
@@ -148,6 +151,7 @@ public class PeticionAyuda{
 			PrintWriter pw = new PrintWriter("notificaciones.txt");
 			for (int i = 0; i < peticiones.size(); i++) {
 				writer.write(peticiones.get(i));
+				writer.write("\n");
 			}
 			writer.close();
 
@@ -162,6 +166,7 @@ public class PeticionAyuda{
 			FileWriter writer = new FileWriter("Recomendaciones.txt", true);
 			for (int i = 0; i < recomendaciones.size(); i++) {
 				writer.write(recomendaciones.get(i));
+				writer.write("\n");
 			}
 			writer.close();
 		} catch (IOException e) {
@@ -178,8 +183,7 @@ public class PeticionAyuda{
 		else{
 			bandera = false;
 		}
-	return bandera;
-
+		return bandera;
 	}
 }
 

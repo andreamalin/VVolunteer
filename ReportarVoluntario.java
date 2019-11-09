@@ -24,6 +24,7 @@ import java.util.Scanner;
 
 
 public class ReportarVoluntario extends Reportes{
+	private ArrayList<String> reportesVoluntarios = new ArrayList<String>();
 	//Constructor
 	public ReportarVoluntario(String nombrep, String nombrev, String numero, String motivo){
 		super(nombrep, nombrev, numero, motivo);
@@ -37,5 +38,8 @@ public class ReportarVoluntario extends Reportes{
 			out.println(datos[0] + " " + datos[1] + " " + datos[2] + " " + datos[3]);       
 		}catch (IOException e) {
 		}
+	}
+	public void convertiraarray(){
+		txtToArray(reportesVoluntarios, "reportesVoluntarios.txt");
 	}
 }

@@ -14,6 +14,9 @@ Fecha de creación: 24/10/2019
 
 La clase madre de los reportes.
 **********************************************************/
+import java.util.*;
+import java.io.*;
+
 
 public class Reportes{
 	protected String nombrep; //Nombre del paciente
@@ -29,5 +32,20 @@ public class Reportes{
 	}
 	//Todos los reportes ingresan a un txt dependiendo del tipo
 	public void meterDatos(String[] datos){
+	}
+	//Se pasa de archivo de texto a array
+	public void txtToArray(ArrayList<String> list, String filename){
+		try {
+			Scanner scanner = new Scanner(new File(filename)); //Se lee el archivo de texto
+			while (scanner.hasNextLine()) {
+				list.add(scanner.nextLine()); //Mientras hayan lineas por leer se meten a la lista
+			}
+			scanner.close();
+		} catch (FileNotFoundException e) { //Se muestra la razon de error por la que no se encuentra el doc
+			e.printStackTrace();
+		}
+	}
+	//Todos convierten a array sus datos
+	public void convertiraarray(){
 	}
 }
