@@ -91,12 +91,12 @@ public class PeticionAyuda{
 		return info;
 	}
 	//Se elimina la notificacion pedida
-	public void eliminar(int[] posicionaeliminar){
+	public void eliminar(Integer[] posicionaeliminar){
 		boolean bandera = false;
-		txtToArray(); //Se pasa a array ambos centros
+		txtToArray();
 		String error;
-		int centrodenotificaciones = posicionaeliminar[0]; 
-		int eliminar = posicionaeliminar[1]; 
+		Integer centrodenotificaciones = posicionaeliminar[0]; 
+		Integer eliminar = posicionaeliminar[1]; 
 
 		if (centrodenotificaciones == 1) {
 			try {
@@ -119,7 +119,7 @@ public class PeticionAyuda{
 	//Se pasa de archivo de texto a array
 	private void txtToArray(){
 		//Notificaciones
-		peticiones = new ArrayList<String>();
+	
 		try {
 			Scanner scanner = new Scanner(new File("notificaciones.txt")); //Se lee el archivo de texto
 			while (scanner.hasNextLine()) {
@@ -130,7 +130,7 @@ public class PeticionAyuda{
 			e.printStackTrace();
 		}
 		//Recomendaciones
-		recomendaciones = new ArrayList<String>();
+
 		try {
 			Scanner scanner = new Scanner(new File("Recomendaciones.txt")); //Se lee el archivo de texto
 			while (scanner.hasNextLine()) {
@@ -173,6 +173,16 @@ public class PeticionAyuda{
 			e.printStackTrace();
 		}
 	}
+
+	// Getters del tamaño de los arraylist
+	public Integer getPeticiones(){
+		return peticiones.size();
+	}
+	
+	public Integer getRecomendacionesA(){
+		return recomendaciones.size();
+	}
+
 	// se crea un numero aleatorio para verificar si se puede ayudar 
 	public boolean enCamino(){
 		Random r = new Random();

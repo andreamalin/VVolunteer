@@ -1,8 +1,32 @@
+|1. Recomendaciones para la siguiente jornada en Santa Fe
+| Se reviso el inventario de 'Santa Fe' y el medicamento que se necesito,
+| Para el siguiente turno se debe de mantener la cantidad de Vitaflenaco la cual es 6
+| Para el siguiente turno se debe de mantener la cantidad de Loratadina la cual es 8
+|1. Recomendaciones para la siguiente jornada en Santa Fe
+| Se reviso el inventario de 'Santa Fe' y el medicamento que se necesito,
+| Para el siguiente turno se debe de mantener la cantidad de Vitaflenaco la cual es 6
+| Para el siguiente turno se debe de mantener la cantidad de Loratadina la cual es 8
 
 |1. Recomendaciones para la siguiente jornada en Santa Fe
 |
 | Se reviso el inventario de 'Santa Fe' y el medicamento que se necesito,
 | y se llego a la siguiente conclusion: 
+| Para el siguiente turno se debe de mantener la cantidad de Vitaflenaco la cual es 128
+| Para el siguiente turno se debe de mantener la cantidad de Paracetamol la cual es 128
+| Para el siguiente turno se debe de mantener la cantidad de Loratadina la cual es 128
+|1. Recomendaciones para la siguiente jornada en Santa Fe
+| Se reviso el inventario de 'Santa Fe' y el medicamento que se necesito,
 | Para el siguiente turno se debe de mantener la cantidad de Vitaflenaco la cual es 6
-| Para el siguiente turno se debe de mantener la cantidad de Paracetamol la cual es 7
 | Para el siguiente turno se debe de mantener la cantidad de Loratadina la cual es 8
+|1. Recomendaciones para la siguiente jornada en Santa Fe
+| Se reviso el inventario de 'Santa Fe' y el medicamento que se necesito,
+| Para el siguiente turno se debe de mantener la cantidad de Vitaflenaco la cual es 6
+| Para el siguiente turno se debe de mantener la cantidad de Loratadina la cual es 8
+
+|1. Recomendaciones para la siguiente jornada en Santa Fe
+|
+| Se reviso el inventario de 'Santa Fe' y el medicamento que se necesito,
+| y se llego a la siguiente conclusion: 
+| Para el siguiente turno se debe de mantener la cantidad de Vitaflenaco la cual es 128
+| Para el siguiente turno se debe de mantener la cantidad de Paracetamol la cual es 128
+| Para el siguiente turno se debe de mantener la cantidad de Loratadina la cual es 128

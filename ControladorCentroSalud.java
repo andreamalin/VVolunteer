@@ -17,6 +17,8 @@ Fecha de creación: 31/09/2019
 Esta clase se encarga de mostrar los numeros y direcciones de
 las cedes para que la población pueda donar medicamento.
 **********************************************************/
+import java.util.ArrayList;
+
 public class ControladorCentroSalud{
 	private PeticionAyuda peticionAyuda = new PeticionAyuda();
 	private VistaCentroSalud vistaCentroSalud = new VistaCentroSalud();
@@ -137,12 +139,12 @@ public class ControladorCentroSalud{
 	}
 
 
-
 	// Sirve para mostrarle al usuario la informacion de la medicina
 	private void opcion3CentroSalud(){
 		centro.getMedicamento().buscarMedicamento(vistaCentroSalud.pidiendoMedicamento());
 		vistaCentroSalud.mostrandoMensaje(centro.getMedicamento().mostrarInformacion());  
 	}
+
 	
 	// Sirve para pedirle los datos al usuario, conseguir la información y mostrarla; por medio de su vista
 	private void opcion4CentroSalud(){
@@ -154,23 +156,39 @@ public class ControladorCentroSalud{
 		vistaCentroSalud.mostrandoMensaje(centro.getMedicamento().mostrarRecomendados());
 	}
 
+
 	//Sirve para agregar un nuevo medicamento
 	private void opcion5CentroSalud(){
 		centro.getMedicamento().agregarMed(vistaCentroSalud.obtenerNuevoMed());
 	}
 
-
-
+	// Mostrando el centro de notificaciones
 	private void opcion6CentroNotificaciones(){
-		vistaCentroSalud.notificaciones(peticionAyuda.getInfo(), peticionAyuda.getRecomendaciones());
+		Integer[] cantNotificaciones = new Integer[2], permiso = new Integer[2];
+		String position = centro.getCuentas()[centro.getLoggedOnPosition()].getIdentification();
 
-		peticionAyuda.eliminar(vistaCentroSalud.preguntarEliminar());
+		// Consiguiendo la informacion necesaria para los metodos
+		cantNotificaciones[0] = peticionAyuda.getPeticiones();
+		cantNotificaciones[1] = peticionAyuda.getRecomendacionesA();
+
+		permiso[0] = 0;
+		permiso[1] = 2;
+
+		// Mostrando las notificaciones en el sistema
+		vistaCentroSalud.notificaciones(peticionAyuda.getInfo(), peticionAyuda.getRecomendaciones(), cantNotificaciones, position);
+
+		// Preguntando si no hay algo que se deba de eliminar
+		if((cantNotificaciones[0] != 0) && (cantNotificaciones[1] != 0)){
+
+			// Verificando que sea gerente
+			if(position.equalsIgnoreCase("Gerente")){
+				permiso[0] = 1;
+				permiso[1] = 3;
+			}
+			peticionAyuda.eliminar(vistaCentroSalud.preguntarEliminar(permiso));
+		}
 	}
 	
-	
-	// retorna las notificaciones ingresadas
-
-
 	// METODOS PARA OBTENER INFORMACION DEL USUARIO  A QUE CENTRO DE SALUD HACER REFERENCIA
 	// Consiguiendo los centros de salud que puede elegir el usuario 
 	private String[] obtenerCentroDeSalud(){

@@ -158,48 +158,75 @@ public class VistaCentroSalud{
 	}	
 
 	//OPCION 6 montando notificaciones del centro de notificaciones
-	public void notificaciones(String noti, String recomendaciones){
-		System.out.println("|                   Notificaciones:                 \n|");
-		System.out.println("|       Peticiones de ayuda      ");
-		System.out.print("| Nombre - Numero - Direccion - Sintomas      ");
-		System.out.println(noti);
-		System.out.print("| Recomendaciones de jornada");
-		System.out.println(recomendaciones);
+	public void notificaciones(String noti, String recomendaciones,Integer[] cantNotificaciones , String puesto){
+
+		// Mostrando las notificaciones 
+		System.out.println("|\n|\n|                   Notificaciones:                 \n|");
+
+		// Mostrando las notificaciones si hay
+		if(cantNotificaciones[0] != 0){
+			System.out.println("|       Peticiones de ayuda");
+			System.out.print("| Nombre - Numero - Direccion - Sintomas");
+			System.out.println(noti);
+		}
+		
+		// Mostrando las notificaciones si es un gerente
+		if(puesto.equalsIgnoreCase("Gerente") && cantNotificaciones[1] != 0){
+			System.out.print("| Recomendaciones de jornada");
+			System.out.print(recomendaciones);
+		}	
+
+		// Mostrando el mensaje que no hay notificaciones
+		if((cantNotificaciones[0] == 0) && (puesto.equalsIgnoreCase("Voluntario"))){
+			System.out.print("|\tNo hay notificaciones que mostrar");
+		} else if((cantNotificaciones[0] == 0) && (cantNotificaciones[1] == 0)){
+			System.out.print("|\tNo hay notificaciones que mostrar");
+		}
+
 	}
 
 	//Se pregunta al usuario si desea eliminar una notificacion
-	public int[] preguntarEliminar(){
-		int[] borrarNotificacion = new int[2];
-		Boolean bandera = false;
-		//Se pregunta al usuario si desea eliminar una notificacion
-		System.out.println("| 	Desea borrar alguna notificacion?\n|1. Peticiones de ayuda\n|2. Recomendaciones de jornada\n|3. No borrar ninguna notificacion ");
-		String opcion = scan.nextLine();
-		do{
-			System.out.print("| Ingrese el centro de salud con el cual desea interactuar: ");
-			opcion = scan.nextLine();
-		}while(tryCatch(opcion) == false);
+	public Integer[] preguntarEliminar(Integer[] permiso){
+		Integer[] borrarNotificacion = new Integer[2];
+		String opcion;
+
+
+		// Mostrandole las opciones que puede realizar el usuario
+		System.out.println("\n|\n| Desea borrar alguna notificacion?");
+		System.out.println("| 1. No borrar ninguna notificacion ");
+		System.out.print("| 2. Peticiones de ayuda");
+
+		// Mostrando datos exclusivos del gerente
+		if(permiso[0] == 1){
+			System.out.print("\n| 3. Recomendaciones de jornada");
+		}
 		
-		borrarNotificacion[0] = Integer.parseInt(opcion);
-		bandera = false; //Se regresa a falso
+	
+		// Verificando que la opción seleccionada este dentro del rango
+		do{
+			do{
+				System.out.print("\n| Ingrese la opcion que desea realizar: ");
+				opcion = scan.nextLine();
+			}while(tryCatch(opcion) == false);
+
+			borrarNotificacion[0] = Integer.parseInt(opcion);
+
+		}while((borrarNotificacion[0] < 0) || (borrarNotificacion[0] > permiso[1]));
+
 
 		//Se pregunta al usuario que notificacion se desea eliminar
-		if (borrarNotificacion[0]== 1 || borrarNotificacion[0] == 2) {
-			System.out.println("| Ingrese el numero notificacion a eliminar: ");
-			String numero = scan.nextLine();
-			while (bandera == false){
-				try{
-					Integer.parseInt(numero);
-					bandera = true;
-					borrarNotificacion[1] = Integer.parseInt(numero);
-				}catch(NumberFormatException nfe){
-					bandera = false;
-					System.out.print("| Favor ingrese una opcion, con numeros ");
-				}
-			}
+		if (borrarNotificacion[0] != 3) {
+			do{
+				System.out.print("| Ingrese el numero notificacion a eliminar: ");
+				opcion = scan.nextLine();
+			}while(tryCatch(opcion) == false);
+
+			borrarNotificacion[1] = Integer.parseInt(opcion);
 		}
 
 		return borrarNotificacion;
 	}
+
 
 	// FUNCIONALIDADES VARIAS
 	// Mostrando cualquier mensaje

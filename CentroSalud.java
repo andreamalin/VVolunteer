@@ -25,7 +25,7 @@ public class CentroSalud{
 		public CentroSalud(){
 			cuentas[0] = new CuentasSalud("Diego", "LaPiCeRo123", "Voluntario");
 			cuentas[1] = new CuentasSalud("Andrea", "VOYALLORAR", "Gerente");
-			cuentas[2] = new CuentasSalud("Laura", "PythonTeExtrano", "Voluntario");
+			cuentas[2] = new CuentasSalud("Laura", "123", "Voluntario");
 
 			grafico[0] = new Regiones("Santa Fe", 1);
 			grafico[1] = new Regiones("La Rosa de Guadalupe", 1);
