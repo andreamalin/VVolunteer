@@ -123,8 +123,8 @@ public class ControladorCentroSalud{
 		cantidadNecesitada = vistaCentroSalud.pedirMedicinaNecesitada(nombreMedicamento);
 
 		// Utilizando la informacion recogida y mostrandole al usuario lo obtenido
-		vistaCentroSalud.mostrandoMensaje((centro.getGrafico()[seleccionado]).elaborarDatos(cantidadNecesitada));
-		peticionAyuda.setRecomendaciones((centro.getGrafico()[seleccionado]).elaborarDatos(cantidadNecesitada), centro.getGrafico()[seleccionado].getCentroSaludNombre());
+		vistaCentroSalud.mostrandoMensaje((centro.getGrafico()[seleccionado]).elaborarDatos(cantidadNecesitada, centro.getGrafico()[seleccionado].getCentroSaludNombre()));
+		peticionAyuda.setRecomendaciones((centro.getGrafico()[seleccionado]).elaborarDatos(cantidadNecesitada, centro.getGrafico()[seleccionado].getCentroSaludNombre()), centro.getGrafico()[seleccionado].getCentroSaludNombre());
 	}
 
 	private Integer conseguirPosicionSalud(){

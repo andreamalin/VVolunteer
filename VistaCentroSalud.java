@@ -18,8 +18,7 @@ Vista encargada del primer Y segundo controlador
 import java.util.Scanner;
 
 public class VistaCentroSalud{
-	Scanner input = new Scanner(System.in);
-	Scanner scan = new Scanner(System.in);
+	private Scanner scan = new Scanner(System.in);
 
 	// Obteniendo el nombre y contraseña del usuario
 	public String[] inicioSesion(){
@@ -58,15 +57,7 @@ public class VistaCentroSalud{
 			System.out.print("| Ingrese la opcion que desea realizar: ");
 			opcionS = scan.nextLine();
 		
-			// Viendo si es un numero lo ingresado
-			try{
-				Integer.parseInt(opcionS);
-				bandera = true;
-			}catch(NumberFormatException nfe){
-				bandera = false;
-				System.out.print("| Favor ingrese una opcion, con numeros ");
-			}
-		}while(bandera == false);
+		}while(tryCatch(opcionS) == false);
 			
 
 		// Convirtiendo la opcion string a una opcion entera 
@@ -80,29 +71,20 @@ public class VistaCentroSalud{
 	public Integer obtenerCentroDeSalud(String[] informacion){
 		Integer centroDeSaludSeleccionado, cantidadCentrosMostrados = informacion.length;
 		String opcionS;
-		Boolean bandera = false;
 
 		// Mostrandole los centros de salud que puede utilizar
 		System.out.print("|\n| Estos son los centros de salud con los que posee comunicacion: ");
 		for(int i = 0; i < cantidadCentrosMostrados; i++){
 			System.out.print(informacion[i]);
 		}
-
+		System.out.print("\n");
 		// Obteniendo el centro de salud que quiere el usuario
 		do{
 			do{	
 				System.out.print("| Ingrese el centro de salud con el cual desea interactuar: ");
 				opcionS = scan.nextLine();
-
-				// Confirmando que haya ingresado un numero
-				try{
-					Integer.parseInt(opcionS);
-					bandera = true;
-				}catch(NumberFormatException nfe){
-					bandera = false;
-					System.out.print("| Favor ingrese una opcion, con numeros ");
-				}
-			}while(bandera == false);
+				
+			}while(tryCatch(opcionS) == false);
 
 			centroDeSaludSeleccionado = Integer.parseInt(opcionS);
 
@@ -118,23 +100,14 @@ public class VistaCentroSalud{
 		// Inicializando las variables en donde se guardan los medicamentos
 		Integer[] cantidadMedicamentos = new Integer[datosMedicamentos.length];
 		String[] cantidadMedicamentosS = new String[datosMedicamentos.length];
-		Boolean bandera = false;
 
 		for(int i = 0; i < datosMedicamentos.length; i++){
 			 do{	
 			 	// Pidiendole el tipo de medicamento que utilizo
 				System.out.print("| Ingrese la cantidad de medicina necesitada en esta jornada de " + datosMedicamentos[i] + ": ");
-				cantidadMedicamentosS[i] = input.nextLine();
+				cantidadMedicamentosS[i] = scan.nextLine();
 
-				// Confirmando que haya ingresado un numero
-				try{
-					Integer.parseInt(cantidadMedicamentosS[i]);
-					bandera = true;
-				}catch(NumberFormatException nfe){
-					bandera = false;
-					System.out.print("| Favor ingrese una opcion, con numeros ");
-				}
-			}while(bandera == false);
+			}while(tryCatch(cantidadMedicamentosS[i]) == false);
 
 			cantidadMedicamentos[i] = Integer.parseInt(cantidadMedicamentosS[i]);
 		}
@@ -188,28 +161,25 @@ public class VistaCentroSalud{
 	public void notificaciones(String noti, String recomendaciones){
 		System.out.println("|                   Notificaciones:                 \n|");
 		System.out.println("|       Peticiones de ayuda      ");
-		System.out.println("| Nombre - Numero - Direccion - Sintomas      ");
+		System.out.print("| Nombre - Numero - Direccion - Sintomas      ");
 		System.out.println(noti);
-		System.out.println("| Recomendaciones para la siguiente jornada en Resguardando Tu Salud");
+		System.out.print("| Recomendaciones para la siguiente jornada en Resguardando Tu Salud");
 		System.out.println(recomendaciones);
 	}
+
 	//Se pregunta al usuario si desea eliminar una notificacion
 	public int[] preguntarEliminar(){
 		int[] borrarNotificacion = new int[2];
 		Boolean bandera = false;
 		//Se pregunta al usuario si desea eliminar una notificacion
 		System.out.println("| 	Desea borrar alguna notificacion?\n|1. Peticiones de ayuda\n|2. Recomendaciones de jornada\n|3. No borrar ninguna notificacion ");
-		String info = scan.nextLine();
-		while (bandera == false){
-			try{
-				Integer.parseInt(info);
-				bandera = true;
-				borrarNotificacion[0] = Integer.parseInt(info);
-			}catch(NumberFormatException nfe){
-				bandera = false;
-				System.out.print("| Favor ingrese una opcion, con numeros ");
-			}
-		}
+		String opcion = scan.nextLine();
+		do{
+			System.out.print("| Ingrese el centro de salud con el cual desea interactuar: ");
+			opcion = scan.nextLine();
+		}while(tryCatch(opcion) == false);
+		
+		borrarNotificacion[0] = Integer.parseInt(opcion);
 		bandera = false; //Se regresa a falso
 
 		//Se pregunta al usuario que notificacion se desea eliminar
@@ -230,6 +200,8 @@ public class VistaCentroSalud{
 
 		return borrarNotificacion;
 	}
+
+	// FUNCIONALIDADES VARIAS
 	// Mostrando cualquier mensaje
 	public void mostrandoMensaje(String informacion){
 		System.out.print(informacion);
@@ -238,5 +210,18 @@ public class VistaCentroSalud{
 	// Mostrandole al usuario que los datos ingresados fueron invalidos
 	public void datosInvalidos(){
 		System.out.print("| Los datos ingresados son invalidos\n");
+	}
+
+	// Mostrando si la opcion es un número o no
+	public Boolean tryCatch(String opcionS){
+		Boolean bandera = false;
+		try{
+			Integer.parseInt(opcionS);
+			bandera = true;
+		}catch(NumberFormatException nfe){
+			bandera = false;
+			System.out.print("| Favor ingrese una opcion, con numeros ");
+		}
+		return bandera;
 	}
 }
