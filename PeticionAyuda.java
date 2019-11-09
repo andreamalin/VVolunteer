@@ -25,14 +25,13 @@ public class PeticionAyuda{
 	// se crearon variables 
 
 	public void setInfo(String[] datosUsuario){
-	    int contador = 0;
-	    contador += 1;
+	  
 	    try(FileWriter fw = new FileWriter("notificaciones.txt", true);
 		    BufferedWriter bw = new BufferedWriter(fw);
 		    PrintWriter out = new PrintWriter(bw))
 		    {
 
-		        out.println("\n" + contador + "." + datosUsuario[0] + " " + datosUsuario[1] + " " + datosUsuario[2] + " " + datosUsuario[3]+ ". ");       
+		        out.println(datosUsuario[0] + " " + datosUsuario[1] + " " + datosUsuario[2] + " " + datosUsuario[3]+ ". ");       
 		}catch (IOException e) {
 		}
 	}
@@ -90,11 +89,21 @@ public class PeticionAyuda{
 	}	
 	// Eliminar
 	public void eliminarNoti(int o){
+
+
+
+
+
+
+
+
+
+
 		// se concatenan los datos ingresados por el usuario y con sus especificaciones en una variable de tipo texto para mostrarla
-		File f = new File( "C:notificaciones.txt" );
+	/*	File f = new File( "C:notificaciones.txt" );
 		ArrayList<String> texto = new ArrayList<String>();
 		BufferedReader reader;
-//		int contador=0;														Contador para repetir for e ingresar nuevas notificaciones separadas		
+//		int contador=0;		Contador para repetir for e ingresar nuevas notificaciones separadas		
 		try {
 			reader = new BufferedReader(new FileReader("notificaciones.txt"));	
 		
@@ -125,6 +134,7 @@ public class PeticionAyuda{
 	catch (IOException e) {
 		e.printStackTrace();
 		}
+		*/
 	}
 	
 

@@ -202,28 +202,76 @@ public class VistaCentroSalud{
 		System.out.println("| Recomendaciones para la siguiente jornada en Resguardando Tu Salud");
 		System.out.println(recomendaciones);
 	}
-	public int eliminarnotificaciones(){
-		int elim,elim2=0;
-		
+	public Integer eliminarNotificaciones(){
+		String info;
+		int eliminar = 0;
+		Boolean bandera = false;
 		System.out.println("|Elija que desea borrar \n |1.Notificaciones \n |2.Recomendaciones \n |3. Salir ");
-		elim = scan.nextInt();
-	
-		if (elim == 1){
-			System.out.println("|Que notificacion desea eliminar"); //Ingresa numero respectivamente con la posicion de las notificaciones desplegadas
-			elim2 = scan.nextInt();
+		info = scan.nextLine();
+				while (bandera == false){
+					try{
+						Integer.parseInt(info);
+						bandera = true;
+					}catch(NumberFormatException nfe){
+						bandera = false;
+						System.out.print("| Favor ingrese una opcion, con numeros ");
+					}
 
-										//Agregar instrucciones para eliminar la linea respectiv			
+					if (bandera == true){
+					eliminar = Integer.parseInt(info);
+					}
+			}
+			return menuNotificaciones(eliminar);
 		}
-		else if (elim==2){
-			System.out.println("|Que recomendacion desea eliminar"); //Ingresa numero respectivamente con la posicion de las notificaciones desplegadas
-			elim2 = scan.nextInt();
-		}
-		else if (elim == 3){
-			System.out.println("|");
+
+	public int menuNotificaciones(int m){
+		String op;
+		int opcionAeliminar = 0;
+		boolean bandera = false;
+		
+		if (m == 1){
+			System.out.println("|Que notificacion desea eliminar"); //Ingresa numero respectivamente con la posicion de las notificaciones desplegadas
+				op = scan.nextLine();
+				// Confirmando que haya ingresado un numero
+				while (bandera == false){
+					try{
+						Integer.parseInt(op);
+						bandera = true;
+					}catch(NumberFormatException nfe){
+						bandera = false;
+						System.out.print("| Favor ingrese una opcion, con numeros ");
+					}
+
+					if (bandera == true){
+					opcionAeliminar = Integer.parseInt(op);
+					}
+
+
+				}
+		}else if (m == 2){
+				System.out.println("|Que Recomendacion desea eliminar"); //Ingresa numero respectivamente con la posicion de las notificaciones desplegadas
+				op = scan.nextLine();
+				// Confirmando que haya ingresado un numero
+				while (bandera == false){
+					try{
+						Integer.parseInt(op);
+						bandera = true;
+					}catch(NumberFormatException nfe){
+						bandera = false;
+						System.out.print("| Favor ingrese una opcion, con numeros ");
+					}
+
+					if (bandera == true){
+					opcionAeliminar = Integer.parseInt(op);
+					}
+					
+				}
+		}else if(m == 3){
+				System.out.println("|");
 		}else{
-			System.out.println("|Ingrese una opcion valida");
+				System.out.println("|Ingrese una opcion valida");
 		}
-		return elim2;
+		return opcionAeliminar;
 	}
 
 }

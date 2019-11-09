@@ -163,8 +163,9 @@ public class ControladorCentroSalud{
 
 	private void opcion6CentroNotificaciones(){
 		vistaCentroSalud.notificaciones(peticionAyuda.getInfo(), peticionAyuda.getRecomendaciones());
-		peticionAyuda.eliminarNoti(vistaCentroSalud.eliminarnotificaciones());
-		peticionAyuda.eliminarReco(vistaCentroSalud.eliminarnotificaciones());
+		vistaCentroSalud.eliminarNotificaciones(); // retorna el numero de la notificacion que desea eliminar
+		//peticionAyuda.eliminarNoti(vistaCentroSalud.eliminarnotificaciones());
+		//peticionAyuda.eliminarReco(vistaCentroSalud.eliminarnotificaciones());
 
 	}
 	
