@@ -184,6 +184,52 @@ public class VistaCentroSalud{
 		return info;
 	}	
 
+	//OPCION 6 montando notificaciones del centro de notificaciones
+	public void notificaciones(String noti, String recomendaciones){
+		System.out.println("|                   Notificaciones:                 \n|");
+		System.out.println("|       Peticiones de ayuda      ");
+		System.out.println("| Nombre - Numero - Direccion - Sintomas      ");
+		System.out.println(noti);
+		System.out.println("| Recomendaciones para la siguiente jornada en Resguardando Tu Salud");
+		System.out.println(recomendaciones);
+	}
+	//Se pregunta al usuario si desea eliminar una notificacion
+	public int[] preguntarEliminar(){
+		int[] borrarNotificacion = new int[2];
+		Boolean bandera = false;
+		//Se pregunta al usuario si desea eliminar una notificacion
+		System.out.println("| 	Desea borrar alguna notificacion?\n|1. Peticiones de ayuda\n|2. Recomendaciones de jornada\n|3. No borrar ninguna notificacion ");
+		String info = scan.nextLine();
+		while (bandera == false){
+			try{
+				Integer.parseInt(info);
+				bandera = true;
+				borrarNotificacion[0] = Integer.parseInt(info);
+			}catch(NumberFormatException nfe){
+				bandera = false;
+				System.out.print("| Favor ingrese una opcion, con numeros ");
+			}
+		}
+		bandera = false; //Se regresa a falso
+
+		//Se pregunta al usuario que notificacion se desea eliminar
+		if (borrarNotificacion[0]== 1 || borrarNotificacion[0] == 2) {
+			System.out.println("| Ingrese el numero notificacion a eliminar: ");
+			String numero = scan.nextLine();
+			while (bandera == false){
+				try{
+					Integer.parseInt(numero);
+					bandera = true;
+					borrarNotificacion[1] = Integer.parseInt(numero);
+				}catch(NumberFormatException nfe){
+					bandera = false;
+					System.out.print("| Favor ingrese una opcion, con numeros ");
+				}
+			}
+		}
+
+		return borrarNotificacion;
+	}
 	// Mostrando cualquier mensaje
 	public void mostrandoMensaje(String informacion){
 		System.out.print(informacion);
@@ -193,85 +239,4 @@ public class VistaCentroSalud{
 	public void datosInvalidos(){
 		System.out.print("| Los datos ingresados son invalidos\n");
 	}
-
-	public void notificaciones(String noti, String recomendaciones){
-		System.out.println("|                   Notificaciones:                 \n|");
-		System.out.println("|       Peticiones de ayuda      ");
-		System.out.println("|       | Nombre - Numero - Direccion - Sintomas      ");
-		System.out.println(noti);
-		System.out.println("| Recomendaciones para la siguiente jornada en Resguardando Tu Salud");
-		System.out.println(recomendaciones);
-	}
-	public Integer eliminarNotificaciones(){
-		String info;
-		int eliminar = 0;
-		Boolean bandera = false;
-		System.out.println("|Elija que desea borrar \n |1.Notificaciones \n |2.Recomendaciones \n |3. Salir ");
-		info = scan.nextLine();
-				while (bandera == false){
-					try{
-						Integer.parseInt(info);
-						bandera = true;
-					}catch(NumberFormatException nfe){
-						bandera = false;
-						System.out.print("| Favor ingrese una opcion, con numeros ");
-					}
-
-					if (bandera == true){
-					eliminar = Integer.parseInt(info);
-					}
-			}
-			return menuNotificaciones(eliminar);
-		}
-
-	public int menuNotificaciones(int m){
-		String op;
-		int opcionAeliminar = 0;
-		boolean bandera = false;
-		
-		if (m == 1){
-			System.out.println("|Que notificacion desea eliminar"); //Ingresa numero respectivamente con la posicion de las notificaciones desplegadas
-				op = scan.nextLine();
-				// Confirmando que haya ingresado un numero
-				while (bandera == false){
-					try{
-						Integer.parseInt(op);
-						bandera = true;
-					}catch(NumberFormatException nfe){
-						bandera = false;
-						System.out.print("| Favor ingrese una opcion, con numeros ");
-					}
-
-					if (bandera == true){
-					opcionAeliminar = Integer.parseInt(op);
-					}
-
-
-				}
-		}else if (m == 2){
-				System.out.println("|Que Recomendacion desea eliminar"); //Ingresa numero respectivamente con la posicion de las notificaciones desplegadas
-				op = scan.nextLine();
-				// Confirmando que haya ingresado un numero
-				while (bandera == false){
-					try{
-						Integer.parseInt(op);
-						bandera = true;
-					}catch(NumberFormatException nfe){
-						bandera = false;
-						System.out.print("| Favor ingrese una opcion, con numeros ");
-					}
-
-					if (bandera == true){
-					opcionAeliminar = Integer.parseInt(op);
-					}
-					
-				}
-		}else if(m == 3){
-				System.out.println("|");
-		}else{
-				System.out.println("|Ingrese una opcion valida");
-		}
-		return opcionAeliminar;
-	}
-
 }

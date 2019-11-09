@@ -18,10 +18,12 @@ reporta ayuda y mandar la ayuda lo antes posible.
 **********************************************************/
 import java.util.*;
 import java.io.*;
-import java.util.ArrayList;
-import java.util.Random;
+
 public class PeticionAyuda{
 	private boolean bandera;
+	private int contadorRec;
+	private ArrayList<String> peticiones = new ArrayList<String>(); //Lista con las peticiones de ayuda 
+	private ArrayList<String> recomendaciones = new ArrayList<String>(); //Lista con las recomendaciones de inventario
 	// se crearon variables 
 
 	public void setInfo(String[] datosUsuario){
@@ -37,11 +39,12 @@ public class PeticionAyuda{
 	}
 	//Se agregan los cambios de medicamento
 	public void setRecomendaciones(String recomendacion, String nombrecentro){
+		contadorRec += 1;
 	    try(FileWriter fw = new FileWriter("notificaciones.txt", true);
 		    BufferedWriter bw = new BufferedWriter(fw);
 		    PrintWriter out = new PrintWriter(bw))
 		    {
-		    	out.println("\nRecomendaciones para la siguiente jornada en "+ nombrecentro + "\n" + recomendacion);       
+		    	out.println("|\n|"+contadorRec+"Recomendaciones para la siguiente jornada en "+ nombrecentro + "\n" + recomendacion);       
 		}catch (IOException e) {
 		}
 	}
@@ -57,7 +60,7 @@ public class PeticionAyuda{
 				
 				while(entrada.ready()){
 					contador +=1;
-					info += "| "+ contador  +" \t" + entrada.readLine() + "\n";
+					info += "|\t"+ contador + ". " + entrada.readLine() + "\n";
 
 				}
 				
@@ -77,8 +80,7 @@ public class PeticionAyuda{
 			entrada = new BufferedReader(new FileReader(f));
 				
 				while(entrada.ready()){
-					contador +=1;
-					info += "| "+ contador  +" \t" + entrada.readLine() + "\n";
+					info += "|\t" + entrada.readLine() + "\n";
 
 				}
 				
@@ -86,126 +88,87 @@ public class PeticionAyuda{
 			e.printStackTrace();
 		}
 		return info;
-	}	
-	// Eliminar
-	public void eliminarNoti(int o){
+	}
+	//Se elimina la notificacion pedida
+	public void eliminar(int[] posicionaeliminar){
+		boolean bandera = false;
+		txtToArray(); //Se pasa a array ambos centros
+		String error;
+		int centrodenotificaciones = posicionaeliminar[0]; 
+		int eliminar = posicionaeliminar[1]; 
 
-
-
-
-
-
-
-
-
-
-		// se concatenan los datos ingresados por el usuario y con sus especificaciones en una variable de tipo texto para mostrarla
-	/*	File f = new File( "C:notificaciones.txt" );
-		ArrayList<String> texto = new ArrayList<String>();
-		BufferedReader reader;
-//		int contador=0;		Contador para repetir for e ingresar nuevas notificaciones separadas		
+		if (centrodenotificaciones == 1) {
+			try {
+				peticiones.remove(eliminar-1);
+			} catch (IndexOutOfBoundsException e) {
+				error = "Notificacion invalida";
+			}
+		} else if (centrodenotificaciones == 2) {
+			try {
+				recomendaciones.remove(eliminar-1);
+				bandera = true;
+			} catch (IndexOutOfBoundsException e) {
+				error = "Notificacion invalida";
+			}
+		}
+		arraytoTxt(); //Se pasa el array nuevo a txt
+	}
+	//Se pasa de archivo de texto a array
+	private void txtToArray(){
+		//Notificaciones
+		peticiones = new ArrayList<String>();
 		try {
-			reader = new BufferedReader(new FileReader("notificaciones.txt"));	
-		
-		String line = reader.readLine();			//MANDA TEXTO DE NOTIFICACION.TXT A ARRAYLIST.
-		while (line != null) {
-			texto.add(line);
-			// read next line
-			line = reader.readLine();
-	//		contador++;
+			Scanner scanner = new Scanner(new File("notificaciones.txt")); //Se lee el archivo de texto
+			while (scanner.hasNextLine()) {
+				peticiones.add(scanner.nextLine()); //Mientras hayan lineas por leer se meten a la lista
+			}
+			scanner.close();
+		} catch (FileNotFoundException e) { //Se muestra la razon de error por la que no se encuentra el doc
+			e.printStackTrace();
 		}
-		reader.close();
-		texto.remove(o-1);			//ELIMINA LA NOTIFICACION SOLICITADA
-
-		try(FileWriter fw = new FileWriter("notificaciones.txt", true);			//ESCRIBE EN NOTIFICACIONES.TXT EL ARRAY CON LA NOTIFICACION YA ELIMINADA
-		BufferedWriter bw = new BufferedWriter(fw);
-		PrintWriter out = new PrintWriter(bw))
-		{	//		String x;
-	//	for (int i= 0 ; i < contador ; i++ ){
-	//		x = texto.get(i).toString();
-			out.println(texto);       
-	//	 	}
-		}
-		catch (IOException e) 
-		{
-		}
-	//	System.out.println(texto);    PARA VERIFICAR QUE HAY DENTRO DEL NUEVO TXT ACTUALIZADO
-		}
-	catch (IOException e) {
-		e.printStackTrace();
-		}
-		*/
-	}
-	
-
-
-
-
-
-
-
-
-
-
-	public void eliminarReco(int i){
-		// se concatenan los datos ingresados por el usuario y con sus especificaciones en una variable de tipo texto para mostrarla
-		File f = new File( "C:notificaciones.txt" );
-		ArrayList<String> texto2 = new ArrayList<String>();
-		BufferedReader reader;
-//		int contador=0;														Contador para repetir for e ingresar nuevas notificaciones separadas		
+		//Recomendaciones
+		recomendaciones = new ArrayList<String>();
 		try {
-			reader = new BufferedReader(new FileReader("Recomendaciones.txt"));	
-		
-		String line = reader.readLine();			//MANDA TEXTO DE RECOMENDACION.TXT A ARRAYLIST.
-		while (line != null) {
-			texto2.add(line);
-			// read next line
-			line = reader.readLine();
-	//		contador++;
-		}
-		reader.close();
-		texto2.remove(i-1);			//ELIMINA LA RECOMENDACION SOLICITADA
-
-		try(FileWriter fw = new FileWriter("notificaciones.txt", true);			//ESCRIBE EN RECOMENDACIONES .TXT EL ARRAY CON LA NOTIFICACION YA ELIMINADA
-		BufferedWriter bw = new BufferedWriter(fw);
-		PrintWriter out = new PrintWriter(bw))
-		{	//		String x;
-	//	for (int i= 0 ; i < contador ; i++ ){
-	//		x = texto.get(i).toString();
-			out.println(texto2);       
-	//	 	}
-		}
-		catch (IOException e) 
-		{
-		}
-		System.out.println(texto2);
-		}
-	catch (IOException e) {
-		e.printStackTrace();
+			Scanner scanner = new Scanner(new File("Recomendaciones.txt")); //Se lee el archivo de texto
+			while (scanner.hasNextLine()) {
+				recomendaciones.add(scanner.nextLine()); //Mientras hayan lineas por leer se meten a la lista
+			}
+			scanner.close();
+		} catch (FileNotFoundException e) { //Se muestra la razon de error por la que no se encuentra el doc
+			e.printStackTrace();
 		}
 	}
+	//Se pasa de array a archivo de texto
+	private void arraytoTxt(){
+		try {
+			PrintWriter not = new PrintWriter("notificaciones.txt");
+			not.close();
 
+			FileWriter writer = new FileWriter("notificaciones.txt", true);
+			PrintWriter pw = new PrintWriter("notificaciones.txt");
+			for (int i = 0; i < peticiones.size(); i++) {
+				writer.write(peticiones.get(i));
+			}
+			writer.close();
 
-	
-	/*
-	public void setInfo(String[] datosUsuario){
-	    int contador = 0;
-	    contador += 1;
-	    try(FileWriter fw = new FileWriter("notificaciones.txt", true);
-		    BufferedWriter bw = new BufferedWriter(fw);
-		    PrintWriter out = new PrintWriter(bw))
-		    {
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
 
-		        out.println("\n" + contador + "." + datosUsuario[0] + " " + datosUsuario[1] + " " + datosUsuario[2] + " " + datosUsuario[3]+ ". ");       
-		}catch (IOException e) {
+		try {
+			PrintWriter rec = new PrintWriter("Recomendaciones.txt");
+			rec.close();
+
+			FileWriter writer = new FileWriter("Recomendaciones.txt", true);
+			for (int i = 0; i < recomendaciones.size(); i++) {
+				writer.write(recomendaciones.get(i));
+			}
+			writer.close();
+		} catch (IOException e) {
+			e.printStackTrace();
 		}
 	}
-	*/
-
-
-
 	// se crea un numero aleatorio para verificar si se puede ayudar 
-	// a la persona inmediatamente 
 	public boolean enCamino(){
 		Random r = new Random();
 		int r1 = r.nextInt(10);
