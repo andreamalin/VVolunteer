@@ -104,7 +104,7 @@ public class PeticionAyuda{
 			}
 		} else if (centrodenotificaciones == 3) {
 			try {
-				for (int i=0; i<5; i++) {
+				for (int i=0; i<5;i++) {
 					recomendaciones.remove((eliminar-1)+i);
 				}
 				bandera = true;
@@ -117,7 +117,7 @@ public class PeticionAyuda{
 	//Se pasa de archivo de texto a array
 	private void txtToArray(){
 		//Notificaciones
-	
+		peticiones = new ArrayList<String>(); //Lista con las peticiones de ayuda 
 		try {
 			Scanner scanner = new Scanner(new File("notificaciones.txt")); //Se lee el archivo de texto
 			while (scanner.hasNextLine()) {
@@ -128,7 +128,7 @@ public class PeticionAyuda{
 			e.printStackTrace();
 		}
 		//Recomendaciones
-
+		recomendaciones = new ArrayList<String>();
 		try {
 			Scanner scanner = new Scanner(new File("Recomendaciones.txt")); //Se lee el archivo de texto
 			while (scanner.hasNextLine()) {

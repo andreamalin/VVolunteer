@@ -1,8 +1,5 @@
 
-|1. Recomendaciones para la siguiente jornada en La Esperanza de Tus Ojos
-| Se reviso el inventario de 'La Esperanza de Tus Ojos' y el medicamento que se necesito,
+|1. Recomendaciones para la siguiente jornada en Resguardando Tu Salud
+| Se reviso el inventario de 'Resguardando Tu Salud' y el medicamento que se necesito,
 | Para el siguiente turno se debe de mantener la cantidad de Vitaflenaco la cual es 17
-| Para el siguiente turno se debe de mantener la cantidad de Loratadina la cual es 8
-
-
-
+| Para el siguiente turno se debe de mantener la cantidad de Loratadina la cual es 46
