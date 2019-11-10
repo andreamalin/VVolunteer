@@ -207,16 +207,16 @@ public class VistaCentroSalud{
 		
 		elim = scan.nextLine();
 		Integer.parseInt(elim);		
-		if (elim = 1){
-			System.out.println("Que notificacion desea eliminar"); //Ingresa numero respectivamente con la posicion de las notificaciones desplegadas
-			elim2 = scan.nextLine();
-										//Agregar instrucciones para eliminar la linea respectiva
+		// if (elim = 1){
+		// 	System.out.println("Que notificacion desea eliminar"); //Ingresa numero respectivamente con la posicion de las notificaciones desplegadas
+		// 	elim2 = scan.nextLine();
+		// 								//Agregar instrucciones para eliminar la linea respectiva
 
 			
-		}
-		else if (elim=2){
-			break;
-		}
+		// }
+		// else if (elim=2){
+		// 	break;
+		// }
 	}
 
 }

@@ -8,3 +8,11 @@ Recomendaciones para la siguiente jornada en Resguardando Tu Salud
 | Para el siguiente turno se debe de mantener la cantidad de Paracetamol la cual es 7
 | Para el siguiente turno se debe de mantener la cantidad de Loratadina la cual es 8
 | D 34 34 34
+| Sebas 30015602 Manzana O Dolor de cabeza
+
+Recomendaciones para la siguiente jornada en La Esperanza de Tus Ojos
+|
+| Se reviso el inventario y el medicamento que se necesito, y se llego a la siguiente conclusion: 
+| Para el siguiente turno se debe de mantener la cantidad de Vitaflenaco la cual es 105
+| Para el siguiente turno se debe de mantener la cantidad de Paracetamol la cual es 55
+| Para el siguiente turno se debe de mantener la cantidad de Loratadina la cual es 85
