@@ -51,7 +51,7 @@ public class PeticionAyuda{
 	}
 	// se retorna la informacion
 	public String getInfo(){
-		String info = "";
+		String info = "|\n";
 		int contador = 0;
 		// se concatenan los datos ingresados por el usuario y con sus especificaciones en una variable de tipo texto para mostrarla
 		File f = new File( "C:notificaciones.txt" );
@@ -72,8 +72,7 @@ public class PeticionAyuda{
 	}
 	// se retorna las recomendaciones
 	public String getRecomendaciones(){
-		String info = "";
-		int contador = 0;
+		String info = "|\n";
 		// se concatenan los datos ingresados por el usuario y con sus especificaciones en una variable de tipo texto para mostrarla
 		File f = new File( "C:Recomendaciones.txt" );
 		BufferedReader entrada;
@@ -93,18 +92,17 @@ public class PeticionAyuda{
 	//Se elimina la notificacion pedida
 	public void eliminar(Integer[] posicionaeliminar){
 		boolean bandera = false;
-		txtToArray();
 		String error;
 		Integer centrodenotificaciones = posicionaeliminar[0]; 
 		Integer eliminar = posicionaeliminar[1]; 
 
-		if (centrodenotificaciones == 1) {
+		if (centrodenotificaciones == 2) {
 			try {
 				peticiones.remove(eliminar-1);
 			} catch (IndexOutOfBoundsException e) {
 				error = "Notificacion invalida";
 			}
-		} else if (centrodenotificaciones == 2) {
+		} else if (centrodenotificaciones == 3) {
 			try {
 				for (int i=0; i<5; i++) {
 					recomendaciones.remove((eliminar-1)+i);
@@ -148,7 +146,6 @@ public class PeticionAyuda{
 			not.close();
 
 			FileWriter writer = new FileWriter("notificaciones.txt", true);
-			PrintWriter pw = new PrintWriter("notificaciones.txt");
 			for (int i = 0; i < peticiones.size(); i++) {
 				writer.write(peticiones.get(i));
 				writer.write("\n");
@@ -176,10 +173,12 @@ public class PeticionAyuda{
 
 	// Getters del tamaño de los arraylist
 	public Integer getPeticiones(){
+		txtToArray();
 		return peticiones.size();
 	}
 	
 	public Integer getRecomendacionesA(){
+		txtToArray();
 		return recomendaciones.size();
 	}
 

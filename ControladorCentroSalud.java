@@ -178,7 +178,7 @@ public class ControladorCentroSalud{
 		vistaCentroSalud.notificaciones(peticionAyuda.getInfo(), peticionAyuda.getRecomendaciones(), cantNotificaciones, position);
 
 		// Preguntando si no hay algo que se deba de eliminar
-		if((cantNotificaciones[0] != 0) && (cantNotificaciones[1] != 0)){
+		if((cantNotificaciones[0] != 0) || (cantNotificaciones[1] != 0)){
 
 			// Verificando que sea gerente
 			if(position.equalsIgnoreCase("Gerente")){

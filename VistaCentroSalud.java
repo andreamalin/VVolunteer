@@ -215,7 +215,7 @@ public class VistaCentroSalud{
 
 
 		//Se pregunta al usuario que notificacion se desea eliminar
-		if (borrarNotificacion[0] != 3) {
+		if (borrarNotificacion[0] != 1) {
 			do{
 				System.out.print("| Ingrese el numero notificacion a eliminar: ");
 				opcion = scan.nextLine();
