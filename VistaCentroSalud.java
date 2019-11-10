@@ -170,6 +170,10 @@ public class VistaCentroSalud{
 			System.out.println(noti);
 		}
 		
+		if(cantNotificaciones[2] != 0){
+			System.out.println("|  Reportes");
+		}
+
 		// Mostrando las notificaciones si es un gerente
 		if(puesto.equalsIgnoreCase("Gerente") && cantNotificaciones[1] != 0){
 			System.out.print("| Recomendaciones de jornada");
@@ -179,7 +183,7 @@ public class VistaCentroSalud{
 		// Mostrando el mensaje que no hay notificaciones
 		if((cantNotificaciones[0] == 0) && (puesto.equalsIgnoreCase("Voluntario"))){
 			System.out.print("|\tNo hay notificaciones que mostrar");
-		} else if((cantNotificaciones[0] == 0) && (cantNotificaciones[1] == 0)){
+		} else if((cantNotificaciones[0] == 0) && (cantNotificaciones[1] == 0) && (cantNotificaciones[2] == 0)){
 			System.out.print("|\tNo hay notificaciones que mostrar");
 		}
 
@@ -194,11 +198,12 @@ public class VistaCentroSalud{
 		// Mostrandole las opciones que puede realizar el usuario
 		System.out.println("\n|\n| Desea borrar alguna notificacion?");
 		System.out.println("| 1. No borrar ninguna notificacion ");
-		System.out.print("| 2. Peticiones de ayuda");
+		System.out.println("| 2. Peticiones de ayuda");
+		System.out.print("| 3. Reportes");
 
 		// Mostrando datos exclusivos del gerente
 		if(permiso[0] == 1){
-			System.out.print("\n| 3. Recomendaciones de jornada");
+			System.out.print("\n| 4. Recomendaciones de jornada");
 		}
 		
 	

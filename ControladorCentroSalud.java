@@ -164,10 +164,12 @@ public class ControladorCentroSalud{
 
 	// Mostrando el centro de notificaciones
 	private void opcion6CentroNotificaciones(){
-		Integer[] cantNotificaciones = new Integer[2], permiso = new Integer[2];
+		Integer[] cantNotificaciones = new Integer[3], permiso = new Integer[2];
 		String position = centro.getCuentas()[centro.getLoggedOnPosition()].getIdentification();
 
 		// Consiguiendo la informacion necesaria para los metodos
+		peticionAyuda.txtToArray();
+
 		cantNotificaciones[0] = peticionAyuda.getPeticiones();
 		cantNotificaciones[1] = peticionAyuda.getRecomendacionesA();
 
@@ -183,7 +185,7 @@ public class ControladorCentroSalud{
 			// Verificando que sea gerente
 			if(position.equalsIgnoreCase("Gerente")){
 				permiso[0] = 1;
-				permiso[1] = 3;
+				permiso[1] = 4;
 			}
 			peticionAyuda.eliminar(vistaCentroSalud.preguntarEliminar(permiso));
 		}

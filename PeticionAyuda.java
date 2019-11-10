@@ -103,10 +103,8 @@ public class PeticionAyuda{
 				error = "Notificacion invalida";
 			}
 		} else if (centrodenotificaciones == 3) {
-			try {
-				for (int i=0; i<5;i++) {
-					recomendaciones.remove((eliminar-1)+i);
-				}
+			try {		
+				recomendaciones.remove((eliminar-1));
 				bandera = true;
 			} catch (IndexOutOfBoundsException e) {
 				error = "Notificacion invalida";
@@ -115,7 +113,8 @@ public class PeticionAyuda{
 		arraytoTxt(); //Se pasa el array nuevo a txt
 	}
 	//Se pasa de archivo de texto a array
-	private void txtToArray(){
+	public void txtToArray(){
+		String recomendacionesS = "";
 		//Notificaciones
 		peticiones = new ArrayList<String>(); //Lista con las peticiones de ayuda 
 		try {
@@ -132,7 +131,11 @@ public class PeticionAyuda{
 		try {
 			Scanner scanner = new Scanner(new File("Recomendaciones.txt")); //Se lee el archivo de texto
 			while (scanner.hasNextLine()) {
-				recomendaciones.add(scanner.nextLine()); //Mientras hayan lineas por leer se meten a la lista
+				for(int i = 0; i < 8; i++){
+					recomendacionesS += scanner.nextLine(); //Mientras hayan lineas por leer se meten a la lista
+				}
+				 
+				recomendaciones.add(recomendacionesS);
 			}
 			scanner.close();
 		} catch (FileNotFoundException e) { //Se muestra la razon de error por la que no se encuentra el doc
@@ -173,12 +176,10 @@ public class PeticionAyuda{
 
 	// Getters del tamaño de los arraylist
 	public Integer getPeticiones(){
-		txtToArray();
 		return peticiones.size();
 	}
 	
 	public Integer getRecomendacionesA(){
-		txtToArray();
 		return recomendaciones.size();
 	}
 
