@@ -1,4 +1,8 @@
+<<<<<<< HEAD
 2 2 3 4
 LAURA Jimena 30015602 me empujo
 fsdfs terte 34234235 fsdfs dgsdf
 Sebas Laura 30015602 Me grito
+=======
+Diego Ramon 32423432423 Molestia
+>>>>>>> fbe3b7397dca81cab86f06e3efb6604df1b8511e

@@ -17,11 +17,14 @@ Fecha de creación: 31/09/2019
 Esta clase se encarga de mostrar los numeros y direcciones de
 las cedes para que la población pueda donar medicamento.
 **********************************************************/
+import java.util.ArrayList;
+
 public class ControladorCentroSalud{
 	private PeticionAyuda peticionAyuda = new PeticionAyuda();
 	private VistaCentroSalud vistaCentroSalud = new VistaCentroSalud();
 	private CentroSalud centro = new CentroSalud();
 	private Integer[] necesitados = new Integer[3];
+	private Reportes reportes = new Reportes();
 
 	// Estructura de las opciones del centro de salud
 	public void opcionEnCentroSalud(){
@@ -123,8 +126,8 @@ public class ControladorCentroSalud{
 		cantidadNecesitada = vistaCentroSalud.pedirMedicinaNecesitada(nombreMedicamento);
 
 		// Utilizando la informacion recogida y mostrandole al usuario lo obtenido
-		vistaCentroSalud.mostrandoMensaje((centro.getGrafico()[seleccionado]).elaborarDatos(cantidadNecesitada));
-		peticionAyuda.setRecomendaciones((centro.getGrafico()[seleccionado]).elaborarDatos(cantidadNecesitada), centro.getGrafico()[seleccionado].getCentroSaludNombre());
+		vistaCentroSalud.mostrandoMensaje((centro.getGrafico()[seleccionado]).elaborarDatos(cantidadNecesitada, centro.getGrafico()[seleccionado].getCentroSaludNombre()));
+		peticionAyuda.setRecomendaciones((centro.getGrafico()[seleccionado]).elaborarDatos(cantidadNecesitada, centro.getGrafico()[seleccionado].getCentroSaludNombre()), centro.getGrafico()[seleccionado].getCentroSaludNombre());
 	}
 
 	private Integer conseguirPosicionSalud(){
@@ -137,12 +140,12 @@ public class ControladorCentroSalud{
 	}
 
 
-
 	// Sirve para mostrarle al usuario la informacion de la medicina
 	private void opcion3CentroSalud(){
 		centro.getMedicamento().buscarMedicamento(vistaCentroSalud.pidiendoMedicamento());
 		vistaCentroSalud.mostrandoMensaje(centro.getMedicamento().mostrarInformacion());  
 	}
+
 	
 	// Sirve para pedirle los datos al usuario, conseguir la información y mostrarla; por medio de su vista
 	private void opcion4CentroSalud(){
@@ -154,22 +157,53 @@ public class ControladorCentroSalud{
 		vistaCentroSalud.mostrandoMensaje(centro.getMedicamento().mostrarRecomendados());
 	}
 
+
 	//Sirve para agregar un nuevo medicamento
 	private void opcion5CentroSalud(){
 		centro.getMedicamento().agregarMed(vistaCentroSalud.obtenerNuevoMed());
 	}
 
-
-
+	// Mostrando el centro de notificaciones
 	private void opcion6CentroNotificaciones(){
-		vistaCentroSalud.notificaciones(peticionAyuda.getInfo());
-	//	vistaCentroSalud.eliminarnotificaciones();
+		Integer[] cantNotificaciones = new Integer[4], permiso = new Integer[2];
+		String position = centro.getCuentas()[centro.getLoggedOnPosition()].getIdentification();
+
+		// Consiguiendo la informacion necesaria para los metodos
+		peticionAyuda.txtToArray();
+
+		cantNotificaciones[0] = peticionAyuda.getPeticiones();
+		cantNotificaciones[1] = peticionAyuda.getRecomendacionesA();
+
+		Reportes espacio = new ReportarPaciente();
+		cantNotificaciones[2] = espacio.getNot();
+		Reportes espacio2 = new ReportarVoluntario();
+		cantNotificaciones[3] = espacio2.getNot();
+
+		permiso[0] = 0;
+		permiso[1] = 2;
+
+		// Mostrando las notificaciones en el sistema
+		if (position.equalsIgnoreCase("Gerente")) {
+			vistaCentroSalud.notificaciones(peticionAyuda.getInfo(), reportes.getReportes("reportesVoluntarios.txt"), reportes.getReportes("reportesPacientes.txt"), peticionAyuda.getRecomendaciones(), cantNotificaciones, position);	
+		} else {
+			vistaCentroSalud.notificaciones(peticionAyuda.getInfo(), reportes.getReportes("reportesPacientes.txt"), cantNotificaciones, position);	
+		}
+
+		// Preguntando si no hay algo que se deba de eliminar
+		if((cantNotificaciones[0] != 0) || (cantNotificaciones[1] != 0) || (cantNotificaciones[2] != 0) || (cantNotificaciones[3] != 0)){
+
+			// Verificando que sea gerente
+			if(position.equalsIgnoreCase("Gerente")){
+				permiso[0] = 1;
+				permiso[1] = 4;
+			}
+			Integer[] eliminar = vistaCentroSalud.preguntarEliminar(permiso);
+			peticionAyuda.eliminar(eliminar);
+			espacio.borrarPeticion(eliminar);
+			espacio2.borrarPeticion(eliminar);
+		}
 	}
 	
-	
-	// retorna las notificaciones ingresadas
-
-
 	// METODOS PARA OBTENER INFORMACION DEL USUARIO  A QUE CENTRO DE SALUD HACER REFERENCIA
 	// Consiguiendo los centros de salud que puede elegir el usuario 
 	private String[] obtenerCentroDeSalud(){

@@ -18,8 +18,7 @@ Vista encargada del primer Y segundo controlador
 import java.util.Scanner;
 
 public class VistaCentroSalud{
-	Scanner input = new Scanner(System.in);
-	Scanner scan = new Scanner(System.in);
+	private Scanner scan = new Scanner(System.in);
 
 	// Obteniendo el nombre y contraseña del usuario
 	public String[] inicioSesion(){
@@ -58,15 +57,7 @@ public class VistaCentroSalud{
 			System.out.print("| Ingrese la opcion que desea realizar: ");
 			opcionS = scan.nextLine();
 		
-			// Viendo si es un numero lo ingresado
-			try{
-				Integer.parseInt(opcionS);
-				bandera = true;
-			}catch(NumberFormatException nfe){
-				bandera = false;
-				System.out.print("| Favor ingrese una opcion, con numeros ");
-			}
-		}while(bandera == false);
+		}while(tryCatch(opcionS) == false);
 			
 
 		// Convirtiendo la opcion string a una opcion entera 
@@ -80,29 +71,20 @@ public class VistaCentroSalud{
 	public Integer obtenerCentroDeSalud(String[] informacion){
 		Integer centroDeSaludSeleccionado, cantidadCentrosMostrados = informacion.length;
 		String opcionS;
-		Boolean bandera = false;
 
 		// Mostrandole los centros de salud que puede utilizar
 		System.out.print("|\n| Estos son los centros de salud con los que posee comunicacion: ");
 		for(int i = 0; i < cantidadCentrosMostrados; i++){
 			System.out.print(informacion[i]);
 		}
-
+		System.out.print("\n");
 		// Obteniendo el centro de salud que quiere el usuario
 		do{
 			do{	
 				System.out.print("| Ingrese el centro de salud con el cual desea interactuar: ");
 				opcionS = scan.nextLine();
-
-				// Confirmando que haya ingresado un numero
-				try{
-					Integer.parseInt(opcionS);
-					bandera = true;
-				}catch(NumberFormatException nfe){
-					bandera = false;
-					System.out.print("| Favor ingrese una opcion, con numeros ");
-				}
-			}while(bandera == false);
+				
+			}while(tryCatch(opcionS) == false);
 
 			centroDeSaludSeleccionado = Integer.parseInt(opcionS);
 
@@ -118,23 +100,14 @@ public class VistaCentroSalud{
 		// Inicializando las variables en donde se guardan los medicamentos
 		Integer[] cantidadMedicamentos = new Integer[datosMedicamentos.length];
 		String[] cantidadMedicamentosS = new String[datosMedicamentos.length];
-		Boolean bandera = false;
 
 		for(int i = 0; i < datosMedicamentos.length; i++){
 			 do{	
 			 	// Pidiendole el tipo de medicamento que utilizo
 				System.out.print("| Ingrese la cantidad de medicina necesitada en esta jornada de " + datosMedicamentos[i] + ": ");
-				cantidadMedicamentosS[i] = input.nextLine();
+				cantidadMedicamentosS[i] = scan.nextLine();
 
-				// Confirmando que haya ingresado un numero
-				try{
-					Integer.parseInt(cantidadMedicamentosS[i]);
-					bandera = true;
-				}catch(NumberFormatException nfe){
-					bandera = false;
-					System.out.print("| Favor ingrese una opcion, con numeros ");
-				}
-			}while(bandera == false);
+			}while(tryCatch(cantidadMedicamentosS[i]) == false);
 
 			cantidadMedicamentos[i] = Integer.parseInt(cantidadMedicamentosS[i]);
 		}
@@ -184,6 +157,128 @@ public class VistaCentroSalud{
 		return info;
 	}	
 
+	//OPCION 6 montando notificaciones del centro de notificaciones
+	public void notificaciones(String noti, String reportesV, String reportesP, String recomendaciones,Integer[] cantNotificaciones , String puesto){
+
+		// Mostrando las notificaciones 
+		System.out.println("|\n|\n|                   Notificaciones:                 \n|");
+
+		// Mostrando las notificaciones si hay
+		if(cantNotificaciones[0] != 0){
+			System.out.println("|       Peticiones de ayuda");
+			System.out.print("| Nombre - Numero - Direccion - Sintomas");
+			System.out.println(noti);
+		}
+		
+		if(cantNotificaciones[3] != 0){
+			System.out.println("|  Reportes");
+			System.out.println("|  Hacia voluntarios: ");
+			System.out.println(reportesV);
+		}
+		if (cantNotificaciones[2] != 0) {
+			System.out.println("|  Hacia pacientes");
+			System.out.println(reportesP);
+		}
+
+
+		// Mostrando las notificaciones si es un gerente
+		if(puesto.equalsIgnoreCase("Gerente") && cantNotificaciones[1] != 0){
+			System.out.print("| Recomendaciones de jornada");
+			System.out.print(recomendaciones);
+		}	
+
+		// Mostrando el mensaje que no hay notificaciones
+		if((cantNotificaciones[0] == 0) && (cantNotificaciones[1] == 0) && (cantNotificaciones[2] == 0)){
+			System.out.print("|\tNo hay notificaciones que mostrar");
+		}
+	}
+	//Override
+	public void notificaciones(String noti, String reportesP ,Integer[] cantNotificaciones , String puesto){
+
+		// Mostrando las notificaciones 
+		System.out.println("|\n|\n|                   Notificaciones:                 \n|");
+
+		// Mostrando las notificaciones si hay
+		if(cantNotificaciones[0] != 0){
+			System.out.println("|       Peticiones de ayuda");
+			System.out.print("| Nombre - Numero - Direccion - Sintomas");
+			System.out.println(noti);
+		}
+		
+		if(cantNotificaciones[2] != 0){
+			System.out.println("|  Reportes");
+			System.out.println("|  Hacia pacientes");
+			System.out.println(reportesP);
+		}
+		// Mostrando el mensaje que no hay notificaciones
+		if((cantNotificaciones[0] == 0) && (puesto.equalsIgnoreCase("Voluntario"))){
+			System.out.print("|\tNo hay notificaciones que mostrar");
+		} else if((cantNotificaciones[0] == 0) && (cantNotificaciones[1] == 0) && (cantNotificaciones[2] == 0)){
+			System.out.print("|\tNo hay notificaciones que mostrar");
+		}
+	}
+
+	//Se pregunta al usuario si desea eliminar una notificacion
+	public Integer[] preguntarEliminar(Integer[] permiso){
+		Integer[] borrarNotificacion = new Integer[3];
+		String opcion;
+
+
+		// Mostrandole las opciones que puede realizar el usuario
+		System.out.println("\n|\n| Desea borrar alguna notificacion?");
+		System.out.println("| 1. No borrar ninguna notificacion ");
+		System.out.println("| 2. Peticiones de ayuda");
+		System.out.print("| 3. Reportes");
+
+		// Mostrando datos exclusivos del gerente
+		if(permiso[0] == 1){
+			System.out.print("\n| 4. Recomendaciones de jornada");
+		}
+		
+	
+		// Verificando que la opción seleccionada este dentro del rango
+		do{
+			do{
+				System.out.print("\n| Ingrese la opcion que desea realizar: ");
+				opcion = scan.nextLine();
+			}while(tryCatch(opcion) == false);
+
+			borrarNotificacion[0] = Integer.parseInt(opcion);
+
+		}while((borrarNotificacion[0] < 0) || (borrarNotificacion[0] > permiso[1]));
+
+		if (borrarNotificacion[0] == 3) {
+			do{
+				System.out.print("| Ingrese que tipo de reporte va a eliminar:\n");
+				System.out.println("| 1. Reporte hacia paciente ");
+				if (permiso[0] == 1) {
+					System.out.println("| 2. Reporte hacia voluntario ");	
+				}
+				opcion = scan.nextLine();
+			}while(tryCatch(opcion) == false);
+			Integer opc = Integer.parseInt(opcion);
+			if (opc >= 2) {
+				borrarNotificacion[2] = 2;
+			} else {
+				borrarNotificacion[2] = 1;
+			}
+		}
+
+		//Se pregunta al usuario que notificacion se desea eliminar
+		if (borrarNotificacion[0] != 1) {
+			do{
+				System.out.print("| Ingrese el numero notificacion a eliminar: ");
+				opcion = scan.nextLine();
+			}while(tryCatch(opcion) == false);
+
+			borrarNotificacion[1] = Integer.parseInt(opcion);
+		}
+
+		return borrarNotificacion;
+	}
+
+
+	// FUNCIONALIDADES VARIAS
 	// Mostrando cualquier mensaje
 	public void mostrandoMensaje(String informacion){
 		System.out.print(informacion);
@@ -194,6 +289,7 @@ public class VistaCentroSalud{
 		System.out.print("| Los datos ingresados son invalidos\n");
 	}
 
+<<<<<<< HEAD
 	public void notificaciones(String noti){
 		System.out.println("|                   Notificaciones:                 \n|");
 		System.out.println("|       Peticiones de ayuda      ");
@@ -217,6 +313,18 @@ public class VistaCentroSalud{
 		// else if (elim=2){
 		// 	break;
 		// }
+=======
+	// Mostrando si la opcion es un número o no
+	public Boolean tryCatch(String opcionS){
+		Boolean bandera = false;
+		try{
+			Integer.parseInt(opcionS);
+			bandera = true;
+		}catch(NumberFormatException nfe){
+			bandera = false;
+			System.out.print("| Favor ingrese una opcion, con numeros ");
+		}
+		return bandera;
+>>>>>>> fbe3b7397dca81cab86f06e3efb6604df1b8511e
 	}
-
 }

@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 | Diego 33467842 36 Avenida Dolor de cabeza
 | Alejandro 23212354 12 Av Dolor de estomago
 | Andres 12345678 Zona 2 Me duele el pie
@@ -16,3 +17,6 @@ Recomendaciones para la siguiente jornada en La Esperanza de Tus Ojos
 | Para el siguiente turno se debe de mantener la cantidad de Vitaflenaco la cual es 105
 | Para el siguiente turno se debe de mantener la cantidad de Paracetamol la cual es 55
 | Para el siguiente turno se debe de mantener la cantidad de Loratadina la cual es 85
+=======
+Andrea 342 av 23 dolor. 
+>>>>>>> fbe3b7397dca81cab86f06e3efb6604df1b8511e
