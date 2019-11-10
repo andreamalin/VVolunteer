@@ -26,6 +26,8 @@ import java.util.Scanner;
 public class ReportarPaciente extends Reportes{
 	private ArrayList<String> reportesPacientes = new ArrayList<String>();
 	//Constructor	
+	public ReportarPaciente(){
+	}
 	public ReportarPaciente(String nombrep, String nombrev, String numero, String motivo){
 		super(nombrep, nombrev, numero, motivo);
 	}
@@ -39,8 +41,27 @@ public class ReportarPaciente extends Reportes{
 		}catch (IOException e) {
 		}
 	}
-	public void convertiraarray(){
+	public void borrarPeticion(Integer[] posicionaeliminar){
+		reportesPacientes = new ArrayList<String>();
 		txtToArray(reportesPacientes, "reportesPacientes.txt");
+
+		Integer centrodenotificaciones = posicionaeliminar[0]; 
+		Integer eliminar = posicionaeliminar[1];
+		Integer tipodereporte = posicionaeliminar[2];
+
+		if (centrodenotificaciones == 3 && tipodereporte == 1) {
+			try {		
+				reportesPacientes.remove((eliminar-1));
+			} catch (IndexOutOfBoundsException e) {
+				String error = "Notificacion invalida";
+			}
+			arraytoTxt(reportesPacientes, "reportesPacientes.txt");
+		}
+	}
+	public Integer getNot(){
+		reportesPacientes = new ArrayList<String>();
+		txtToArray(reportesPacientes, "reportesPacientes.txt");
+		return reportesPacientes.size();		
 	}
 
 

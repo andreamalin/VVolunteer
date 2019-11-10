@@ -24,6 +24,9 @@ public class Reportes{
 	protected String numero;	//Numero del reportador
 	protected String motivo;	//Razon del reporte
 	//Constructor
+	public Reportes(){
+	}
+	//Constructor
 	public Reportes(String nombrep, String nombrev, String numero, String motivo){
 		this.nombrep = nombrep;
 		this.nombrev = nombrev;
@@ -45,7 +48,48 @@ public class Reportes{
 			e.printStackTrace();
 		}
 	}
-	//Todos convierten a array sus datos
-	public void convertiraarray(){
+	//Se pasa de array a text
+	public void arraytoTxt(ArrayList<String> list, String filename){
+		try {
+			PrintWriter not = new PrintWriter(filename);
+			not.close();
+
+			FileWriter writer = new FileWriter(filename, true);
+			for (int i = 0; i < list.size(); i++) {
+				writer.write(list.get(i));
+				writer.write("\n");
+			}
+			writer.close();
+
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+	}
+	//Se borra peticion
+	public void borrarPeticion(Integer[] posicion){
+	}
+	//Cantidad de notificaciones en array
+	public Integer getNot(){
+		return 0;
+	}
+	// se retorna la informacion
+	public String getReportes(String filename){
+		String info = "|\n";
+		int contador = 0;
+		// se concatenan los datos ingresados por el usuario y con sus especificaciones en una variable de tipo texto para mostrarla
+		File f = new File(filename);
+		BufferedReader entrada;
+		try {
+			entrada = new BufferedReader(new FileReader(f));
+				
+			while(entrada.ready()){
+				contador +=1;
+				info += "|\t"+ contador + ". " + entrada.readLine() + "\n";
+			}
+				
+		}catch (IOException e) {
+			e.printStackTrace();
+		}
+		return info;
 	}
 }

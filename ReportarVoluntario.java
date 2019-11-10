@@ -26,6 +26,8 @@ import java.util.Scanner;
 public class ReportarVoluntario extends Reportes{
 	private ArrayList<String> reportesVoluntarios = new ArrayList<String>();
 	//Constructor
+	public ReportarVoluntario(){
+	}
 	public ReportarVoluntario(String nombrep, String nombrev, String numero, String motivo){
 		super(nombrep, nombrev, numero, motivo);
 	}
@@ -39,7 +41,25 @@ public class ReportarVoluntario extends Reportes{
 		}catch (IOException e) {
 		}
 	}
-	public void convertiraarray(){
+	public void borrarPeticion(Integer[] posicionaeliminar){
+		Integer centrodenotificaciones = posicionaeliminar[0]; 
+		Integer eliminar = posicionaeliminar[1];
+		Integer tipodereporte = posicionaeliminar[2];
+
+		if (centrodenotificaciones == 3 && tipodereporte == 2) {
+			reportesVoluntarios = new ArrayList<String>();
+			txtToArray(reportesVoluntarios, "reportesVoluntarios.txt");
+			try {		
+				reportesVoluntarios.remove((eliminar-1));
+			} catch (IndexOutOfBoundsException e) {
+				String error = "Notificacion invalida";
+			}
+			arraytoTxt(reportesVoluntarios, "reportesVoluntarios.txt");	
+		}
+	}
+	public Integer getNot(){
+		reportesVoluntarios = new ArrayList<String>();
 		txtToArray(reportesVoluntarios, "reportesVoluntarios.txt");
+		return reportesVoluntarios.size();		
 	}
 }

@@ -96,13 +96,13 @@ public class PeticionAyuda{
 		Integer centrodenotificaciones = posicionaeliminar[0]; 
 		Integer eliminar = posicionaeliminar[1]; 
 
-		if (centrodenotificaciones == 2) {
+		if (centrodenotificaciones == 2) { //Peticion ayuda
 			try {
 				peticiones.remove(eliminar-1);
 			} catch (IndexOutOfBoundsException e) {
 				error = "Notificacion invalida";
 			}
-		} else if (centrodenotificaciones == 3) {
+		} else if (centrodenotificaciones == 4) { //Recomendacion jornada
 			try {		
 				recomendaciones.remove((eliminar-1));
 				bandera = true;

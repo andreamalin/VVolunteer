@@ -24,6 +24,7 @@ public class ControladorCentroSalud{
 	private VistaCentroSalud vistaCentroSalud = new VistaCentroSalud();
 	private CentroSalud centro = new CentroSalud();
 	private Integer[] necesitados = new Integer[3];
+	private Reportes reportes = new Reportes();
 
 	// Estructura de las opciones del centro de salud
 	public void opcionEnCentroSalud(){
@@ -164,7 +165,7 @@ public class ControladorCentroSalud{
 
 	// Mostrando el centro de notificaciones
 	private void opcion6CentroNotificaciones(){
-		Integer[] cantNotificaciones = new Integer[3], permiso = new Integer[2];
+		Integer[] cantNotificaciones = new Integer[4], permiso = new Integer[2];
 		String position = centro.getCuentas()[centro.getLoggedOnPosition()].getIdentification();
 
 		// Consiguiendo la informacion necesaria para los metodos
@@ -173,21 +174,33 @@ public class ControladorCentroSalud{
 		cantNotificaciones[0] = peticionAyuda.getPeticiones();
 		cantNotificaciones[1] = peticionAyuda.getRecomendacionesA();
 
+		Reportes espacio = new ReportarPaciente();
+		cantNotificaciones[2] = espacio.getNot();
+		Reportes espacio2 = new ReportarVoluntario();
+		cantNotificaciones[3] = espacio2.getNot();
+
 		permiso[0] = 0;
 		permiso[1] = 2;
 
 		// Mostrando las notificaciones en el sistema
-		vistaCentroSalud.notificaciones(peticionAyuda.getInfo(), peticionAyuda.getRecomendaciones(), cantNotificaciones, position);
+		if (position.equalsIgnoreCase("Gerente")) {
+			vistaCentroSalud.notificaciones(peticionAyuda.getInfo(), reportes.getReportes("reportesVoluntarios.txt"), reportes.getReportes("reportesPacientes.txt"), peticionAyuda.getRecomendaciones(), cantNotificaciones, position);	
+		} else {
+			vistaCentroSalud.notificaciones(peticionAyuda.getInfo(), reportes.getReportes("reportesPacientes.txt"), cantNotificaciones, position);	
+		}
 
 		// Preguntando si no hay algo que se deba de eliminar
-		if((cantNotificaciones[0] != 0) || (cantNotificaciones[1] != 0)){
+		if((cantNotificaciones[0] != 0) || (cantNotificaciones[1] != 0) || (cantNotificaciones[2] != 0) || (cantNotificaciones[3] != 0)){
 
 			// Verificando que sea gerente
 			if(position.equalsIgnoreCase("Gerente")){
 				permiso[0] = 1;
 				permiso[1] = 4;
 			}
-			peticionAyuda.eliminar(vistaCentroSalud.preguntarEliminar(permiso));
+			Integer[] eliminar = vistaCentroSalud.preguntarEliminar(permiso);
+			peticionAyuda.eliminar(eliminar);
+			espacio.borrarPeticion(eliminar);
+			espacio2.borrarPeticion(eliminar);
 		}
 	}
 	

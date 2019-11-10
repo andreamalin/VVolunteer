@@ -158,7 +158,42 @@ public class VistaCentroSalud{
 	}	
 
 	//OPCION 6 montando notificaciones del centro de notificaciones
-	public void notificaciones(String noti, String recomendaciones,Integer[] cantNotificaciones , String puesto){
+	public void notificaciones(String noti, String reportesV, String reportesP, String recomendaciones,Integer[] cantNotificaciones , String puesto){
+
+		// Mostrando las notificaciones 
+		System.out.println("|\n|\n|                   Notificaciones:                 \n|");
+
+		// Mostrando las notificaciones si hay
+		if(cantNotificaciones[0] != 0){
+			System.out.println("|       Peticiones de ayuda");
+			System.out.print("| Nombre - Numero - Direccion - Sintomas");
+			System.out.println(noti);
+		}
+		
+		if(cantNotificaciones[3] != 0){
+			System.out.println("|  Reportes");
+			System.out.println("|  Hacia voluntarios: ");
+			System.out.println(reportesV);
+		}
+		if (cantNotificaciones[2] != 0) {
+			System.out.println("|  Hacia pacientes");
+			System.out.println(reportesP);
+		}
+
+
+		// Mostrando las notificaciones si es un gerente
+		if(puesto.equalsIgnoreCase("Gerente") && cantNotificaciones[1] != 0){
+			System.out.print("| Recomendaciones de jornada");
+			System.out.print(recomendaciones);
+		}	
+
+		// Mostrando el mensaje que no hay notificaciones
+		if((cantNotificaciones[0] == 0) && (cantNotificaciones[1] == 0) && (cantNotificaciones[2] == 0)){
+			System.out.print("|\tNo hay notificaciones que mostrar");
+		}
+	}
+	//Override
+	public void notificaciones(String noti, String reportesP ,Integer[] cantNotificaciones , String puesto){
 
 		// Mostrando las notificaciones 
 		System.out.println("|\n|\n|                   Notificaciones:                 \n|");
@@ -172,26 +207,20 @@ public class VistaCentroSalud{
 		
 		if(cantNotificaciones[2] != 0){
 			System.out.println("|  Reportes");
+			System.out.println("|  Hacia pacientes");
+			System.out.println(reportesP);
 		}
-
-		// Mostrando las notificaciones si es un gerente
-		if(puesto.equalsIgnoreCase("Gerente") && cantNotificaciones[1] != 0){
-			System.out.print("| Recomendaciones de jornada");
-			System.out.print(recomendaciones);
-		}	
-
 		// Mostrando el mensaje que no hay notificaciones
 		if((cantNotificaciones[0] == 0) && (puesto.equalsIgnoreCase("Voluntario"))){
 			System.out.print("|\tNo hay notificaciones que mostrar");
 		} else if((cantNotificaciones[0] == 0) && (cantNotificaciones[1] == 0) && (cantNotificaciones[2] == 0)){
 			System.out.print("|\tNo hay notificaciones que mostrar");
 		}
-
 	}
 
 	//Se pregunta al usuario si desea eliminar una notificacion
 	public Integer[] preguntarEliminar(Integer[] permiso){
-		Integer[] borrarNotificacion = new Integer[2];
+		Integer[] borrarNotificacion = new Integer[3];
 		String opcion;
 
 
@@ -218,6 +247,22 @@ public class VistaCentroSalud{
 
 		}while((borrarNotificacion[0] < 0) || (borrarNotificacion[0] > permiso[1]));
 
+		if (borrarNotificacion[0] == 3) {
+			do{
+				System.out.print("| Ingrese que tipo de reporte va a eliminar:\n");
+				System.out.println("| 1. Reporte hacia paciente ");
+				if (permiso[0] == 1) {
+					System.out.println("| 2. Reporte hacia voluntario ");	
+				}
+				opcion = scan.nextLine();
+			}while(tryCatch(opcion) == false);
+			Integer opc = Integer.parseInt(opcion);
+			if (opc >= 2) {
+				borrarNotificacion[2] = 2;
+			} else {
+				borrarNotificacion[2] = 1;
+			}
+		}
 
 		//Se pregunta al usuario que notificacion se desea eliminar
 		if (borrarNotificacion[0] != 1) {
