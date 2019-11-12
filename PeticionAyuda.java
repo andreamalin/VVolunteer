@@ -129,15 +129,19 @@ public class PeticionAyuda{
 		//Recomendaciones
 		recomendaciones = new ArrayList<String>();
 		try {
-			Scanner scanner = new Scanner(new File("Recomendaciones.txt")); //Se lee el archivo de texto
-			while (scanner.hasNextLine()) {
-				for(int i = 0; i < 8; i++){
-					recomendacionesS += scanner.nextLine(); //Mientras hayan lineas por leer se meten a la lista
+			Scanner scanner2 = new Scanner(new File("Recomendaciones.txt")); //Se lee el archivo de texto
+			while (scanner2.hasNextLine()) {
+				try{
+					for(int i = 0; i < 7; i++){
+						recomendacionesS += scanner2.nextLine(); //Mientras hayan lineas por leer se meten a la lista
+					}
+					recomendaciones.add(recomendacionesS);
+				} catch (NoSuchElementException e){
+					String error = "";
 				}
-				 
-				recomendaciones.add(recomendacionesS);
+				
 			}
-			scanner.close();
+			scanner2.close();
 		} catch (FileNotFoundException e) { //Se muestra la razon de error por la que no se encuentra el doc
 			e.printStackTrace();
 		}

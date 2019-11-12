@@ -191,16 +191,17 @@ public class ControladorCentroSalud{
 
 		// Preguntando si no hay algo que se deba de eliminar
 		if((cantNotificaciones[0] != 0) || (cantNotificaciones[1] != 0) || (cantNotificaciones[2] != 0) || (cantNotificaciones[3] != 0)){
-
+			Integer[] eliminar = vistaCentroSalud.preguntarEliminar(permiso);
 			// Verificando que sea gerente
 			if(position.equalsIgnoreCase("Gerente")){
 				permiso[0] = 1;
 				permiso[1] = 4;
 			}
-			Integer[] eliminar = vistaCentroSalud.preguntarEliminar(permiso);
-			peticionAyuda.eliminar(eliminar);
-			espacio.borrarPeticion(eliminar);
-			espacio2.borrarPeticion(eliminar);
+			if (eliminar[0] != 1) {
+				peticionAyuda.eliminar(eliminar);
+				espacio.borrarPeticion(eliminar);
+				espacio2.borrarPeticion(eliminar);			
+			}
 		}
 	}
 	

@@ -87,8 +87,7 @@ public class Medicamento{
 
 		for (int i=0; i<longitud; i++) {
 			nombresmedicamentos[i]=listamedic[a];
-
-			a = a+5; //Cada 5 posiciones se encuentra un medicamento nuevo
+			a += 5; //Cada 5 posiciones se encuentra un medicamento nuevo
 		}
 		//Se eliminan nombres repetidos
 		for (int j=0; j<busquedaSintomas.size(); j++) {
@@ -104,14 +103,15 @@ public class Medicamento{
 
 	private void buscarSimilares(){ //Se buscan los medicamentos similares
 		separarMed(); //Se separa el medicamento
+	
 		similares = "                  "; //Se define similares
 		int contador=0; //Contador para ingresar a la posicion de la lista
 
 		for (int i=0; i<nombresmedicamentos.length; i++) { //Se realiza el ciclo la cantidad de medicamentos que hayan
 			if (sintoma1.equalsIgnoreCase(listamedic[contador+1]) || sintoma2.equalsIgnoreCase(listamedic[contador+2]) || sintoma3.equalsIgnoreCase(listamedic[contador+3])){
-				similares += nombresmedicamentos[i] + "\n"; //Si coincide el sintoma con alguna medicina, se agrega la medicina a similares
+				similares += nombresmedicamentos[i] + "       "; //Si coincide el sintoma con alguna medicina, se agrega la medicina a similares
 			}
-			contador=contador+5; //Cada 5 posiciones hay un nuevo síntoma
+			contador+=5; //Cada 5 posiciones hay un nuevo síntoma
 		}
 		similares = similares.replace(nombre,""); //Se saca de similares el nombre del medicamento que metió el usuario
 
@@ -146,7 +146,7 @@ public class Medicamento{
 			a = "|\n|\n|+-------------LISTADO MEDICAMENTOS RECOMENDADOS-------------+\n";
 			for (int i=0; i<busquedaSintomas.size(); i++) {
 				int indice = busquedaSintomas.get(i);
-				a += "|                       "+nombresmedicamentos[indice] + "\n";	
+				a += "|"+nombresmedicamentos[indice] + "\n";	
 			}
 			a += "|+-Se recomienda buscar la informacion del medicamento listado-+\n|\n";
 		}
