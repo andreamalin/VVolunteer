@@ -231,7 +231,7 @@ public class VistaCentroSalud{
 		System.out.print("| 3. Reportes");
 
 		// Mostrando datos exclusivos del gerente
-		if(permiso[0] == 1){
+		if(permiso[1] == 3){
 			System.out.print("\n| 4. Recomendaciones de jornada");
 		}
 		

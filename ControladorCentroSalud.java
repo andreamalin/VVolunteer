@@ -180,7 +180,7 @@ public class ControladorCentroSalud{
 		cantNotificaciones[3] = espacio2.getNot();
 
 		permiso[0] = 0;
-		permiso[1] = 2;
+		permiso[1] = 3;
 
 		// Mostrando las notificaciones en el sistema
 		if (position.equalsIgnoreCase("Gerente")) {

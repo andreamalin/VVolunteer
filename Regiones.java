@@ -66,7 +66,6 @@ public class Regiones{
 				medicinas[i].setCantidadEnInventario(medicinas[i].getCantidadEnInventario() + 5 + medicinaNecesitada[i] - medicinas[i].getCantidadEnInventario());
 			}
 		}
-
 		return recomendacion;
 	}
 	

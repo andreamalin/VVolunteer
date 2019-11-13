@@ -96,21 +96,26 @@ public class PeticionAyuda{
 		Integer centrodenotificaciones = posicionaeliminar[0]; 
 		Integer eliminar = posicionaeliminar[1]; 
 
-		if (centrodenotificaciones == 2) { //Peticion ayuda
+		if (centrodenotificaciones == 2 ) { //Peticion ayuda
 			try {
 				peticiones.remove(eliminar-1);
 			} catch (IndexOutOfBoundsException e) {
 				error = "Notificacion invalida";
+			} catch (NullPointerException e) {
+				error = "No hay notificaciones";
 			}
+			arraytoTxt(); //Se pasa el array nuevo a txt
 		} else if (centrodenotificaciones == 4) { //Recomendacion jornada
 			try {		
 				recomendaciones.remove((eliminar-1));
 				bandera = true;
 			} catch (IndexOutOfBoundsException e) {
 				error = "Notificacion invalida";
+			} catch (NullPointerException e) {
+				error = "No hay notificaciones";
 			}
+			arraytoTxt(); //Se pasa el array nuevo a txt
 		}
-		arraytoTxt(); //Se pasa el array nuevo a txt
 	}
 	//Se pasa de archivo de texto a array
 	public void txtToArray(){

@@ -54,6 +54,8 @@ public class ReportarPaciente extends Reportes{
 				reportesPacientes.remove((eliminar-1));
 			} catch (IndexOutOfBoundsException e) {
 				String error = "Notificacion invalida";
+			} catch (NullPointerException e) {
+				String error = "No hay notificaciones";
 			}
 			arraytoTxt(reportesPacientes, "reportesPacientes.txt");
 		}

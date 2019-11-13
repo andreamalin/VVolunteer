@@ -25,16 +25,15 @@ public class Medicamento{
 	private String nombre;
 	private String sintoma1, sintoma2, sintoma3;
 	private String dosis;
-	private String similares;
 
 	private static LeerMedicamento medicina = new LeerMedicamento();
 	private static ArrayList<Integer> busquedaSintomas = new ArrayList<Integer>(); //Lista con posiciones de medicamentos
+	private static ArrayList<String> similares = new ArrayList<String>(); //Lista con medicamentos similares
 
-	static String [] listamedic; //Se manda a llamar la lista de medicamento
+	static String [] listamedic = medicina.getLista(); ; //Se manda a llamar la lista de medicamento
 	static String [] nombresmedicamentos; //Nombre de medicamentos encontrados
 
 	public boolean buscarMedicamento(String nombremedicamento){ //Se busca el medicamento por el nombre igresado por el usuario
-		listamedic = medicina.getLista(); //Se manda a llamar la lista de medicamento
 		for (int i=0; i<listamedic.length; i++) { //Si se encuentra el medicamento
 			if (nombremedicamento.equalsIgnoreCase(listamedic[i])) {
 				this.nombre = nombremedicamento; //Se define el nombre, los tres sintomas y la dosis
@@ -51,7 +50,6 @@ public class Medicamento{
 	}
 
 	public void buscarSintomas(String sintoma1, String sintoma2, String sintoma3){
-		listamedic = medicina.getLista(); //Se manda a llamar la lista de medicamento
 		int posicionactual = 0;
 		int longitud = listamedic.length/5; //Se obtiene la cantidad de medicamentos
 		//Se revisan las primeras posiciones de sintomas
@@ -89,34 +87,23 @@ public class Medicamento{
 			nombresmedicamentos[i]=listamedic[a];
 			a += 5; //Cada 5 posiciones se encuentra un medicamento nuevo
 		}
-		//Se eliminan nombres repetidos
-		for (int j=0; j<busquedaSintomas.size(); j++) {
-			String posicionactual = nombresmedicamentos[busquedaSintomas.get(j)];
-			for (int i=1; i<busquedaSintomas.size(); i++) {
-				String posicionposible = nombresmedicamentos[busquedaSintomas.get(i)];
-				if (posicionactual.equalsIgnoreCase(posicionposible)) {
-					busquedaSintomas.remove(i);
-				}
-			}				
-		}
 	}
 
 	private void buscarSimilares(){ //Se buscan los medicamentos similares
 		separarMed(); //Se separa el medicamento
 	
-		similares = "                  "; //Se define similares
 		int contador=0; //Contador para ingresar a la posicion de la lista
 
 		for (int i=0; i<nombresmedicamentos.length; i++) { //Se realiza el ciclo la cantidad de medicamentos que hayan
 			if (sintoma1.equalsIgnoreCase(listamedic[contador+1]) || sintoma2.equalsIgnoreCase(listamedic[contador+2]) || sintoma3.equalsIgnoreCase(listamedic[contador+3])){
-				similares += nombresmedicamentos[i] + "       "; //Si coincide el sintoma con alguna medicina, se agrega la medicina a similares
+				similares.add(nombresmedicamentos[i]); //Si coincide el sintoma con alguna medicina, se agrega la medicina a similares
 			}
 			contador+=5; //Cada 5 posiciones hay un nuevo síntoma
 		}
-		similares = similares.replace(nombre,""); //Se saca de similares el nombre del medicamento que metió el usuario
+		similares.remove(nombre); //Se elimina el nombre del medicamento buscado
 
-		if (similares.equalsIgnoreCase("                  ")) { //Si está vacío similares
-			similares = "|          No hay medicamento similar"; //Se muestra al usuario que no hay medicamentos similares
+		if (similares.size() == 0) { //Si está vacío similares
+			similares.add("          No hay medicamento similar"); //Se muestra al usuario que no hay medicamentos similares
 		}
 	}
 

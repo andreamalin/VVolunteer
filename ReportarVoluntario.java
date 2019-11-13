@@ -53,6 +53,8 @@ public class ReportarVoluntario extends Reportes{
 				reportesVoluntarios.remove((eliminar-1));
 			} catch (IndexOutOfBoundsException e) {
 				String error = "Notificacion invalida";
+			} catch (NullPointerException e) {
+				String error = "No hay notificaciones";
 			}
 			arraytoTxt(reportesVoluntarios, "reportesVoluntarios.txt");	
 		}
